@@ -63,16 +63,15 @@ router.get("/login/github", publicRoute, passport.authenticate("github"));
 
 router.get(
   "/login/github/callback",
-  passport.authenticate("github", { failureRedirect: "/login" }),
+  passport.authenticate("github"),
   (req, res) => {
+    if (!req.user) {
+      return res.status(400).send({ status: "error", error: "Credenciales incorrectas" });
+    }
+    req.session.user = req.user;
     res.redirect("/api/products");
   }
 );
-
-router.get("/loginWithGithub", publicRoute, (req, res) => {
-  const user = req.session.user;
-  res.render("loginWithGithub", {user})
-})
 
 router.get("/profile", privateRoute, (req, res) => {
   if (!req.session.user) {

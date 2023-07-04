@@ -65,7 +65,7 @@ const initializePassport = () => {
       }
     )
   );
-
+  /*
   passport.use(
     "github",
     new GitHubStrategy(
@@ -101,7 +101,44 @@ const initializePassport = () => {
         });
       }
     )
+  );*/
+  passport.use(
+    "github",
+    new GitHubStrategy(
+      {
+        clientID: "Iv1.eeaab075a5ab9e44",
+        clientSecret: "c0c3c81c9d25c190289cfa0849f3875fb1cc8503",
+        callbackURL: "http://localhost:8080/login/github/callback",
+      },
+      async (accessToken, refreshToken, profile, done) => {
+        try {
+          console.log(profile);
+  
+          let userConCuenta = await UserModel.findOne({ email: profile.username });
+  
+          if (!userConCuenta) {
+            let newUser = {
+              firstname: profile.displayName,
+              lastname: "",
+              email: profile.username,
+              age: 22,
+              password: createHash(profile.id),
+              role: "usuario",
+            };
+  
+            let result = await UserModel.create(newUser);
+  
+            done(null, result);
+          } else {
+            done(null, userConCuenta);
+          }
+        } catch (error) {
+          return done(error);
+        }
+      }
+    )
   );
+  
 
   passport.serializeUser((user, done) => {
     done(null, user.id);
