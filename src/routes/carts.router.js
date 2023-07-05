@@ -6,7 +6,6 @@ const cartsManager = new CartsManager();
 const router = Router();
  
 router.post("/", async (req, res) => {
-
   const newCart = {
     products: [
       {

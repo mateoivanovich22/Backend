@@ -1,0 +1,18 @@
+<h1>Usuario verificado via JWT</h1>
+<div>
+    <h1>Bienvenido {{user.firstname}}</h1>
+    <div style="color: white;">
+        <h3>Sus datos son:</h3>
+        <ul>
+            <li>Email: {{user.email}}</li>
+            <li>Password: {{user.password}}</li>
+            <li>Age: {{user.age}}</li>
+            <li>Lastname: {{user.lastname}}</li>
+        </ul>
+    </div>
+    <div>
+        <a href="http://localhost:8080/logout">
+            <button>Cerrar sesion</button>
+        </a>
+    </div>
+</div>

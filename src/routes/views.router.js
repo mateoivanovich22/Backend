@@ -9,8 +9,12 @@ const cartsManagerMongoose = new CartManagerMongoose();
 const router = express.Router();
 
 const UserModel = require("../dao/models/users.js");
-const { createHash } = require("../utils.js");
+const { createHash, authorization, passportCall, authToken, generateToken } = require("../utils.js");
 const passport = require("passport");
+
+const jwt = require("jsonwebtoken");
+
+const secretKey = 'mi_clave_secreta';
 
 const privateRoute = (req, res, next) => {
   const user = req.session.user;
@@ -29,17 +33,26 @@ const publicRoute = (req, res, next) => {
   }
 };
 
+router.get('/current', passportCall('jwt'), (req, res) => {
+  if (req.session && req.session.user) {
+    const currentUser = req.session.user;
+    res.render('current', { user: currentUser });
+  } else {
+    res.status(401).send("Usuario no autenticado");
+  }
+});
+
+
 router.get("/", publicRoute, (req, res) => {
   res.render("register", { title: "Express" });
 });
 
 router.post(
   "/register",
-  passport.authenticate("register", {
-    successRedirect: "/profile",
-    failureRedirect: "/",
-    failureFlash: true,
-  })
+  passportCall("register"),
+  (req, res) => {
+    res.redirect("/profile");
+  }
 );
 
 router.get("/login", publicRoute, (req, res) => {
@@ -48,41 +61,38 @@ router.get("/login", publicRoute, (req, res) => {
 
 router.post(
   "/login",
-  passport.authenticate("login", { failureRedirect: "/login" }),
+  passportCall("login"),
   async (req, res) => {
     if (!req.user)
       return res
         .status(400)
         .send({ status: "error", error: "Credenciales incorrectas" });
     req.session.user = req.user;
+    const token = generateToken(req.user);
+    res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
+
     res.redirect("/api/products");
   }
 );
 
-router.get("/login/github", publicRoute, passport.authenticate("github"));
+router.get("/login/github", publicRoute, passportCall("github"));
 
 router.get(
   "/login/github/callback",
-  passport.authenticate("github"),
+  passportCall("github"),
   (req, res) => {
     if (!req.user) {
       return res.status(400).send({ status: "error", error: "Credenciales incorrectas" });
     }
+    const token = generateToken(req.user);
+    res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
+
     req.session.user = req.user;
     res.redirect("/api/products");
   }
 );
 
-router.get("/profile", privateRoute, (req, res) => {
-  if (!req.session.user) {
-    res.redirect("/login");
-  } else {
-    const { firstname, lastname, email, age } = req.session.user;
-    res.render("profile", { firstname, lastname, email, age });
-  }
-});
-
-router.get("/logout", privateRoute, (req, res) => {
+router.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/login");
 });
@@ -106,7 +116,7 @@ router.post("/recovery", publicRoute, async (req, res) => {
     }
   } catch (error) {
     console.error("Error al restablecer la contraseña:", error);
-    res.redirect("/reset-password");
+    res.redirect("/register");
   }
 });
 

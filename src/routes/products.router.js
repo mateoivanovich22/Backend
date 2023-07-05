@@ -56,7 +56,7 @@ router.get('/', async (req, res) => {
       const { firstname, lastname } = user;
       const welcomeMessage = `Bienvenido, ${firstname} ${lastname}!`; 
 
-      res.render('home', { products: products, welcomeMessage: welcomeMessage, user: user });
+      res.render('productList', { products: products, welcomeMessage: welcomeMessage});
 
     } catch (error) {
       console.error(error);

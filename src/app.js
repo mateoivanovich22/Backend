@@ -27,6 +27,9 @@ const passport =require('passport') ;
 const initializePassport =require('./config/passport.config.js') 
 const flash =require('connect-flash') ;
 
+const cookieParser =require('cookie-parser');
+
+
 app.use(
   session({
     secret: "s3cr3t3",
@@ -47,6 +50,8 @@ app.use(express.urlencoded({ extended: true }));
 initializePassport()
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use(cookieParser());
 
 app.use(flash())
 

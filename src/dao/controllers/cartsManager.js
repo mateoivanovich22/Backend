@@ -137,8 +137,6 @@ class CartManager {
       console.error("Error borrando el producto:", error);
     }
   }
-  
-  
 }
 
 module.exports = CartManager;

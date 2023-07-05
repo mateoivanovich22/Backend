@@ -1,6 +1,18 @@
 <div>
-    <h1>Lista de productos</h1>
+    <div class="headerDetails">
+        {{#if welcomeMessage}}
+            <h1>{{welcomeMessage}}</h1>
+        {{/if}}
+        <h1>Lista de productos</h1>
+        <div>
+            <a href="http://localhost:8080/current">
+                <button>Ir a mi perfil</button>
+            </a>
+        </div>
+    </div>
+    
     <ul>
+        
         {{#each products}}
         <li class="product-item">
             <h2 class="product-name">{{title}}</h2>
@@ -10,6 +22,7 @@
         </li>
         {{/each}}
     </ul>
+    
 </div>
 
 <script src="/socket.io/socket.io.js"></script>

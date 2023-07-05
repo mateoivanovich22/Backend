@@ -4,6 +4,19 @@ const bcrypt = require("bcrypt");
 const { createHash, isValidPassword } = require("../utils.js");
 const UserModel = require("../dao/models/users.js");
 const GitHubStrategy = require("passport-github2").Strategy;
+const { authToken, generateToken } = require("../utils.js");
+const jwt = require("passport-jwt");
+
+const JWTStrategy = jwt.Strategy;
+const ExtractJWT = jwt.ExtractJwt;
+
+const cookieExtractor = (req) => {
+  let token = null;
+  if (req && req.cookies) {
+    token = req.cookies.token;
+  }
+  return token;
+};
 
 const initializePassport = () => {
   passport.use(
@@ -31,7 +44,6 @@ const initializePassport = () => {
           };
 
           const result = await UserModel.create(newUser);
-
           return done(null, result);
         } catch (error) {
           return done(error);
@@ -65,43 +77,24 @@ const initializePassport = () => {
       }
     )
   );
-  /*
+
   passport.use(
-    "github",
-    new GitHubStrategy(
+    "jwt",
+    new JWTStrategy(
       {
-        clientID: "Iv1.eeaab075a5ab9e44",
-        clientSecret: "c0c3c81c9d25c190289cfa0849f3875fb1cc8503",
-        callbackURL: "http://localhost:8080/api/sessions/githubcallback",
+        jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+        secretOrKey: "mi_clave_secreta",
       },
-      (accessToken, refreshToken, profile, done) => {
-        
-        UserModel.findOne({ email: profile.emails[0].value }, (err, user) => {
-          if (err) {
-            return done(err);
-          }
-
-          if (!user) {
-
-            const newUser = new UserModel({
-              firstname: profile.displayName,
-              email: profile.emails[0].value,
-              password: createHash(profile.id),
-            });
-
-            newUser.save((err, savedUser) => {
-              if (err) {
-                return done(err);
-              }
-              return done(null, savedUser);
-            });
-          } else {
-            return done(null, user);
-          }
-        });
+      (jwt_payload, done) => {
+        try {
+          return done(null, jwt_payload);
+        } catch (err) {
+          return done(err);
+        }
       }
     )
-  );*/
+  );
+
   passport.use(
     "github",
     new GitHubStrategy(
@@ -113,9 +106,11 @@ const initializePassport = () => {
       async (accessToken, refreshToken, profile, done) => {
         try {
           console.log(profile);
-  
-          let userConCuenta = await UserModel.findOne({ email: profile.username });
-  
+
+          let userConCuenta = await UserModel.findOne({
+            email: profile.username,
+          });
+
           if (!userConCuenta) {
             let newUser = {
               firstname: profile.displayName,
@@ -125,9 +120,8 @@ const initializePassport = () => {
               password: createHash(profile.id),
               role: "usuario",
             };
-  
+
             let result = await UserModel.create(newUser);
-  
             done(null, result);
           } else {
             done(null, userConCuenta);
@@ -138,7 +132,6 @@ const initializePassport = () => {
       }
     )
   );
-  
 
   passport.serializeUser((user, done) => {
     done(null, user.id);
