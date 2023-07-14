@@ -1,12 +1,12 @@
-const productsModel = require("../models/products.js") ;
-const { ObjectId } = require('mongoose').Types;
+import productsModel from "../models/products.js";
+import { ObjectId } from 'mongoose';
+import mongoose from "mongoose";
 
 class ProductsManager {
   constructor() {}
 
   async createProduct(product) {
     let result = await productsModel.create(product);
-
     return result;
   }
 
@@ -22,7 +22,7 @@ class ProductsManager {
 
   async getProductById(id) {
     try {
-      const product = await productsModel.findById(new ObjectId(id)).lean();
+      const product = await productsModel.findById(new mongoose.Types.ObjectId(id)).lean();
       return product;
     } catch (error) {
       console.error("Error al obtener el producto:", error);
@@ -33,7 +33,6 @@ class ProductsManager {
   async getPaginatedProducts(page, limit) {
     try {
       const startIndex = (page - 1) * limit;
-      const endIndex = page * limit;
 
       const products = await productsModel.find({})
         .skip(startIndex)
@@ -74,4 +73,4 @@ class ProductsManager {
   }
 }
 
-module.exports =ProductsManager;
+export default ProductsManager;

@@ -1,11 +1,13 @@
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const bcrypt = require("bcrypt");
-const { createHash, isValidPassword } = require("../utils.js");
-const UserModel = require("../dao/models/users.js");
-const GitHubStrategy = require("passport-github2").Strategy;
-const { authToken, generateToken } = require("../utils.js");
-const jwt = require("passport-jwt");
+import passport from "passport";
+import { Strategy as LocalStrategy } from "passport-local";
+import { createHash, isValidPassword } from "../utils.js";
+import UserModel from "../dao/models/users.js";
+import { Strategy as GitHubStrategy } from "passport-github2";
+import jwt from "passport-jwt";
+
+import config from "./config.js";
+
+const secretKey = config.secretKey.key
 
 const JWTStrategy = jwt.Strategy;
 const ExtractJWT = jwt.ExtractJwt;
@@ -24,7 +26,6 @@ const initializePassport = () => {
     new LocalStrategy(
       { passReqToCallback: true, usernameField: "email" },
       async (req, username, password, done) => {
-        console.log(req);
         const { firstname, lastname, age } = req.body;
 
         try {
@@ -83,7 +84,7 @@ const initializePassport = () => {
     new JWTStrategy(
       {
         jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
-        secretOrKey: "mi_clave_secreta",
+        secretOrKey: secretKey,
       },
       (jwt_payload, done) => {
         try {
@@ -105,8 +106,6 @@ const initializePassport = () => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
-          console.log(profile);
-
           let userConCuenta = await UserModel.findOne({
             email: profile.username,
           });
@@ -147,4 +146,4 @@ const initializePassport = () => {
   });
 };
 
-module.exports = initializePassport;
+export default initializePassport;

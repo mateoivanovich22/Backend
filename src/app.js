@@ -1,34 +1,38 @@
-const express = require("express");
-const { Server } = require("socket.io");
-const handlebars = require("express-handlebars");
+import express from "express";
+import { Server } from "socket.io";
+import { engine } from 'express-handlebars';
 
-const ProductManagerMongoose = require("./dao/controllers/productManager.js");
-const productManagerMongoose = new ProductManagerMongoose();
+import ProductManagerMongoose from "./dao/controllers/productManager.js";
+import CartsManagerMongoose from "./dao/controllers/cartsManager.js";
+import MessagesManager from "./dao/controllers/messagesManager.js";
+import session from "express-session";
+import passport from "passport";
+import initializePassport from "./config/passport.config.js";
+import flash from "connect-flash";
+import cookieParser from "cookie-parser";
+import 'dotenv/config'
+import config from "./config/config.js";
+import productsRouter from "./routes/products.router.js";
+import cartsRouter from "./routes/carts.router.js";
+import viewsRouter from "./routes/views.router.js";
 
-const CartsManagerMongoose = require("./dao/controllers/cartsManager.js");
-const cartsManagerMongoose = new CartsManagerMongoose();
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const MessagesManager = require("./dao/controllers/messagesManager.js");
-const messagesManager = new MessagesManager();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const session = require("express-session");
-
-let productsOfMongoose = [];
-
-const productsRouter = require("./routes/products.router.js");
-const cartsRouter = require("./routes/carts.router.js");
-const viewsRouter = require("./routes/views.router.js");
+const PORT = config.server.port;
 
 const app = express();
-const server = app.listen(8080, () => console.log("Listening on port 8080"));
+const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 const io = new Server(server);
 
-const passport =require('passport') ;
-const initializePassport =require('./config/passport.config.js') 
-const flash =require('connect-flash') ;
+const productManagerMongoose = new ProductManagerMongoose();
+const cartsManagerMongoose = new CartsManagerMongoose();
+const messagesManager = new MessagesManager();
 
-const cookieParser =require('cookie-parser');
-
+let productsOfMongoose = [];
 
 app.use(
   session({
@@ -39,21 +43,20 @@ app.use(
 );
 
 app.use(express.static(__dirname + "/public"));
-app.engine("handlebars", handlebars.engine());
+app.engine('handlebars', engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-initializePassport()
-app.use(passport.initialize())
-app.use(passport.session())
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(cookieParser());
 
-app.use(flash())
+app.use(flash());
 
 app.use("/api/products/", productsRouter);
 
@@ -98,3 +101,4 @@ io.on("connection", async (socket) => {
 });
 
 app.use("/", viewsRouter);
+export default app;

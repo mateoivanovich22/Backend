@@ -1,10 +1,8 @@
-const mongoose = require("mongoose") ;
+import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
+import db from './db.js';
 
-const mongoosePaginate =require('mongoose-paginate-v2') ;
-
-const db = require("./db.js") ;
-
-const collection = "products";
+const collection = 'products';
 
 const productsSchema = new mongoose.Schema({
   title: {
@@ -19,7 +17,6 @@ const productsSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-
   price: {
     type: Number,
     required: true,
@@ -33,7 +30,7 @@ const productsSchema = new mongoose.Schema({
     required: true,
   },
   thumbnail: {
-    type: String
+    type: String,
   },
   category: {
     type: String,
@@ -47,7 +44,7 @@ productsSchema.statics.createProduct = async function (product) {
     const result = await newProduct.save();
     return result;
   } catch (error) {
-    console.error("Error al crear producto:", error);
+    console.error('Error al crear producto:', error);
     throw error;
   }
 };
@@ -55,4 +52,4 @@ productsSchema.statics.createProduct = async function (product) {
 productsSchema.plugin(mongoosePaginate);
 const productsModel = db.model(collection, productsSchema);
 
-module.exports =productsModel;
+export default productsModel;

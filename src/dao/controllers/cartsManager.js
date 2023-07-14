@@ -1,6 +1,5 @@
-const cartsModel = require("../models/carts.js");
-const { ObjectId } = require('mongoose').Types;
-const ProductManagerMongoose = require("../controllers/productManager.js");
+import cartsModel from "../models/carts.js";
+import ProductManagerMongoose from "../controllers/productManager.js";
 const productManagerMongoose = new ProductManagerMongoose();
 
 class CartManager {
@@ -11,6 +10,7 @@ class CartManager {
     let result = await cartsModel.create(cart);
     return result;
   }
+
   async createCartWithProduct(productId){
     const product = await productManagerMongoose.getProductById(productId);
   
@@ -27,7 +27,7 @@ class CartManager {
       ],
     };
   
-    const createdCart = await cartsManagerMongoose.createCart(cart);
+    const createdCart = await this.createCart(cart);
     console.log("Carrito creado:", createdCart);
   
     return createdCart;
@@ -139,4 +139,4 @@ class CartManager {
   }
 }
 
-module.exports = CartManager;
+export default CartManager;

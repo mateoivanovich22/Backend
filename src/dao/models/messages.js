@@ -1,8 +1,8 @@
-const mongoose =require("mongoose") ;
-const mongoosePaginate =require('mongoose-paginate-v2') ;
-const db =require("./db.js") ;
+import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
+import db from './db.js';
 
-const collection = "messages";
+const collection = 'messages';
 
 
 const messagesSchema = new mongoose.Schema({
@@ -30,4 +30,4 @@ messagesSchema.statics.createMessage = async function (message) {
 messagesSchema.plugin(mongoosePaginate);
 const messageModel = db.model(collection, messagesSchema);
 
-module.exports =messageModel;
+export default messageModel;

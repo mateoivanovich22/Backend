@@ -1,5 +1,5 @@
-const messagesModel = require("../models/messages.js");
-const { ObjectId } = require('mongoose').Types;
+import messagesModel from "../models/messages.js";
+import { ObjectId } from 'mongoose';
 
 class MessagesManager {
   constructor() {}
@@ -36,4 +36,4 @@ class MessagesManager {
   }
 }
 
-module.exports = MessagesManager;
+export default MessagesManager;

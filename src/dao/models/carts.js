@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
-
-const db = require("./db.js");
+import mongoose from "mongoose";
+import db from "./db.js";
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const collection = "carts";
-const mongoosePaginate =require('mongoose-paginate-v2') ;
 
 const cartsSchema = new mongoose.Schema({
   products: [
@@ -35,4 +34,4 @@ cartsSchema.statics.createCart = async function (cart) {
 cartsSchema.plugin(mongoosePaginate);
 const cartsModel = db.model(collection, cartsSchema);
 
-module.exports = cartsModel;
+export default cartsModel;
