@@ -1,6 +1,6 @@
-import ProductManagerMongo from "../productManager.js";
+import ProductManagerMongo from "../../services/productManager.js";
 
-import * as logica from "../../../services/logicaProducts.js"
+import * as logica from "../../controllers/products.controllers.js"
 
 const productManagerMongo = new ProductManagerMongo();
 

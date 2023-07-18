@@ -1,5 +1,4 @@
-import ProductManagerMongo from "../dao/controllers/productManager.js";
-import productsModel from "../dao/models/products.js";
+import ProductManagerMongo from "../services/productManager.js";
 const productManagerMongo = new ProductManagerMongo();
 
 const logicaShowProducts = async (limit, page, sort, query) => {
@@ -9,27 +8,12 @@ const logicaShowProducts = async (limit, page, sort, query) => {
       filters.title = { $regex: query, $options: "i" };
     }
 
-    const totalProducts = await productsModel.countDocuments(filters);
-    const totalPages = Math.ceil(totalProducts / limit);
-
-    const queryOptions = {
-      skip: (page - 1) * limit,
-      limit: limit,
-      sort: sort === "desc" ? { price: -1 } : { price: 1 },
-    };
-
-    const result = await productsModel.paginate(filters, queryOptions);
-    result.prevLink = result.hasPrevPage
-      ? `http://localhost:8080/students?page=${result.prevPage}`
-      : "";
-    result.nextLink = result.hasNextPage
-      ? `http://localhost:8080/students?page=${result.nextPage}`
-      : "";
-    result.isValid = !(page <= 0 || page > result.totalPages);
-
-    const products = await productsModel
-      .find(filters, null, queryOptions)
-      .lean();
+    const products = await productManagerMongo.getPaginatedProductsWithOptions(
+      filters,
+      page,
+      limit,
+      sort
+    );
 
     return products;
   } catch (error) {

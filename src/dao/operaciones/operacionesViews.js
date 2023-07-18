@@ -1,6 +1,6 @@
-import { generateToken } from "../../../utils.js";
+import { generateToken } from "../../utils.js";
 
-import * as logica from "../../../services/logicaViews.js";
+import * as logica from "../../controllers/views.controllers.js";
 
 const privateRoute = (req, res, next) => {
   const user = req.session.user;

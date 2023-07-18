@@ -1,4 +1,4 @@
-import CartManagerMongo from "../dao/controllers/cartsManager.js";
+import CartManagerMongo from "../services/cartsManager.js";
 const cartsManager = new CartManagerMongo();
 
 const logicaCreateCart = async (product, quantity) => {

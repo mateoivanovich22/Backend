@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { showProducts, createProduct, updateProduct, deleteProduct } from "../dao/controllers/operaciones/operacionesProducts.js";
+import { showProducts, createProduct, updateProduct, deleteProduct } from "../dao/operaciones/operacionesProducts.js";
 
 
 const router = Router();

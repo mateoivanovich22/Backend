@@ -1,4 +1,4 @@
-import * as logica from "../../../services/logicaCart.js"
+import * as logica from "../../controllers/carts.controllers.js"
 
 const create = async (req, res) => {
   const { product, quantity } = req.body;

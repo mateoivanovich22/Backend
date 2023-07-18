@@ -2,9 +2,9 @@ import express from "express";
 import { Server } from "socket.io";
 import { engine } from 'express-handlebars';
 
-import ProductManagerMongoose from "./dao/controllers/productManager.js";
-import CartsManagerMongoose from "./dao/controllers/cartsManager.js";
-import MessagesManager from "./dao/controllers/messagesManager.js";
+import ProductManagerMongoose from "./services/productManager.js";
+import CartsManagerMongoose from "./services/cartsManager.js";
+import MessagesManager from "./services/messagesManager.js"
 import session from "express-session";
 import passport from "passport";
 import initializePassport from "./config/passport.config.js";

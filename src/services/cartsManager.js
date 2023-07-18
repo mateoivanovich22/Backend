@@ -1,5 +1,5 @@
-import cartsModel from "../models/carts.js";
-import ProductManagerMongoose from "../controllers/productManager.js";
+import cartsModel from "../dao/models/carts.js";
+import ProductManagerMongoose from "./productManager.js";
 const productManagerMongoose = new ProductManagerMongoose();
 
 class CartManager {

@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import {create, getCartById, deleteProductOfCart, updateCart, updateProductOfCart, deleteAllProductsOfCart} from "../dao/controllers/operaciones/operacionesCart.js"
+import {create, getCartById, deleteProductOfCart, updateCart, updateProductOfCart, deleteAllProductsOfCart} from "../dao/operaciones/operacionesCart.js"
 
 const router = Router();
 

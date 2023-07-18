@@ -1,6 +1,6 @@
 import express from "express";
 import { passportCall } from "../utils.js";
-import * as operations from "../dao/controllers/operaciones/operacionesViews.js";
+import * as operations from "../dao/operaciones/operacionesViews.js";
 
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-import productsModel from "../models/products.js";
+import productsModel from "../dao/models/products.js";
 import { ObjectId } from 'mongoose';
 import mongoose from "mongoose";
 
@@ -69,6 +69,39 @@ class ProductsManager {
       return true;
     } catch (error) {
       console.error("Error borrando el producto:", error);
+    }
+  }
+
+  async getPaginatedProductsWithOptions(filters, page, limit, sort) {
+    try {
+      const startIndex = (page - 1) * limit;
+
+      const totalProducts = await productsModel.countDocuments(filters);
+      const totalPages = Math.ceil(totalProducts / limit);
+
+      const queryOptions = {
+        skip: startIndex,
+        limit: limit,
+        sort: sort === "desc" ? { price: -1 } : { price: 1 },
+      };
+
+      const result = await productsModel.paginate(filters, queryOptions);
+      result.prevLink = result.hasPrevPage
+        ? `http://localhost:8080/students?page=${result.prevPage}`
+        : "";
+      result.nextLink = result.hasNextPage
+        ? `http://localhost:8080/students?page=${result.nextPage}`
+        : "";
+      result.isValid = !(page <= 0 || page > result.totalPages);
+
+      const products = await productsModel
+        .find(filters, null, queryOptions)
+        .lean();
+
+      return products;
+    } catch (error) {
+      console.error("Error al obtener los productos paginados:", error);
+      throw error;
     }
   }
 }

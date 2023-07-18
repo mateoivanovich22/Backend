@@ -1,4 +1,4 @@
-import messagesModel from "../models/messages.js";
+import messagesModel from "../dao/models/messages.js";
 import { ObjectId } from 'mongoose';
 
 class MessagesManager {
