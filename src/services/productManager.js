@@ -30,6 +30,16 @@ class ProductsManager {
     }
   }
 
+  async getProductByName(productName) {
+    try {
+      const product = await productsModel.findOne({ title: productName }).lean();
+      return product;
+    } catch (error) {
+      console.error("Error al obtener el producto por nombre:", error);
+      throw error;
+    }
+  }
+
   async getPaginatedProducts(page, limit) {
     try {
       const startIndex = (page - 1) * limit;
@@ -49,7 +59,6 @@ class ProductsManager {
   async updateProduct(id, fieldsToUpdate) {
     try {
       const updatedProduct = await productsModel.findByIdAndUpdate(id, fieldsToUpdate, { new: true }).lean();
-      console.log(`Producto con id ${id} modificado`, updatedProduct);
       return updatedProduct;
     } catch (error) {
       console.error("Error modificando producto:", error);
@@ -64,8 +73,6 @@ class ProductsManager {
         console.log(`Producto con id ${id} no encontrado`);
         return false;
       }
-  
-      console.log(`Producto con id ${id} eliminado`, deletedProduct);
       return true;
     } catch (error) {
       console.error("Error borrando el producto:", error);
@@ -104,6 +111,27 @@ class ProductsManager {
       throw error;
     }
   }
+
+  async getPriceByName(name, quantity) {
+    try {
+      const product = await productsModel.findOne({ title: name }).lean();
+
+      if (!product) {
+        throw new Error('Producto no encontrado.');
+      }
+
+      if (quantity <= 0) {
+        throw new Error('La cantidad debe ser mayor a cero.');
+      }
+
+      const totalPrice = product.price * quantity;
+      return totalPrice;
+    } catch (error) {
+      console.error('Error al obtener el precio del producto:', error);
+      throw error;
+    }
+  }
+
 }
 
 export default ProductsManager;

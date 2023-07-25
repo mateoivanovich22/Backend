@@ -1,4 +1,9 @@
 import * as logica from "../../controllers/carts.controllers.js"
+import config from "../../config/config.js"
+import nodemailer from 'nodemailer';
+
+const nodemailerKey = config.nodemailer.key
+
 
 const create = async (req, res) => {
   const { product, quantity } = req.body;
@@ -106,11 +111,84 @@ const deleteAllProductsOfCart = async (req, res) => {
   }
 };
 
+const finishBuying = async (req, res) => {
+  const cartId = req.params.cid;
+
+  const email = req.session.user.email
+  try {
+    const ticket = await logica.logicaFinishBuying(cartId, email);
+    if(ticket){
+      res.send({ status: "success" });
+    }else{
+      res.send({ status: "error" });
+    }
+    
+  }catch (error) {
+    console.log(error);
+    return res.status(500).send("Error al eliminar los productos del carrito");
+  }
+}
+
+const showTicket = async (req, res) => {
+
+  const userEmail = req.session.user.email;
+
+  try {
+    const tickets = await logica.logicaShowTicket(userEmail)
+
+    const ticketDetails = tickets.map((ticket) => `
+      <div>
+        <strong>Código:</strong> ${ticket.code}<br>
+        <strong>Fecha de Compra:</strong> ${ticket.purchase_datetime}<br>
+        <strong>Monto:</strong> ${ticket.amount}<br>
+        <strong>Comprador:</strong> ${ticket.purchaser}<br>
+      </div>
+    `).join("<br>");
+
+    const html = `<h1>Muchas gracias por su compra, le dejamos los datos de sus compras: ${ticketDetails}</h1>`;
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+          user: 'mateoivanovichichi@gmail.com',
+          pass: nodemailerKey
+      }
+    });
+
+    const mailOptions = {
+      from: 'mateoivanovichichi@gmail.com',
+      to: userEmail,
+      subject: 'Ticket emitido',
+      html: html,
+      
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+      if(err) {
+          console.log("Error: ", err);
+          return;
+      }
+  
+      console.log(`Mensaje enviado con exito a ${email}`);
+    });
+
+    if (tickets) {
+      res.render('tickets', { tickets })
+    }else{
+      console.log("Hubo un error")
+    }
+  } catch (error) {
+    console.error('Error al buscar el ticket:', error);
+  }
+};
+
 export {
   create,
   getCartById,
   deleteProductOfCart,
   updateCart,
   updateProductOfCart,
-  deleteAllProductsOfCart
+  deleteAllProductsOfCart,
+  finishBuying,
+  showTicket
 }

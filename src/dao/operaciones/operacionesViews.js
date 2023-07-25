@@ -2,27 +2,17 @@ import { generateToken } from "../../utils.js";
 
 import * as logica from "../../controllers/views.controllers.js";
 
-const privateRoute = (req, res, next) => {
-  const user = req.session.user;
-  if (user && user.role === "admin") {
-    next();
-  } else {
-    res.redirect("/login");
-  }
-};
-
-const publicRoute = (req, res, next) => {
-  if (!req.session.user) {
-    next();
-  } else {
-    res.redirect("/api/products");
-  }
-};
-
 const currentJWT = (req, res) => {
   if (req.session && req.session.user) {
-    const currentUser = req.session.user;
-    res.render("current", { user: currentUser });
+    const currentUserDTO = {
+      firstname: req.session.user.firstname,
+      email: req.session.user.email,
+      age: req.session.user.age,
+      lastname: req.session.user.lastname,
+      role: req.session.user.role
+
+    };
+    res.render("current", { user: currentUserDTO });
   } else {
     res.status(401).send("Usuario no autenticado");
   }
@@ -33,6 +23,13 @@ const showRegister = (req, res) => {
 };
 
 const postRegister = (req, res) => {
+  if (!req.user)
+    return res
+      .status(400)
+      .send({ status: "error", error: "Credenciales incorrectas" });
+  req.session.user = req.user;
+  const token = generateToken(req.user);
+  res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
   res.redirect("/products");
 };
 
@@ -120,9 +117,10 @@ const showProductList = async (req, res) => {
 
 const showProductId = async (req, res) => {
   try {
+    const user = req.session.user
     const productId = req.params.id;
     const product = await logica.logicaShowProductId(productId);
-    res.render("productDetails", { product });
+    res.render("productDetails", { product, user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error interno del servidor");
@@ -161,7 +159,5 @@ export {
   showChat,
   showProductList,
   showProductId,
-  showCartId,
-  privateRoute,
-  publicRoute,
+  showCartId
 };

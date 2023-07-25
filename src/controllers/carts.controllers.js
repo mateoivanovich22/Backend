@@ -1,6 +1,9 @@
 import CartManagerMongo from "../services/cartsManager.js";
 const cartsManager = new CartManagerMongo();
 
+import ProductsManager from "../services/productManager.js";
+const productManager = new ProductsManager();
+
 const logicaCreateCart = async (product, quantity) => {
   const newCart = {
     products: [
@@ -82,11 +85,56 @@ const logicaDeleteAllProductsOfCart = async (cartId) => {
   }
 };
 
+const logicaFinishBuying = async (cartId, purchaserEmail) => {
+  const cart = await cartsManager.getCartWithProductsById(cartId);
+  if (!cart) {
+    return false;
+  }
+
+  const productsNotProcessed = await cartsManager.processProductsInCart(cart);
+
+  if (productsNotProcessed.length === 0) {
+    const totalPrice = await cartsManager.calculateTotalPrice(cart);
+    const randomCode = await cartsManager.generateTicketCode();
+
+    const ticketData = {
+      code: randomCode,
+      purchase_datetime: new Date(),
+      amount: totalPrice,
+      purchaser: purchaserEmail,
+    };
+
+    const isTicketCreated = await cartsManager.createTicket(ticketData);
+    if (isTicketCreated) {
+      const newCartProducts = cart.products.filter((product) => !productsNotProcessed.includes(product.product));
+      await cartsManager.updateCart(cartId, newCartProducts);
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    console.log("NOS QUEDAMOS SIN STOCK DE ESTE O ESTOS PRODUCTOS: ", productsNotProcessed)
+    return false;
+  }
+};
+
+const logicaShowTicket = async( email ) => {
+  try {
+    const tickets = await cartsManager.findTicketsByEmail(email);
+    return tickets
+  } catch (error) {
+    console.error('Error al buscar el ticket:', error);
+    return false
+  }
+}
+
 export {
   logicaCreateCart,
   logicaGetCartById,
   logicaDeleteProductOfCart,
   logicaUpdateCart,
   logicaUpdateProductOfCart,
-  logicaDeleteAllProductsOfCart
+  logicaDeleteAllProductsOfCart,
+  logicaFinishBuying,
+  logicaShowTicket
 };

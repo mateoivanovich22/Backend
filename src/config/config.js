@@ -14,4 +14,8 @@ config.secretKey = {
     key: process.env.secretKey
 }
 
+config.nodemailer= {
+    key: process.env.nodemailerKey
+}
+
 export default config;

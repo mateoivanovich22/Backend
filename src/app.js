@@ -82,8 +82,9 @@ io.on("connection", async (socket) => {
     await messagesManager.createMessage(message);
   });
 
-  socket.on("cartCreated", async (productId) => {
-    const newCart = await cartsManagerMongoose.createCartWithProduct(productId);
+  socket.on("cartCreated", async (productId, productName, userId) => {
+
+    const newCart = await cartsManagerMongoose.createCartWithProduct(productId,productName,userId);
     socket.emit("cartId", newCart._id);
   });
 
@@ -91,6 +92,28 @@ io.on("connection", async (socket) => {
     await productManagerMongoose.createProduct(product);
     await getProducts();
     io.emit("products", productsOfMongoose);
+  });
+
+  socket.on("borrarProduct", async (cartId, productId) => {
+    const productBorrado = await cartsManagerMongoose.deleteProductOfCart(cartId, productId)
+    if (productBorrado) {
+      io.emit("Todos los productos eliminados correctamente");
+    } else {
+        io.emit("Error al eliminar todos los productos");
+    }
+  })
+
+  socket.on("borrarAllProducts", async (cartId) => {
+    try {
+        const borrar = await cartsManagerMongoose.deleteAllProductOfCart(cartId);
+        if (borrar) {
+            io.emit("Todos los productos eliminados correctamente");
+        } else {
+            io.emit("Error al eliminar todos los productos");
+        }
+    } catch (error) {
+        console.error('Error al eliminar todos los productos:', error);
+    }
   });
 
   socket.on("deleteProduct", async (productId) => {

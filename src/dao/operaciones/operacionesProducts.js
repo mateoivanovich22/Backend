@@ -18,9 +18,9 @@ const showProducts = async (req, res) => {
 
     try {
       const products = await logica.logicaShowProducts(limit, page, sort, query);
-
       res.render("productList", {
         products: products,
+        user: user,
         welcomeMessage: welcomeMessage,
       });
     } catch (error) {

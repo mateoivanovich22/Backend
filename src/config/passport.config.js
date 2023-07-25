@@ -36,12 +36,19 @@ const initializePassport = () => {
             });
           }
 
+          let role ="user"
+
+          if(username === "mateo@gmail.com" && password == 123){
+            role = "admin"
+          }
+
           const newUser = {
             firstname,
             lastname,
             email: username,
             age,
             password: createHash(password),
+            role: role,
           };
 
           const result = await UserModel.create(newUser);

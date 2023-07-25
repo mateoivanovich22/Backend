@@ -1,0 +1,20 @@
+<div>
+    <h1>Lista de Tickets</h1>
+    {{#if tickets}}
+        <ul>
+            {{#each tickets}}
+                <li style="color: white;">
+                    <strong>Código:</strong> {{this.code}}<br>
+                    <strong>Fecha de Compra:</strong> {{this.purchase_datetime}}<br>
+                    <strong>Monto:</strong> {{this.amount}}<br>
+                    <strong>Comprador:</strong> {{this.purchaser}}<br>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p class="no-tickets">No se encontraron tickets.</p>
+    {{/if}}
+    <div>
+        <h2 style="color: white;">Verifique su email que le enviamos los mismos datos asi los guarda!</h2>
+    </div>
+</div>

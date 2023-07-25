@@ -1,9 +1,12 @@
 const socket = io();
 
-function addToCart(productId) {
+function addToCart(productId,productName, userId) {
+  if(userId === '') {
+    userId = req.session.user
+  }
 
   try {
-    socket.emit("cartCreated", productId);
+    socket.emit("cartCreated",  productId, productName, userId);
 
     socket.on("cartId", (cartId) => {
       window.location.href = `/carts/${cartId}`;

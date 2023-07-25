@@ -109,7 +109,88 @@
       align-items: center;
       justify-content: space-around;
     }
+    #botonEliminarProducts {
+      width: 150px;
+      height: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      background: red;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+      background: #e62222;
+      }
 
+    #botonEliminarProducts, botonEliminarProducts span {
+      transition: 200ms;
+    }
+
+    #botonEliminarProducts .text {
+      transform: translateX(35px);
+      color: white;
+      font-weight: bold;
+    }
+
+    #botonEliminarProducts .icon {
+      position: absolute;
+      border-left: 1px solid #c41b1b;
+      transform: translateX(110px);
+      height: 40px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #botonEliminarProducts svg {
+      width: 15px;
+      fill: #eee;
+    }
+
+    #botonEliminarProducts:hover {
+      background: #ff3636;
+    }
+
+    #botonEliminarProducts:hover .text {
+      color: transparent;
+    }
+
+    #botonEliminarProducts:hover .icon {
+      width: 150px;
+      border-left: none;
+      transform: translateX(0);
+    }
+
+    #botonEliminarProducts:focus {
+      outline: none;
+    }
+
+    #botonEliminarProducts:active .icon svg {
+      transform: scale(0.8);
+    }
+
+    strong {
+      font-weight: bold;
+    }
+
+    .no-tickets {
+      text-align: center;
+      color: #666;
+      font-size: 18px;
+    }
+
+    #divProductsCart{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    #bottonProductsCart{
+      margin-right: 1000px;
+    }
     </style>
   </head>
   <body>
