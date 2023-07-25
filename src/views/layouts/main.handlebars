@@ -9,6 +9,14 @@
       body {
         background-color: #222222;
       }
+      #divLogin{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        margin-top: 100px;
+      }
 
       .container {
         max-width: 600px;
@@ -103,6 +111,12 @@
       cursor: pointer;
     }
 
+    #h1Login{
+      color: black;
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      text-decoration: underline;
+    }
+
     .headerDetails{
       display: flex;
       flex-direction: row;
@@ -191,6 +205,255 @@
     #bottonProductsCart{
       margin-right: 1000px;
     }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .input-group__input{
+      font: inherit;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      outline: 2px solid #fff;
+      background-color: transparent;
+      transition: outline-color 500ms;
+
+    }
+
+    .input-group__input:is(:focus, :valid) {
+      outline-color: #3c50eb;
+    }
+
+    .input-group__label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      translate: 10px 10px;
+      color: #fff;
+      transition: translate 500ms, scale 500ms;
+    }
+
+    .input-group__input:focus + 
+    .input-group__label,
+    .input-group__input:valid + 
+    .input-group__label {
+      padding-inline: 5px;
+      translate: 10px -14px;
+      scale: 0.8;
+      background-color: transparent;
+    }
+
+    .card {
+      width: 440px;
+      height: 450px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      background: rgb(223, 225, 235);
+      border-radius: 50px;
+      box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    }
+
+    .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 15px;
+      gap: 15px;
+      background-color: #181717;
+      outline: 3px #181717 solid;
+      outline-offset: -3px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: 400ms;
+    }
+
+    .button .text {
+      color: white;
+      font-weight: 700;
+      font-size: 1em;
+      transition: 400ms;
+    }
+
+    .button svg path {
+      transition: 400ms;
+    }
+
+    .button:hover {
+      background-color: transparent;
+    }
+
+    .button:hover .text {
+      color: #181717;
+    }
+
+    .button:hover svg path {
+      fill: #181717;
+    }
+    
+
+    {{!-- form register --}}
+
+    .divCentrarForm{
+      margin-top: 50px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-box {
+      max-width: 300px;
+      background: #f1f7fe;
+      overflow: hidden;
+      border-radius: 16px;
+      color: #010101;
+    }
+
+    .form {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 24px 24px;
+      gap: 16px;
+      text-align: center;
+    }
+
+    /*Form text*/
+    .title {
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    /*Inputs box*/
+    .form-container {
+      overflow: hidden;
+      border-radius: 8px;
+      background-color: #fff;
+      margin: 1rem 0 .5rem;
+      width: 100%;
+    }
+
+    .input {
+      background: none;
+      border: 0;
+      outline: 0;
+      height: 40px;
+      width: 100%;
+      border-bottom: 1px solid #eee;
+      font-size: .9rem;
+      padding: 8px 15px;
+    }
+
+    .form-section {
+      padding: 16px;
+      font-size: .85rem;
+      background-color: #e0ecfb;
+      box-shadow: rgb(0 0 0 / 8%) 0 -1px;
+    }
+
+    .form-section a {
+      font-weight: bold;
+      color: #0066ff;
+      transition: color .3s ease;
+    }
+
+    .form-section a:hover {
+      color: #005ce6;
+      text-decoration: underline;
+    }
+
+    /*Button*/
+    .form button {
+      background-color: #0066ff;
+      color: #fff;
+      border: 0;
+      border-radius: 24px;
+      padding: 10px 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color .3s ease;
+    }
+
+    .form button:hover {
+      background-color: #005ce6;
+    }
+
+    .buttonDelete {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgb(20, 20, 20);
+      border: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+      cursor: pointer;
+      transition-duration: .3s;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .svgIcon {
+      width: 12px;
+      transition-duration: .3s;
+    }
+
+    .svgIcon path {
+      fill: white;
+    }
+
+    .buttonDelete:hover {
+      width: 140px;
+      border-radius: 50px;
+      transition-duration: .3s;
+      background-color: rgb(255, 69, 69);
+      align-items: center;
+    }
+
+    .buttonDelete:hover .svgIcon {
+      width: 50px;
+      transition-duration: .3s;
+      transform: translateY(60%);
+    }
+
+    .buttonDelete::before {
+      position: absolute;
+      top: -20px;
+      content: "Delete";
+      color: white;
+      transition-duration: .3s;
+      font-size: 2px;
+    }
+
+    .buttonDelete:hover::before {
+      font-size: 13px;
+      opacity: 1;
+      transform: translateY(30px);
+      transition-duration: .3s;
+    }
+
+    #divBotonesCart{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 50px;
+    }
+
     </style>
   </head>
   <body>

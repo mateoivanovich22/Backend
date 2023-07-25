@@ -1,23 +1,20 @@
-<h1>Crear un usuario</h1>
-
-<div>
-    <form action="http://localhost:8080/register" method="post">
-        <input type="text" name="firstname" placeholder="Nombre"/>
-        <input type="text" name="lastname" placeholder="Apellido"/>
-        <input type="email" name="email" placeholder="Email"/>
-        <input type="number" name="age" placeholder="Edad"/>
-        <input type="password" name="password" placeholder="Password"/>
-        <button type="submit">Registrarse</button>
-    </form>
-</div>
-<br/>
-<div>
-    <a href="http://localhost:8080/login">
-        <button>Iniciar sesion</button>
-    </a>
-</div>
-<div>
-    <a href="http://localhost:8080/login/github">
-        <button>Registrarse con github</button>
-    </a>
+<div class="divCentrarForm">
+    <div class="form-box">
+        <form class="form" action="http://localhost:8080/register" method="post">
+            <span class="title">Sign up</span>
+            <span class="subtitle">Create a free account with your email.</span>
+            <div class="form-container">
+                <input type="text" class="input" name="firstname" placeholder="firstname">
+                <input type="text" class="input" name="lastname" placeholder="lastname">
+                <input type="number" class="input" name="age" placeholder="Edad"/>
+                <input type="email" class="input" name="email" placeholder="Email">
+                <input type="password" class="input" name="password" placeholder="Password">
+            </div>
+            <button type="submit">Sign up</button>
+        </form>
+        <div class="form-section">
+            <p>Register with GitHub? <a href="login/github">Register</a> </p>
+            <p>Have an account? <a href="login">Log in</a> </p>
+        </div>
+    </div>
 </div>

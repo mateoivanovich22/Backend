@@ -1,5 +1,5 @@
-import ProductManagerMongo from "../services/productManager.js";
-const productManagerMongo = new ProductManagerMongo();
+import ProductManager from "../services/productManager.js";
+const productManagerMongo = new ProductManager();
 
 const logicaShowProducts = async (limit, page, sort, query) => {
   try {

@@ -1,8 +1,5 @@
-import CartManagerMongo from "../services/cartsManager.js";
-const cartsManager = new CartManagerMongo();
-
-import ProductsManager from "../services/productManager.js";
-const productManager = new ProductsManager();
+import CartManager from "../services/cartsManager.js";
+const cartsManager = new CartManager();
 
 const logicaCreateCart = async (product, quantity) => {
   const newCart = {

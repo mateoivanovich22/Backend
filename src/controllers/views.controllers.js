@@ -1,11 +1,11 @@
 import UserModel from "../dao/models/users.js";
 import { createHash } from "../utils.js";
 
-import CartsManagerMongoose from "../services/cartsManager.js";
-const cartsManagerMongoose = new CartsManagerMongoose();
+import CartsManager from "../services/cartsManager.js";
+const cartsManagerMongoose = new CartsManager();
 
-import ProductManagerMongoose from "../services/productManager.js";
-const productManagerMongoose = new ProductManagerMongoose();
+import ProductManager from "../services/productManager.js";
+const productManagerMongoose = new ProductManager();
 
 const logicaPostRecovery = async (email, password) => {
   try {
