@@ -67,10 +67,10 @@ const updateCart = async (req, res) => {
     });
   } catch (error) {
     if (error.message === "Carrito no encontrado.") {
-      return res.status(404).send({ message: error.message });
+      res.status(404).send({ message: error.message });
     } else {
       console.error("Error al actualizar el carrito:", error);
-      return res.status(500).send("Error al actualizar el carrito.");
+       res.status(500).send("Error al actualizar el carrito.");
     }
   }
 };

@@ -2,6 +2,8 @@ import { Router } from "express";
 
 import {create, getCartById, deleteProductOfCart, updateCart, updateProductOfCart, deleteAllProductsOfCart, finishBuying, showTicket} from "../dao/operaciones/operacionesCart.js"
 
+import {notFoundURL} from "../utils.js"
+
 const router = Router();
 
 router.post("/", create);
@@ -17,4 +19,6 @@ router.put("/:cid/products/:pid", updateProductOfCart)
 router.delete("/:cid", deleteAllProductsOfCart)
 
 router.post('/:cid/purchase', finishBuying)
+
+router.all('*', notFoundURL)
 export default router;

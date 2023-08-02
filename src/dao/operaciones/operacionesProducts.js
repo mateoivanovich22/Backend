@@ -38,7 +38,7 @@ const getProductById = async (req, res) => {
     const id = req.params.pid;
     const product = await productManagerMongo.getProductById(id);
     if (product) {
-      return res.send(product);
+       res.send(product);
     } else {
       res.status(404).send("Producto no encontrado");
     }
@@ -61,7 +61,7 @@ const createProduct = async (req, res) => {
     if (logicaCreate) {
       res.send({ status: "success" });
     }else{
-        return res.status(400).send("Todos los campos son obligatorios");
+       res.status(400).send("Todos los campos son obligatorios");
     }
      
 }

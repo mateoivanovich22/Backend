@@ -1,5 +1,5 @@
 import express from "express";
-import { passportCall, privateRoute, publicRoute } from "../utils.js";
+import { notFoundURL, passportCall, privateRoute, publicRoute } from "../utils.js";
 import * as operations from "../dao/operaciones/operacionesViews.js";
 const router = express.Router();
 
@@ -40,5 +40,11 @@ router.get("/products/:id" , operations.showProductId);
 router.get("/carts/:cid", operations.showCartId);
 
 router.get("/tickets", showTicket)
+
+router.get('/mockingproducts', operations.generateFakerProducts);
+
+router.all('*', notFoundURL)
+
+
 
 export default router;

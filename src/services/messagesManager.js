@@ -1,5 +1,7 @@
 import messagesModel from "../dao/models/messages.js";
 import { ObjectId } from 'mongoose';
+import customError from "./errors/customError.js";
+import EErors from "./errors/enums.js";
 
 class MessagesManager {
   constructor() {}
@@ -15,8 +17,12 @@ class MessagesManager {
       const messages = await messagesModel.find({}).lean();
       return messages;
     } catch (error) {
-      console.error("Error al obtener los usuarios:", error);
-      throw error;
+      return customError.createError({
+        name: "Obtener message error block catch",
+        cause: `Error al obtener los messages: ${error}`,
+        message: "Invalid getMessages",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -25,13 +31,22 @@ class MessagesManager {
       const message = await messagesModel.findById(new ObjectId(id)).lean();
 
       if (!message) {
-        throw new Error("Carrito no encontrado");
+        return customError.createError({
+          name: "Obtener message error",
+          cause: `Error al obtener el message with ID: ${id}`,
+          message: "Invalid getMessageById",
+          code: EErors.INVALID_PARAM,
+        });
       }
 
       return message;
     } catch (error) {
-      console.error("Error al obtener el carrito por ID:", error);
-      throw error;
+      return customError.createError({
+        name: "Obtener message by ID error",
+        cause: `Error al obtener el message: ${error}`,
+        message: "Invalid getMessageById",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 }

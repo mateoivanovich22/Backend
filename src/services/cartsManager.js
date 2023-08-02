@@ -8,6 +8,9 @@ const { ObjectId } = Types;
 
 import  TicketModel  from '../dao/models/tickets.js';
 
+import customError from "./errors/customError.js";
+import EErors from "./errors/enums.js";
+
 class CartManager {
   constructor() {}
 
@@ -20,13 +23,23 @@ class CartManager {
   async createCartWithProduct(productId, productName, userId) {
 
     if (!mongoose.isValidObjectId(productId)) {
-      throw new Error("El ID del producto no es válido.");
+      return customError.createError({
+        name: "Product ID Error",
+        cause: "El ID del producto no es válido.",
+        message: "Invalid Product ID",
+        code: EErors.INVALID_PARAM,
+      });
     }
 
     const product = await productManagerMongoose.getProductById(productId);
 
     if (!product) {
-      throw new Error("El producto no existe.");
+      return customError.createError({
+        name: "Product Not Found Error",
+        cause: "El producto no existe.",
+        message: "Product Not Found",
+        code: EErors.INVALID_PARAM,
+      });
     }
 
     const user = await UsersModel.findById(userId).lean();
@@ -75,8 +88,12 @@ class CartManager {
       const carts = await cartsModel.find({}).lean();
       return carts;
     } catch (error) {
-      console.error("Error al obtener los usuarios:", error);
-      throw error;
+      return customError.createError({
+        name: "Get carts is not OK",
+        cause: `This is the cause: ${error}`,
+        message: "Carts Not Found",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -85,8 +102,12 @@ class CartManager {
       const cart = await cartsModel.findById(cartId).populate("products");
       return cart;
     } catch (error) {
-      console.error("Error al obtener el carrito:", error);
-      throw new Error("Error al obtener el carrito");
+      return customError.createError({
+        name: "Get this cart is not OK",
+        cause: `This is the cause: ${error}`,
+        message: "Cart Not Found",
+        code: EErors.DATABASE_ERROR,
+      });;
     }
   }
 
@@ -99,21 +120,37 @@ class CartManager {
       );
   
       if (!updatedCart) {
-        throw new Error("Carrito no encontrado.");
+        return customError.createError({
+          name: "Cart Not Found Error",
+          cause: `Carrito con ID ${cartId} no encontrado.`,
+          message: "Carrito no encontrado",
+          code: EErors.INVALID_PARAM,
+        });
       }
   
       console.log("Carrito actualizado exitosamente");
       return updatedCart;
+
     } catch (error) {
-      console.error("Error al actualizar el carrito:", error);
-      throw new Error("Error al actualizar el carrito");
+
+      return customError.createError({
+        name: "Cart Update Error",
+        cause: `Error al actualizar el carrito: ${error.message}`,
+        message: "Error al actualizar el carrito",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
   async updateProductQuantityInCart(cartId, productId, quantity) {
     try {
       if (!Number.isInteger(quantity) || quantity <= 0) {
-        throw new Error("La variable 'quantity' debe ser un número entero mayor a cero.");
+        return customError.createError({
+          name: "Invalid Quantity Error",
+          cause: "La variable 'quantity' debe ser un número entero mayor a cero.",
+          message: "Cantidad inválida",
+          code: EErors.INVALID_PARAM,
+        });
       }
   
       const updatedCart = await cartsModel.findOneAndUpdate(
@@ -123,14 +160,23 @@ class CartManager {
       );
   
       if (!updatedCart) {
-        throw new Error("El producto no se encuentra en el carrito.");
+        return customError.createError({
+          name: "El producto no se encuentra en el carrito.",
+          cause: `Este es el carrito: ${updatedCart}`,
+          message: "Error al actualizar el producto del carrito",
+          code: EErors.DATABASE_ERROR,
+        });
       }
   
       console.log("Cantidad del producto actualizada correctamente");
       return true;
     } catch (error) {
-      console.error("Error al actualizar la cantidad del producto:", error);
-      throw new Error("Error al actualizar la cantidad del producto");
+      return customError.createError({
+        name: "Product Quantity Update Error",
+        cause: `Error al actualizar la cantidad del producto: ${error}`,
+        message: "Error al actualizar la cantidad del producto",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
   
@@ -150,8 +196,12 @@ class CartManager {
       console.log(`Carrito con id ${cartId} vaciado`);
       return true;
     } catch (error) {
-      console.error("Error eliminando los productos:", error);
-      throw new Error("Error al eliminar los productos del carrito");
+      return customError.createError({
+        name: "Error eliminando los productos",
+        cause: `Error al eliminar todos los productos: ${error}`,
+        message: "Error al eliminar todos los productos",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -169,7 +219,12 @@ class CartManager {
       }
       return true;
     } catch (error) {
-      console.error("Error borrando el producto:", error);
+      return customError.createError({
+        name: "Error eliminando el producto",
+        cause: `Error borrando el producto: ${error}`,
+        message: "Error al eliminar el producto",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -179,8 +234,12 @@ class CartManager {
       await ticket.save();
       return true;
     } catch (error) {
-      console.error('Error al crear el ticket:', error);
-      return false;
+      return customError.createError({
+        name: "Error creando ticket",
+        cause: `Error al crear el ticket: ${error}`,
+        message: "Error creando ticket",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -243,8 +302,12 @@ class CartManager {
       const tickets = await TicketModel.find({ purchaser: email }).lean();
       return tickets;
     } catch (error) {
-      console.error('Error al buscar los tickets:', error);
-      throw new Error('Error al buscar los tickets');
+      return customError.createError({
+        name: "Error buscando ticket",
+        cause: `Error al buscar los tickets: ${error}`,
+        message: "Error buscando ticket",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
   

@@ -15,9 +15,12 @@ import config from "./config/config.js";
 import productsRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
 import viewsRouter from "./routes/views.router.js";
+import compression from "express-compression";
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+
+import errorHandler from "./middlewares/error/info.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -25,6 +28,9 @@ const __dirname = dirname(__filename);
 const PORT = config.server.port;
 
 const app = express();
+app.use(compression());
+app.use(errorHandler)
+
 const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 const io = new Server(server);
 

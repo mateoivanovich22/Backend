@@ -17,6 +17,7 @@ const logicaShowProducts = async (limit, page, sort, query) => {
 
     return products;
   } catch (error) {
+    console.error(error);
     return false;
   }
 };

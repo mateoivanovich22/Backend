@@ -2,6 +2,16 @@ import { generateToken } from "../../utils.js";
 
 import * as logica from "../../controllers/views.controllers.js";
 
+import { generateProducts } from "../../mocks/generateProducts.js";
+
+import customError from "../../services/errors/customError.js";
+import EErors from "../../services/errors/enums.js";
+import {
+  generateUserErrorInfo,
+  loginUserErrorInfo,
+  generateCartError
+} from "../../services/errors/info.js";
+
 const currentJWT = (req, res) => {
   if (req.session && req.session.user) {
     const currentUserDTO = {
@@ -9,8 +19,7 @@ const currentJWT = (req, res) => {
       email: req.session.user.email,
       age: req.session.user.age,
       lastname: req.session.user.lastname,
-      role: req.session.user.role
-
+      role: req.session.user.role,
     };
     res.render("current", { user: currentUserDTO });
   } else {
@@ -23,14 +32,31 @@ const showRegister = (req, res) => {
 };
 
 const postRegister = (req, res) => {
-  if (!req.user)
-    return res
-      .status(400)
-      .send({ status: "error", error: "Credenciales incorrectas" });
-  req.session.user = req.user;
-  const token = generateToken(req.user);
-  res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
-  res.redirect("/products");
+  if (!req.user) {
+    const firstname = req.user.firstname;
+    const lastname = req.user.lastname;
+    const age = req.user.age;
+    const email = req.user.email;
+    const password = req.user.password;
+    customError.createError({
+      name: "User error",
+      cause: generateUserErrorInfo({
+        firstname,
+        lastname,
+        email,
+        password,
+        age,
+      }),
+      message: "Error intentando acceder a su cuenta",
+      code: EErors.INVALID_PARAM,
+    });
+  }else{
+    req.session.user = req.user;
+    const token = generateToken(req.user);
+    res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
+    res.redirect("/products");
+  }
+  
 };
 
 const showLogin = (req, res) => {
@@ -38,10 +64,16 @@ const showLogin = (req, res) => {
 };
 
 const postLogin = async (req, res) => {
-  if (!req.user)
-    return res
-      .status(400)
-      .send({ status: "error", error: "Credenciales incorrectas" });
+  if (!req.user) {
+    const email = req.user.email;
+    const password = req.user.password;
+    return customError.createError({
+      name: "User error",
+      cause: loginUserErrorInfo({ email, password }),
+      message: "Error intentando acceder a su cuenta",
+      code: EErors.INVALID_PARAM,
+    });
+  }
   req.session.user = req.user;
   const token = generateToken(req.user);
   res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
@@ -51,9 +83,23 @@ const postLogin = async (req, res) => {
 
 const githubCallback = (req, res) => {
   if (!req.user) {
-    return res
-      .status(400)
-      .send({ status: "error", error: "Credenciales incorrectas" });
+    const firstname = req.user.firstname;
+    const lastname = req.user.lastname;
+    const age = req.user.age;
+    const email = req.user.email;
+    const password = req.user.password;
+    return customError.createError({
+      name: "User error",
+      cause: generateUserErrorInfo({
+        firstname,
+        lastname,
+        email,
+        password,
+        age,
+      }),
+      message: "Error intentando acceder a su cuenta",
+      code: EErors.INVALID_PARAM,
+    });
   }
   const token = generateToken(req.user);
   res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
@@ -117,7 +163,7 @@ const showProductList = async (req, res) => {
 
 const showProductId = async (req, res) => {
   try {
-    const user = req.session.user
+    const user = req.session.user;
     const productId = req.params.id;
     const product = await logica.logicaShowProductId(productId);
     res.render("productDetails", { product, user });
@@ -133,7 +179,12 @@ const showCartId = async (req, res) => {
     const cart = await logica.logicaGetCartById(cartId);
 
     if (!cart) {
-      return res.status(404).send({ message: "Carrito no encontrado" });
+      return customError.createError({
+        name: "Cart error",
+        cause: generateCartError( cartId, cart),
+        message: "Carrito no encontrado",
+        code: EErors.INVALID_PARAM,
+      });
     }
 
     const cartJSON = cart.toJSON();
@@ -143,6 +194,16 @@ const showCartId = async (req, res) => {
     console.error(error);
     res.status(500).send("Error interno del servidor");
   }
+};
+
+const generateFakerProducts = (req, res) => {
+  let products = [];
+
+  for (let i = 0; i < 100; i++) {
+    products.push(generateProducts());
+  }
+
+  res.status(200).send(products);
 };
 
 export {
@@ -159,5 +220,6 @@ export {
   showChat,
   showProductList,
   showProductId,
-  showCartId
+  showCartId,
+  generateFakerProducts,
 };

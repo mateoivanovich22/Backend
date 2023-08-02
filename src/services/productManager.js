@@ -1,6 +1,8 @@
 import productsModel from "../dao/models/products.js";
 import { ObjectId } from 'mongoose';
 import mongoose from "mongoose";
+import customError from "./errors/customError.js";
+import EErors from "./errors/enums.js";
 
 class ProductsManager {
   constructor() {}
@@ -15,8 +17,12 @@ class ProductsManager {
       const products = await productsModel.find({}).lean();
       return products;
     } catch (error) {
-      console.error("Error al obtener los usuarios:", error);
-      throw error;
+      return customError.createError({
+        name: "Obtener products error block catch",
+        cause: `Error al obtener los productos: ${error}`,
+        message: "Invalid getProducts",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -25,8 +31,12 @@ class ProductsManager {
       const product = await productsModel.findById(new mongoose.Types.ObjectId(id)).lean();
       return product;
     } catch (error) {
-      console.error("Error al obtener el producto:", error);
-      throw error;
+      return customError.createError({
+        name: "Obtener product error block catch",
+        cause: `Error al obtener el producto: ${error}`,
+        message: "Invalid getProductById",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -35,8 +45,12 @@ class ProductsManager {
       const product = await productsModel.findOne({ title: productName }).lean();
       return product;
     } catch (error) {
-      console.error("Error al obtener el producto por nombre:", error);
-      throw error;
+      return customError.createError({
+        name: "Obtener product name error block catch",
+        cause: `Error al obtener el producto por nombre: ${error}`,
+        message: "Invalid getProductByName",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -51,8 +65,12 @@ class ProductsManager {
 
       return products;
     } catch (error) {
-      console.error("Error al obtener los productos paginados:", error);
-      throw error;
+      return customError.createError({
+        name: "Obtener paginate products error block catch",
+        cause: `Error al obtener los productos paginados: ${error}`,
+        message: "Invalid getPaginatedProducts",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
   
@@ -61,7 +79,12 @@ class ProductsManager {
       const updatedProduct = await productsModel.findByIdAndUpdate(id, fieldsToUpdate, { new: true }).lean();
       return updatedProduct;
     } catch (error) {
-      console.error("Error modificando producto:", error);
+      return customError.createError({
+        name: "Modificar product error block catch",
+        cause: `Error modificando producto: ${error}`,
+        message: "Invalid updateProduct",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -75,7 +98,12 @@ class ProductsManager {
       }
       return true;
     } catch (error) {
-      console.error("Error borrando el producto:", error);
+      return customError.createError({
+        name: "Borrar product error block catch",
+        cause: `Error borrando el producto: ${error}`,
+        message: "Invalid deleteProduct",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -107,8 +135,12 @@ class ProductsManager {
 
       return products;
     } catch (error) {
-      console.error("Error al obtener los productos paginados:", error);
-      throw error;
+      return customError.createError({
+        name: "Obtener paginate product error block catch",
+        cause: `Error al obtener los productos paginados: ${error}`,
+        message: "Invalid getPaginatedProductsWithOptions",
+        code: EErors.DATABASE_ERROR,
+      });
     }
   }
 
@@ -117,18 +149,32 @@ class ProductsManager {
       const product = await productsModel.findOne({ title: name }).lean();
 
       if (!product) {
-        throw new Error('Producto no encontrado.');
+        return customError.createError({
+          name: "Obtener price product error",
+          cause: `Producto con name: "${name}" no encontrado `,
+          message: "Invalid getPriceByName",
+          code: EErors.INVALID_PARAM,
+        });
       }
 
       if (quantity <= 0) {
-        throw new Error('La cantidad debe ser mayor a cero.');
+        return customError.createError({
+          name: "La cantidad debe ser mayor a cero.",
+          cause: `Producto con quantity: "${quantity}" `,
+          message: "Invalid getPriceByName",
+          code: EErors.INVALID_PARAM,
+        });
       }
 
       const totalPrice = product.price * quantity;
       return totalPrice;
     } catch (error) {
-      console.error('Error al obtener el precio del producto:', error);
-      throw error;
+      return customError.createError({
+        name: "Error block catch.",
+        cause: `Error: "${error}" `,
+        message: "Invalid getPriceByName",
+        code: EErors.INVALID_PARAM,
+      });
     }
   }
 

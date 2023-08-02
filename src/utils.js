@@ -3,7 +3,18 @@ import jwt from "jsonwebtoken";
 import passport from "passport";
 import config from "./config/config.js";
 
+import customError from "./services/errors/customError.js";
+import EErors from "./services/errors/enums.js";
+import {
+  generateUserErrorInfo,
+  loginUserErrorInfo,
+} from "./services/errors/info.js";
+
 const secretKey = config.secretKey.key;
+
+export const notFoundURL = (req, res) => {
+  return res.status(404).render("error");
+};
 
 export const privateRoute = (req, res, next) => {
   const user = req.session.user;
@@ -14,8 +25,8 @@ export const privateRoute = (req, res, next) => {
   }
 };
 
-export const publicRoute = (req, res, next) => {  
-  if (req.session.user.role === "user" || req.user.role === "user" ) {
+export const publicRoute = (req, res, next) => {
+  if (req.session.user.role === "user" || req.user.role === "user") {
     next();
   } else {
     res.redirect("/api/products");
@@ -27,17 +38,40 @@ export const passportCall = (strategy) => {
     passport.authenticate(strategy, function (err, user, info) {
       if (err) return next(err);
       if (!user) {
-        return res.status(401).send({ error: info.messages ? info.messages : info.toString() });
+        const firstname = user.firstname;
+        const lastname = user.lastname;
+        const email = user.email;
+        const password = user.password;
+        const typeOfStrategy =
+          strategy === "login"
+            ? loginUserErrorInfo({ email, password })
+            : generateUserErrorInfo({ firstname, lastname, email });
+
+        customError.createError({
+          name: `User ${strategy} error`,
+          cause: typeOfStrategy,
+          message: "Error intentando crear el usuario",
+          code: EErors.INVALID_TYPE_ERROR,
+        });
+      }else{
+        req.user = user;
+        next();
       }
-      req.user = user;
-      next();
+      
     })(req, res, next);
   };
 };
 
 export const authorization = (role) => {
   return async (req, res, next) => {
-    if (req.user.role != role) return res.status(403).send({ error: "No permissions" });
+    if (req.user.role != role) {
+      return customError.createError({
+        name: "No hay permisos",
+        cause: "permisos denegados",
+        message: `Su rol es: ${req.user.role}`,
+        code: EErors.NO_PERMISSIONS,
+      });
+    }
     next();
   };
 };
@@ -50,19 +84,33 @@ export const generateToken = (user) => {
 
 export const authToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  if (!authHeader) return res.status(401).send({ error: "No hay autenticacion" });
+  if (!authHeader) {
+    return customError.createError({
+      name: "No hay autorizacion",
+      cause: "Auth errors",
+      message: `Error: ${authHeader}`,
+      code: EErors.INVALID_JWT,
+    });
+  }
 
   const token = authHeader.split(" ")[1];
   jwt.verify(token, private_key, (error, credentials) => {
-    if (error) return res.status(403).send({ error: "no hay autorizacion" });
+    if (error) {
+      return customError.createError({
+        name: "No hay AUTENTICACION",
+        cause: "Auth errors",
+        message: `Error: ${error}`,
+        code: EErors.INVALID_JWT,
+      });
+    }
 
     req.user = credentials.user;
     next();
   });
 };
 
-export const createHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+export const createHash = (password) =>
+  bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
-export const isValidPassword = (user, password) => bcrypt.compareSync(password, user.password);
-
-
+export const isValidPassword = (user, password) =>
+  bcrypt.compareSync(password, user.password);
