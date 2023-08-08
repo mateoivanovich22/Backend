@@ -32,7 +32,7 @@ const initializePassport = () => {
           const user = await UserModel.findOne({ email: username });
           if (user) {
             return done(null, false, {
-              message: "Correo electrónico incorrecto.",
+              message: "Usted ya posee cuenta con ese email...",
             });
           }
 

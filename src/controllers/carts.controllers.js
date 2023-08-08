@@ -1,6 +1,8 @@
 import CartManager from "../services/cartsManager.js";
 const cartsManager = new CartManager();
 
+import log from "../config/logger.js"
+
 const logicaCreateCart = async (product, quantity) => {
   const newCart = {
     products: [
@@ -14,7 +16,7 @@ const logicaCreateCart = async (product, quantity) => {
   try {
     await cartsManager.createCart(newCart);
   } catch (error) {
-    console.error("Error al crear carrito:", error);
+    log.error("Error al crear carrito:", error);
     throw new Error("Error al crear carrito");
   }
 };
@@ -24,7 +26,7 @@ const logicaGetCartById = async (cartId) => {
     const cart = await cartsManager.getCartWithProductsById(cartId);
     return cart;
   } catch (error) {
-    console.error("Error al obtener el carrito:", error);
+    log.error("Error al obtener el carrito:", error);
     throw new Error("Error al obtener el carrito");
   }
 };
@@ -37,7 +39,7 @@ const logicaDeleteProductOfCart = async (cartId, productId) => {
     );
     return cartToDeleteProduct;
   } catch (error) {
-    console.error("Error borrando el producto:", error);
+    log.error("Error borrando el producto:", error);
     throw new Error("Error al borrar el producto del carrito");
   }
 };
@@ -50,7 +52,7 @@ const logicaUpdateCart = async (cartId, newProducts) => {
     if (error.message === "Carrito no encontrado.") {
       throw new Error(error.message);
     } else {
-      console.error("Error al actualizar el carrito:", error);
+      log.error("Error al actualizar el carrito:", error);
       throw new Error("Error al actualizar el carrito.");
     }
   }
@@ -64,7 +66,7 @@ const logicaUpdateProductOfCart = async (cartId, productId, quantity) => {
     } else if (error.message === "El producto no se encuentra en el carrito.") {
       throw new Error(error.message);
     } else {
-      console.error("Error al actualizar la cantidad del producto:", error);
+      log.error("Error al actualizar la cantidad del producto:", error);
       throw new Error("Error al actualizar la cantidad del producto");
     }
   }
@@ -77,7 +79,7 @@ const logicaDeleteAllProductsOfCart = async (cartId) => {
       throw new Error("Carrito no encontrado");
     }
   } catch (error) {
-    console.error("Error eliminando los productos:", error);
+    log.error("Error eliminando los productos:", error);
     throw new Error("Error al eliminar los productos del carrito");
   }
 };
@@ -107,10 +109,11 @@ const logicaFinishBuying = async (cartId, purchaserEmail) => {
       await cartsManager.updateCart(cartId, newCartProducts);
       return true;
     } else {
+      log.error('Error al crear el ticket.');
       return false;
     }
   } else {
-    console.log("NOS QUEDAMOS SIN STOCK DE ESTE O ESTOS PRODUCTOS: ", productsNotProcessed)
+    log.info("NOS QUEDAMOS SIN STOCK DE ESTE O ESTOS PRODUCTOS:", productsNotProcessed);
     return false;
   }
 };
@@ -120,7 +123,7 @@ const logicaShowTicket = async( email ) => {
     const tickets = await cartsManager.findTicketsByEmail(email);
     return tickets
   } catch (error) {
-    console.error('Error al buscar el ticket:', error);
+    log.error('Error al buscar el ticket:', error);
     return false
   }
 }

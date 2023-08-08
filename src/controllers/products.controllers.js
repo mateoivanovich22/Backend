@@ -1,4 +1,6 @@
 import ProductManager from "../services/productManager.js";
+import log from "../config/logger.js";
+
 const productManagerMongo = new ProductManager();
 
 const logicaShowProducts = async (limit, page, sort, query) => {
@@ -17,7 +19,7 @@ const logicaShowProducts = async (limit, page, sort, query) => {
 
     return products;
   } catch (error) {
-    console.error(error);
+    log.error(error);
     return false;
   }
 };
@@ -43,7 +45,7 @@ const logicaCreateProduct = async (title, description, code, price, status, stoc
 
     return true;
   } catch (error) {
-    console.error("Error al crear el producto:", error);
+    log.error("Error al crear el producto:", error);
     return false;
   }
 };
@@ -77,10 +79,10 @@ const logicaUpdateProduct = async (productIdParam, fieldsToUpdate) => {
 
     await productManagerMongo.updateProduct(productIdParam, fieldsToUpdate);
 
-    console.log("Producto modificado correctamente");
+    log.info("Producto modificado correctamente");
     return true;
   } catch (error) {
-    console.error("Error al actualizar el producto:", error);
+    log.error("Error al actualizar el producto:", error);
     return false;
   }
 };
@@ -89,6 +91,7 @@ const logicaDeleteProduct = async(productId) => {
   const productDeleted = await productManagerMongo.deleteProduct(productId);
 
   return !!productDeleted;
-}
+};
+
 
 export { logicaShowProducts, logicaCreateProduct, logicaUpdateProduct,logicaDeleteProduct };

@@ -5,6 +5,8 @@ const router = express.Router();
 
 import { showTicket} from "../dao/operaciones/operacionesCart.js";
 
+import log from '../config/logger.js';
+
 router.get("/current", passportCall("jwt"), operations.currentJWT);
 
 router.get("/", operations.showRegister);
@@ -42,6 +44,18 @@ router.get("/carts/:cid", operations.showCartId);
 router.get("/tickets", showTicket)
 
 router.get('/mockingproducts', operations.generateFakerProducts);
+
+router.get("/loggerTest", (req, res) => {
+  log.debug("This is a debug log.");
+  log.http("This is an http log.");
+  log.info("This is an info log.");
+  log.warning("This is a warning log.");
+  log.error("This is an error log.");
+  log.fatal("This is a fatal log.");
+
+  res.send("Logger test complete.");
+});
+
 
 router.all('*', notFoundURL)
 

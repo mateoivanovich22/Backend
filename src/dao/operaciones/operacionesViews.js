@@ -1,9 +1,6 @@
 import { generateToken } from "../../utils.js";
-
 import * as logica from "../../controllers/views.controllers.js";
-
 import { generateProducts } from "../../mocks/generateProducts.js";
-
 import customError from "../../services/errors/customError.js";
 import EErors from "../../services/errors/enums.js";
 import {
@@ -11,6 +8,7 @@ import {
   loginUserErrorInfo,
   generateCartError
 } from "../../services/errors/info.js";
+import log from "../../config/logger.js"; 
 
 const currentJWT = (req, res) => {
   if (req.session && req.session.user) {
@@ -38,7 +36,7 @@ const postRegister = (req, res) => {
     const age = req.user.age;
     const email = req.user.email;
     const password = req.user.password;
-    customError.createError({
+    log.error("Error intentando acceder a su cuenta", customError.createError({
       name: "User error",
       cause: generateUserErrorInfo({
         firstname,
@@ -47,16 +45,14 @@ const postRegister = (req, res) => {
         password,
         age,
       }),
-      message: "Error intentando acceder a su cuenta",
       code: EErors.INVALID_PARAM,
-    });
-  }else{
+    }));
+  } else {
     req.session.user = req.user;
     const token = generateToken(req.user);
     res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
     res.redirect("/products");
   }
-  
 };
 
 const showLogin = (req, res) => {
@@ -67,12 +63,11 @@ const postLogin = async (req, res) => {
   if (!req.user) {
     const email = req.user.email;
     const password = req.user.password;
-    return customError.createError({
+    return log.error("Error intentando acceder a su cuenta", customError.createError({
       name: "User error",
       cause: loginUserErrorInfo({ email, password }),
-      message: "Error intentando acceder a su cuenta",
       code: EErors.INVALID_PARAM,
-    });
+    }));
   }
   req.session.user = req.user;
   const token = generateToken(req.user);
@@ -88,7 +83,7 @@ const githubCallback = (req, res) => {
     const age = req.user.age;
     const email = req.user.email;
     const password = req.user.password;
-    return customError.createError({
+    return log.error("Error intentando acceder a su cuenta", customError.createError({
       name: "User error",
       cause: generateUserErrorInfo({
         firstname,
@@ -97,9 +92,8 @@ const githubCallback = (req, res) => {
         password,
         age,
       }),
-      message: "Error intentando acceder a su cuenta",
       code: EErors.INVALID_PARAM,
-    });
+    }));
   }
   const token = generateToken(req.user);
   res.cookie("token", token, { maxAge: 3600000, httpOnly: true });
@@ -124,7 +118,7 @@ const postRecovery = async (req, res) => {
     const redirectUrl = await logica.logicaPostRecovery(email, password);
     res.redirect(redirectUrl);
   } catch (error) {
-    console.error("Error al restablecer la contraseña:", error);
+    log.error("Error al restablecer la contraseña:", error);
     res.redirect("/register");
   }
 };
@@ -134,7 +128,7 @@ const realTimeProducts = async (req, res) => {
     const products = await logica.logicaRealTimeProducts();
     res.render("realTimeProducts", { products });
   } catch (error) {
-    console.error(error);
+    log.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
@@ -143,7 +137,7 @@ const showChat = (req, res) => {
   try {
     res.render("chat");
   } catch (error) {
-    console.error(error);
+    log.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
@@ -156,7 +150,7 @@ const showProductList = async (req, res) => {
     const products = await logica.logicaShowProductList(page, limit);
     res.render("productList", { products });
   } catch (error) {
-    console.error(error);
+    log.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
@@ -168,7 +162,7 @@ const showProductId = async (req, res) => {
     const product = await logica.logicaShowProductId(productId);
     res.render("productDetails", { product, user });
   } catch (error) {
-    console.error(error);
+    log.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
@@ -179,19 +173,18 @@ const showCartId = async (req, res) => {
     const cart = await logica.logicaGetCartById(cartId);
 
     if (!cart) {
-      return customError.createError({
+      return log.error("Carrito no encontrado", customError.createError({
         name: "Cart error",
-        cause: generateCartError( cartId, cart),
-        message: "Carrito no encontrado",
+        cause: generateCartError(cartId, cart),
         code: EErors.INVALID_PARAM,
-      });
+      }));
     }
 
     const cartJSON = cart.toJSON();
 
     res.render("cartDetails", { cart: cartJSON });
   } catch (error) {
-    console.error(error);
+    log.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
@@ -205,6 +198,7 @@ const generateFakerProducts = (req, res) => {
 
   res.status(200).send(products);
 };
+
 
 export {
   currentJWT,

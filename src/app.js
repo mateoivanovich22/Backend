@@ -30,13 +30,16 @@ const PORT = config.server.port;
 const app = express();
 app.use(compression());
 app.use(errorHandler)
+import log from "./config/logger.js"
+const server = app.listen(PORT, () => log.info(`Server is listening on port ${PORT}`));
 
-const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
 const io = new Server(server);
 
 const productManagerMongoose = new ProductManagerMongoose();
 const cartsManagerMongoose = new CartsManagerMongoose();
 const messagesManager = new MessagesManager();
+
 
 let productsOfMongoose = [];
 

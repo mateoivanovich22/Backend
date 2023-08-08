@@ -1,9 +1,9 @@
-import * as logica from "../../controllers/carts.controllers.js"
-import config from "../../config/config.js"
+import * as logica from "../../controllers/carts.controllers.js";
+import config from "../../config/config.js";
 import nodemailer from 'nodemailer';
+import log from "../../config/logger.js";
 
-const nodemailerKey = config.nodemailer.key
-
+const nodemailerKey = config.nodemailer.key;
 
 const create = async (req, res) => {
   const { product, quantity } = req.body;
@@ -19,7 +19,7 @@ const create = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Error al crear carrito:", error);
+    log.error("Error al crear carrito:", error);
     res.status(500).send("Error al crear carrito");
   }
 };
@@ -31,6 +31,7 @@ const getCartById = async (req, res) => {
     const cart = await logica.logicaGetCartById(cartId);
     res.send(cart);
   } catch (error) {
+    log.error("Error al obtener el carrito:", error);
     res.status(500).send("Error al obtener el carrito");
   }
 };
@@ -51,6 +52,7 @@ const deleteProductOfCart = async (req, res) => {
       res.status(404).send({ error: "Producto o carrito no encontrado" });
     }
   } catch (error) {
+    log.error("Error al eliminar el producto del carrito:", error);
     res.status(500).send("Error al eliminar el producto del carrito");
   }
 };
@@ -67,10 +69,11 @@ const updateCart = async (req, res) => {
     });
   } catch (error) {
     if (error.message === "Carrito no encontrado.") {
+      log.error("Carrito no encontrado.");
       res.status(404).send({ message: error.message });
     } else {
-      console.error("Error al actualizar el carrito:", error);
-       res.status(500).send("Error al actualizar el carrito.");
+      log.error("Error al actualizar el carrito:", error);
+      res.status(500).send("Error al actualizar el carrito.");
     }
   }
 };
@@ -85,11 +88,13 @@ const updateProductOfCart = async (req, res) => {
     res.status(200).send({ message: "Cantidad del producto actualizada correctamente." });
   } catch (error) {
     if (error.message === "La variable 'quantity' debe ser un número entero mayor a cero.") {
+      log.error("La variable 'quantity' debe ser un número entero mayor a cero.");
       return res.status(400).send({ message: error.message });
     } else if (error.message === "El producto no se encuentra en el carrito.") {
+      log.error("El producto no se encuentra en el carrito.");
       return res.status(404).send({ message: error.message });
     } else {
-      console.error("Error al actualizar la cantidad del producto:", error);
+      log.error("Error al actualizar la cantidad del producto:", error);
       return res.status(500).send("Error al actualizar la cantidad del producto");
     }
   }
@@ -103,9 +108,10 @@ const deleteAllProductsOfCart = async (req, res) => {
     res.send({ status: "success" });
   } catch (error) {
     if (error.message === "Carrito no encontrado") {
+      log.error("Carrito no encontrado.");
       return res.status(404).send({ error: error.message });
     } else {
-      console.error("Error eliminando los productos:", error);
+      log.error("Error eliminando los productos:", error);
       return res.status(500).send("Error al eliminar los productos del carrito");
     }
   }
@@ -114,27 +120,27 @@ const deleteAllProductsOfCart = async (req, res) => {
 const finishBuying = async (req, res) => {
   const cartId = req.params.cid;
 
-  const email = req.session.user.email
+  const email = req.session.user.email;
   try {
     const ticket = await logica.logicaFinishBuying(cartId, email);
-    if(ticket){
+    if (ticket) {
       res.send({ status: "success" });
-    }else{
+    } else {
       res.send({ status: "error" });
     }
-    
-  }catch (error) {
-    console.log(error);
+
+  } catch (error) {
+    log.error("Error al finalizar la compra:", error);
     return res.status(500).send("Error al eliminar los productos del carrito");
   }
-}
+};
 
 const showTicket = async (req, res) => {
 
   const userEmail = req.session.user.email;
 
   try {
-    const tickets = await logica.logicaShowTicket(userEmail)
+    const tickets = await logica.logicaShowTicket(userEmail);
 
     const ticketDetails = tickets.map((ticket) => `
       <div>
@@ -150,8 +156,8 @@ const showTicket = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-          user: 'mateoivanovichichi@gmail.com',
-          pass: nodemailerKey
+        user: 'mateoivanovichichi@gmail.com',
+        pass: nodemailerKey
       }
     });
 
@@ -160,27 +166,27 @@ const showTicket = async (req, res) => {
       to: userEmail,
       subject: 'Ticket emitido',
       html: html,
-      
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
-      if(err) {
-          console.log("Error: ", err);
-          return;
+      if (err) {
+        log.error("Error al enviar el correo:", err);
+        return;
       }
-  
-      console.log(`Mensaje enviado con exito a ${email}`);
+
+      log.info(`Mensaje enviado con éxito a ${userEmail}`);
     });
 
     if (tickets) {
-      res.render('tickets', { tickets })
-    }else{
-      console.log("Hubo un error")
+      res.render('tickets', { tickets });
+    } else {
+      log.error("Hubo un error al mostrar el ticket");
     }
   } catch (error) {
-    console.error('Error al buscar el ticket:', error);
+    log.error('Error al buscar el ticket:', error);
   }
 };
+
 
 export {
   create,
