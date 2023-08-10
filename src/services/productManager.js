@@ -3,6 +3,7 @@ import { ObjectId } from 'mongoose';
 import mongoose from "mongoose";
 import customError from "./errors/customError.js";
 import EErors from "./errors/enums.js";
+import log from "../config/logger.js"
 
 class ProductsManager {
   constructor() {}
@@ -79,6 +80,7 @@ class ProductsManager {
       const updatedProduct = await productsModel.findByIdAndUpdate(id, fieldsToUpdate, { new: true }).lean();
       return updatedProduct;
     } catch (error) {
+      log.error(`Error modificando producto: ${error}`)
       return customError.createError({
         name: "Modificar product error block catch",
         cause: `Error modificando producto: ${error}`,
@@ -93,11 +95,14 @@ class ProductsManager {
       const deletedProduct = await productsModel.findByIdAndRemove(id).lean();
   
       if (!deletedProduct) {
-        console.log(`Producto con id ${id} no encontrado`);
+        log.info(`Producto con id ${id} no encontrado`);
         return false;
       }
       return true;
     } catch (error) {
+
+      log.error(`Error borrando el producto: ${error}`)
+
       return customError.createError({
         name: "Borrar product error block catch",
         cause: `Error borrando el producto: ${error}`,

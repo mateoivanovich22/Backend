@@ -11,6 +11,8 @@ import  TicketModel  from '../dao/models/tickets.js';
 import customError from "./errors/customError.js";
 import EErors from "./errors/enums.js";
 
+import log from "../config/logger.js"
+
 class CartManager {
   constructor() {}
 
@@ -128,7 +130,7 @@ class CartManager {
         });
       }
   
-      console.log("Carrito actualizado exitosamente");
+      log.info("Carrito actualizado exitosamente");
       return updatedCart;
 
     } catch (error) {
@@ -168,7 +170,7 @@ class CartManager {
         });
       }
   
-      console.log("Cantidad del producto actualizada correctamente");
+      log.info("Cantidad del producto actualizada correctamente");
       return true;
     } catch (error) {
       return customError.createError({
@@ -189,11 +191,11 @@ class CartManager {
       );
   
       if (!updatedCart) {
-        console.log(`Carrito con id ${cartId} no encontrado`);
+        log.info(`Carrito con id ${cartId} no encontrado`);
         return false;
       }
   
-      console.log(`Carrito con id ${cartId} vaciado`);
+      log.info(`Carrito con id ${cartId} vaciado`);
       return true;
     } catch (error) {
       return customError.createError({
@@ -214,7 +216,7 @@ class CartManager {
       );
   
       if (!updatedCart) {
-        console.log(`Producto con id ${productId} no encontrado`);
+        log.info(`Producto con id ${productId} no encontrado`);
         return false;
       }
       return true;
@@ -260,7 +262,7 @@ class CartManager {
           try {
             await productManagerMongoose.updateProduct(productInfo._id, { stock: productInfo.stock });
           } catch (error) {
-            console.error('Error al actualizar el stock del producto:', error);
+            log.error('Error al actualizar el stock del producto:', error);
             productsNotProcessed.push(product.product);
           }
         } else {

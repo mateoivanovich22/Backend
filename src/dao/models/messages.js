@@ -16,16 +16,6 @@ const messagesSchema = new mongoose.Schema({
   }
 });
 
-messagesSchema.statics.createMessage = async function (message) {
-  try {
-    const newMessage = new this(message);
-    const result = await newMessage.save();
-    return result;
-  } catch (error) {
-    console.error("Error al crear carrito:", error);
-    throw error;
-  }
-};
 
 messagesSchema.plugin(mongoosePaginate);
 const messageModel = db.model(collection, messagesSchema);

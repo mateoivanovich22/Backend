@@ -72,17 +72,19 @@ app.use("/api/products/", productsRouter);
 app.use("/api/carts/", cartsRouter);
 
 const getProducts = async () => {
+  
   try {
     productsOfMongoose = await productManagerMongoose.getProducts();
     return productsOfMongoose;
   } catch (error) {
-    console.error("Error al obtener los productos:", error);
+    log.error("Error al obtener los productos:", error);
     return [];
   }
+  
 };
 
 io.on("connection", async (socket) => {
-  console.log("Connected to io server");
+  log.info("Connected to io server");
 
   await getProducts();
   socket.emit("products", productsOfMongoose);
@@ -121,7 +123,7 @@ io.on("connection", async (socket) => {
             io.emit("Error al eliminar todos los productos");
         }
     } catch (error) {
-        console.error('Error al eliminar todos los productos:', error);
+        log.error('Error al eliminar todos los productos:', error);
     }
   });
 

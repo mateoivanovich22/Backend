@@ -1,7 +1,8 @@
 import EErrors from '../../services/errors/enums.js';
+import log from "../../config/logger.js"
 
 export default (error, req, res, next) => {
-    console.log(error.cause);
+    log.info(error.cause);
     switch (error.code) {
         case EErrors.INVALID_TYPE_ERROR:
             res.send({error: error.name});

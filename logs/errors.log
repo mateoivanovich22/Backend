@@ -17,3 +17,51 @@
 [32merror[39m: Error del tipo Error, deberia ser en magenta
 [32merror[39m: Error del tipo Error, deberia ser en magenta
 [32merror[39m: Error del tipo Error, deberia ser en magenta
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error borrando el producto: CastError: Cast to ObjectId failed for value "2" (type string) at path "_id" for model "products"
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error borrando el producto: CastError: Cast to ObjectId failed for value "2" (type string) at path "_id" for model "products"
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios

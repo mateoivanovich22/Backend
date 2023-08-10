@@ -22,7 +22,6 @@ const showProducts = (products) => {
   } else {
     productList.innerText = "No hay productos disponibles";
   }
-
   console.log("Lista de productos actualizada:", products);
 };
 

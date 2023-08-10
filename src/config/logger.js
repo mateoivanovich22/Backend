@@ -1,5 +1,4 @@
 import winston from 'winston';
-
 const customLevelsOption = {
     levels: {
         debug: 0,
@@ -33,8 +32,15 @@ const log = winston.createLogger({
                 winston.format.simple()
             )
         }),
+        new winston.transports.Console({
+            level: 'info',
+            format: winston.format.combine(
+                winston.format.colorize({ colors: customLevelsOption.colors }),
+                winston.format.simple()
+            )
+        }),
         new winston.transports.File({
-            filename: 'logs/development.log',
+            filename: 'logs/debug.log',
             level: 'debug',
             format: winston.format.simple()
         }),
@@ -45,6 +51,5 @@ const log = winston.createLogger({
         })
     ]
 });
-
 
 export default log;

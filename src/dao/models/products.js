@@ -38,17 +38,6 @@ const productsSchema = new mongoose.Schema({
   },
 });
 
-productsSchema.statics.createProduct = async function (product) {
-  try {
-    const newProduct = new this(product);
-    const result = await newProduct.save();
-    return result;
-  } catch (error) {
-    console.error('Error al crear producto:', error);
-    throw error;
-  }
-};
-
 productsSchema.plugin(mongoosePaginate);
 const productsModel = db.model(collection, productsSchema);
 
