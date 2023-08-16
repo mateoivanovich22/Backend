@@ -90,15 +90,28 @@ class ProductsManager {
     }
   }
 
-  async deleteProduct(id) {
+  async deleteProduct(id, role, owner) {
     try {
-      const deletedProduct = await productsModel.findByIdAndRemove(id).lean();
-  
-      if (!deletedProduct) {
-        log.info(`Producto con id ${id} no encontrado`);
+      const product = await productsModel.findById(id);
+      let usuarioCreador = false;
+
+      if(role === "premium" && product.owner === owner){
+        usuarioCreador = true;
+        log.info("Usuario premium autorizado a borrar su propio producto")     
+      }
+
+      if(role === "admin" || usuarioCreador){
+        const deletedProduct = await productsModel.findByIdAndRemove(id).lean();
+        if (!deletedProduct) {
+          log.info(`Producto con id ${id} no encontrado`);
+          return false;
+        }
+        return true;
+      }else{
+        log.info("Usted no puede eliminar el siguiente producto: " +  product.title);
         return false;
       }
-      return true;
+
     } catch (error) {
 
       log.error(`Error borrando el producto: ${error}`)

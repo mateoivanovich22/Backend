@@ -2,6 +2,7 @@ import express from "express";
 import { Server } from "socket.io";
 import { engine } from 'express-handlebars';
 
+import UsersManager from "./services/usersManager.js";
 import ProductManagerMongoose from "./services/productManager.js";
 import CartsManagerMongoose from "./services/cartsManager.js";
 import MessagesManager from "./services/messagesManager.js"
@@ -12,9 +13,12 @@ import flash from "connect-flash";
 import cookieParser from "cookie-parser";
 import 'dotenv/config'
 import config from "./config/config.js";
+
 import productsRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
 import viewsRouter from "./routes/views.router.js";
+import usersRouter from "./routes/users.router.js"
+
 import compression from "express-compression";
 
 import { fileURLToPath } from 'url';
@@ -39,6 +43,7 @@ const io = new Server(server);
 const productManagerMongoose = new ProductManagerMongoose();
 const cartsManagerMongoose = new CartsManagerMongoose();
 const messagesManager = new MessagesManager();
+const usersManager = new UsersManager();
 
 
 let productsOfMongoose = [];
@@ -70,6 +75,8 @@ app.use(flash());
 app.use("/api/products/", productsRouter);
 
 app.use("/api/carts/", cartsRouter);
+
+app.use("/api/users/", usersRouter); 
 
 const getProducts = async () => {
   
@@ -118,20 +125,57 @@ io.on("connection", async (socket) => {
     try {
         const borrar = await cartsManagerMongoose.deleteAllProductOfCart(cartId);
         if (borrar) {
-            io.emit("Todos los productos eliminados correctamente");
+          io.emit("Todos los productos eliminados correctamente");
         } else {
-            io.emit("Error al eliminar todos los productos");
+          io.emit("Error al eliminar todos los productos");
         }
     } catch (error) {
         log.error('Error al eliminar todos los productos:', error);
+        return
     }
   });
 
-  socket.on("deleteProduct", async (productId) => {
-    await productManagerMongoose.deleteProduct(productId);
+  socket.on("deleteProduct", async (productId, role, owner) => {
+    await productManagerMongoose.deleteProduct(productId, role, owner);
     await getProducts();
     io.emit("products", productsOfMongoose);
   });
+
+  socket.on('upgradeUser', async (id) => {
+    try {
+      const userUpgraded = await usersManager.upgradeUser(id);
+      if(userUpgraded){
+        log.info("User with id " + id + " has been upgraded");
+        io.emit("user upgraded")
+      }else{
+        log.info("User with id " + id + " cannot be upgraded")
+        io.emit("user upgraded false")
+      }
+      
+    } catch (error) {
+      log.error(error);
+      return
+    }
+    
+  })
+
+  socket.on('darseDeBaja', async (id) => {
+    try {
+      const estadoBaja = await usersManager.estadoPremiumBaja(id);
+      
+      if(estadoBaja){
+        log.info("User with id " + id + " has been downgraded");
+        io.emit("user downgrade")
+      }else{
+        log.info("User with id " + id + " cannot be downgrade")
+        
+      }
+
+    } catch (error) { 
+      log.error(error);
+      return
+    }
+  })
 });
 
 app.use("/", viewsRouter);

@@ -6,6 +6,8 @@ const productManagerMongo = new ProductManagerMongo();
 
 const showProducts = async (req, res) => {
   const user = req.session.user;
+  console.log(user);
+
   if (user) {
     const limit = parseInt(req.query.limit) || 10;
     const page = parseInt(req.query.page) || 1;

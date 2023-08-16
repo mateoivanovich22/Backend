@@ -1,4 +1,5 @@
 <div class="container p-4">
+  <h1>Bienvenido {{user.firstname}} {{user.lastname}}</h1>
   <div class="row justify-content-center align-items-center mt-4">
     <div class="col-md-10 col-lg-8">
       <div class="cardRealTimeProducts">
@@ -9,6 +10,8 @@
       </div>
     </div>
   </div>
+  <div id="user-email" style="display: none;">{{user.email}}</div>
+  <div id="user-role" style="display: none;">{{user.role}}</div>
 
   <div class="row justify-content-center align-items-center mt-4">
     <div class="col-md-10 col-lg-8">

@@ -8,20 +8,17 @@ const cartsManagerMongoose = new CartsManager();
 import ProductManager from "../services/productManager.js";
 const productManagerMongoose = new ProductManager();
 
-const logicaPostRecovery = async (email, password) => {
+
+const logicaPostRecovery = async (email) => {
   try {
     const user = await UserModel.findOne({ email });
-    if (!user) {
-      return "/recovery";
-    } else {
-      const passHash = createHash(password);
-      user.password = passHash;
-      await user.save();
-      return "/login";
+    if (user && user.password === password) {
+      return false
     }
+    return true
   } catch (error) {
     log.error("Error al restablecer la contraseña:", error);
-    return "/register";
+    return false;
   }
 };
 

@@ -1,7 +1,7 @@
 import * as logica from "../../controllers/carts.controllers.js";
 import config from "../../config/config.js";
-import nodemailer from 'nodemailer';
 import log from "../../config/logger.js";
+import nodemailer from 'nodemailer';
 
 const nodemailerKey = config.nodemailer.key;
 

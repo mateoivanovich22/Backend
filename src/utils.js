@@ -18,7 +18,7 @@ export const notFoundURL = (req, res) => {
 
 export const privateRoute = (req, res, next) => {
   const user = req.session.user;
-  if (user && user.role === "admin") {
+  if (user && (user.role === "admin" || user.role === "premium")) {
     next();
   } else {
     res.redirect("/login");
@@ -50,7 +50,7 @@ export const passportCall = (strategy) => {
         customError.createError({
           name: `User ${strategy} error`,
           cause: typeOfStrategy,
-          message: "Error intentando crear el usuario",
+          message: "Error intentando con el usuario",
           code: EErors.INVALID_TYPE_ERROR,
         });
       }else{

@@ -25,6 +25,7 @@
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         text-align: center;
+        margin-top: 100px;
       }
 
       .cardRealTimeProducts{
@@ -129,6 +130,7 @@
     }
 
     .headerDetails{
+      padding: 20px;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -666,6 +668,236 @@
             transform: scale(0.75);
             box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
           }
+        }
+
+        .buttonPremium {
+          width: fit-content;
+          display: flex;
+          padding: 1.2em 1rem;
+          cursor: pointer;
+          gap: 0.4rem;
+          font-weight: bold;
+          border-radius: 30px;
+          text-shadow: 2px 2px 3px rgb(136 0 136 / 50%);
+          background: linear-gradient(15deg, #880088, #aa2068, #cc3f47, #de6f3d, #f09f33, #de6f3d, #cc3f47, #aa2068, #880088) no-repeat;
+          background-size: 300%;
+          color: #fff;
+          border: none;
+          background-position: left center;
+          box-shadow: 0 30px 10px -20px rgba(0,0,0,.2);
+          transition: background .3s ease;
+        }
+
+        .buttonPremium:hover {
+          background-size: 320%;
+          background-position: right center;
+        }
+
+        .buttonPremium:hover svg {
+          fill: #fff;
+        }
+
+        .buttonPremium svg {
+          width: 23px;
+          fill: #f09f33;
+          transition: .3s ease;
+        }
+
+        {{!-- CARD PREMIUM --}}
+
+        .cardPremiumContainer{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 190px;
+          justify-content: center;
+        }
+
+        .plan {
+          border-radius: 16px;
+          box-shadow: 0 30px 30px -25px rgba(0, 38, 255, 0.205);
+          padding: 10px;
+          background-color: #fff;
+          color: #697e91;
+          max-width: 300px;
+        }
+
+        .plan strong {
+          font-weight: 600;
+          color: #425275;
+        }
+
+        .plan .inner {
+          align-items: center;
+          padding: 20px;
+          padding-top: 40px;
+          background-color: #ecf0ff;
+          border-radius: 12px;
+          position: relative;
+        }
+
+        .plan .pricing {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: #bed6fb;
+          border-radius: 99em 0 0 99em;
+          display: flex;
+          align-items: center;
+          padding: 0.625em 0.75em;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #425475;
+        }
+
+        .plan .pricing small {
+          color: #707a91;
+          font-size: 0.75em;
+          margin-left: 0.25em;
+        }
+
+        .plan .title {
+          font-weight: 600;
+          font-size: 1.25rem;
+          color: #425675;
+        }
+
+        .plan .title + * {
+          margin-top: 0.75rem;
+        }
+
+        .plan .info + * {
+          margin-top: 1rem;
+        }
+
+        .plan .features {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .plan .features li {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .plan .features li + * {
+          margin-top: 0.75rem;
+        }
+
+        .plan .features .icon {
+          background-color: #1FCAC5;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+        }
+
+        .plan .features .icon svg {
+          width: 14px;
+          height: 14px;
+        }
+
+        .plan .features + * {
+          margin-top: 1.25rem;
+        }
+
+        .plan .action {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: end;
+        }
+
+        .plan .button {
+          background-color: #6558d3;
+          border-radius: 6px;
+          color: #fff;
+          font-weight: 500;
+          font-size: 1.125rem;
+          text-align: center;
+          border: 0;
+          outline: 0;
+          width: 100%;
+          padding: 0.625em 0.75em;
+          text-decoration: none;
+        }
+
+        .plan .button:hover, .plan .button:focus {
+          background-color: #4133B7;
+        }
+
+        .box {
+          width: 140px;
+          height: auto;
+          float: left;
+          transition: .5s linear;
+          position: relative;
+          display: block;
+          overflow: hidden;
+          padding: 15px;
+          text-align: center;
+          margin: 0 5px;
+          background: transparent;
+          text-transform: uppercase;
+          font-weight: 900;
+        }
+
+        .box:before {
+          position: absolute;
+          content: '';
+          left: 0;
+          bottom: 0;
+          height: 4px;
+          width: 100%;
+          border-bottom: 4px solid transparent;
+          border-left: 4px solid transparent;
+          box-sizing: border-box;
+          transform: translateX(100%);
+        }
+
+        .box:after {
+          position: absolute;
+          content: '';
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          border-top: 4px solid transparent;
+          border-right: 4px solid transparent;
+          box-sizing: border-box;
+          transform: translateX(-100%);
+        }
+
+        .box:hover {
+          box-shadow: 0 5px 15px white
+        }
+
+        .box:hover:before {
+          border-color: antiquewhite;
+          height: 100%;
+          transform: translateX(0);
+          transition: .3s transform linear, .3s height linear .3s;
+        }
+
+        .box:hover:after {
+          border-color: antiquewhite;
+          height: 100%;
+          transform: translateX(0);
+          transition: .3s transform linear, .3s height linear .5s;
+        }
+
+        #buttonBox {
+          color: white;
+          text-decoration: none;
+          cursor: pointer;
+          outline: none;
+          border: none;
+          background: transparent;
+          margin-bottom: 20px;
         }
     </style>
   </head>

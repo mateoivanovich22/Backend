@@ -65,3 +65,400 @@
 [34minfo[39m: Connected to io server
 [34minfo[39m: Connection succesfully to MongoDB
 [32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al enviar el correo: No recipients defined {"code":"EENVELOPE","command":"API","stack":"Error: No recipients defined\n    at SMTPConnection._formatError (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:790:19)\n    at SMTPConnection._setEnvelope (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1023:34)\n    at SMTPConnection.send (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:621:14)\n    at sendMessage (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-transport\\index.js:228:28)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-transport\\index.js:286:25\n    at SMTPConnection._actionAUTHComplete (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1578:9)\n    at SMTPConnection.<anonymous> (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:546:26)\n    at SMTPConnection._processResponse (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:969:20)\n    at SMTPConnection._onData (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:755:14)\n    at SMTPConnection._onSocketData (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:193:44)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al enviar el correo: No recipients defined {"code":"EENVELOPE","command":"API","stack":"Error: No recipients defined\n    at SMTPConnection._formatError (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:790:19)\n    at SMTPConnection._setEnvelope (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1023:34)\n    at SMTPConnection.send (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:621:14)\n    at sendMessage (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-transport\\index.js:228:28)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-transport\\index.js:286:25\n    at SMTPConnection._actionAUTHComplete (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:1578:9)\n    at SMTPConnection.<anonymous> (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:546:26)\n    at SMTPConnection._processResponse (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:969:20)\n    at SMTPConnection._onData (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:755:14)\n    at SMTPConnection._onSocketData (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\nodemailer\\lib\\smtp-connection\\index.js:193:44)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al restablecer la contraseña: password is not defined {"stack":"ReferenceError: password is not defined\n    at Module.logicaPostRecovery (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/views.controllers.js:15:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Mensaje enviado con éxito a mateoivanovich43@gmail.com
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al restablecer la contraseña: password is not defined {"stack":"ReferenceError: password is not defined\n    at Module.logicaPostRecovery (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/views.controllers.js:15:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Mensaje enviado con éxito a mateoivanovich43@gmail.com
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al restablecer la contraseña: password is not defined {"stack":"ReferenceError: password is not defined\n    at Module.logicaPostRecovery (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/views.controllers.js:15:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Mensaje enviado con éxito a mateoivanovich43@gmail.com
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al restablecer la contraseña: password is not defined {"stack":"ReferenceError: password is not defined\n    at Module.logicaPostRecovery (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/views.controllers.js:15:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Mensaje enviado con éxito a mateoivanovich43@gmail.com
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al restablecer la contraseña: password is not defined {"stack":"ReferenceError: password is not defined\n    at Module.logicaPostRecovery (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/views.controllers.js:15:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Mensaje enviado con éxito a mateoivanovich43@gmail.com
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al restablecer la contraseña: password is not defined {"stack":"ReferenceError: password is not defined\n    at Module.logicaPostRecovery (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/views.controllers.js:15:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Mensaje enviado con éxito a mateoivanovich43@gmail.com
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al restablecer la contraseña: password is not defined {"stack":"ReferenceError: password is not defined\n    at Module.logicaPostRecovery (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/views.controllers.js:15:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Mensaje enviado con éxito a mateoivanovich43@gmail.com
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al restablecer la contraseña: password is not defined {"stack":"ReferenceError: password is not defined\n    at Module.logicaPostRecovery (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/views.controllers.js:15:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Mensaje enviado con éxito a mateoivanovich43@gmail.com
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[32merror[39m: Error borrando el producto: CastError: Cast to ObjectId failed for value " 64dbb800dbfa2e8d6b5bb8a6" (type string) at path "_id" for model "products"
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Usted no puede eliminar el siguiente producto: undefined
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Usted no puede eliminar el siguiente producto: selva
+[32merror[39m: Error borrando el producto: TypeError: Assignment to constant variable.
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Usted no puede eliminar el siguiente producto: opera
+[34minfo[39m: Usuario premium autorizado a borrar su propio producto
+[34minfo[39m: Usted no puede eliminar el siguiente producto: PRUEBAOWNER
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64dc14769646ca291d85391c has been upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[32merror[39m: undefined {"kind":"ObjectId","path":"_id","reason":{},"stringValue":"\"\"","value":"","valueType":"string"}
+[34minfo[39m: User with id  cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[32merror[39m: undefined {"kind":"ObjectId","path":"_id","reason":{},"stringValue":"\"\"","value":"","valueType":"string"}
+[34minfo[39m: User with id  cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[32merror[39m: undefined {"kind":"ObjectId","path":"_id","reason":{},"stringValue":"\"\"","value":"","valueType":"string"}
+[34minfo[39m: User with id  cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: undefined {"kind":"ObjectId","path":"_id","reason":{},"stringValue":"\"\"","value":"","valueType":"string"}
+[34minfo[39m: User with id  cannot be upgraded
+[32merror[39m: undefined {"kind":"ObjectId","path":"_id","reason":{},"stringValue":"\"\"","value":"","valueType":"string"}
+[34minfo[39m: User with id  cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[32merror[39m: undefined {"kind":"ObjectId","path":"_id","reason":{},"stringValue":"\"\"","value":"","valueType":"string"}
+[34minfo[39m: User with id  cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[32merror[39m: undefined {"kind":"ObjectId","path":"_id","reason":{},"stringValue":"\"\"","value":"","valueType":"string"}
+[34minfo[39m: User with id  cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be downgrade
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 cannot be upgraded
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been downgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: User with id 64bc781945f07e8d1da66d37 has been upgraded
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connected to io server
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB

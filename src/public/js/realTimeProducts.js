@@ -25,19 +25,20 @@ const showProducts = (products) => {
   console.log("Lista de productos actualizada:", products);
 };
 
-
 socket.on("products", (products) => {
   showProducts(products);
 });
 
 const deleteProductForm = document.querySelector("#delete-product-form");
+
 deleteProductForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  const role = document.getElementById("user-role").textContent;
+  const owner = document.getElementById("user-email").textContent;
   const productId = document.querySelector("#product-id").value;
-  socket.emit("deleteProduct", productId);
+  socket.emit("deleteProduct", productId, role, owner);
   document.querySelector("#product-id").value = "";
 });
-
 
 const form = document.getElementById("product-form");
 form.addEventListener("submit", (event) => {
@@ -49,15 +50,18 @@ form.addEventListener("submit", (event) => {
   const description = document.getElementById("description").value;
   const code = document.getElementById("code").value;
   const thumbnail = document.getElementById("thumbnail").value;
-  const product = { 
-    title, 
-    price, 
-    stock, 
-    category, 
+  const owner = document.getElementById("user-email").textContent;
+
+  const product = {
+    title,
+    price,
+    stock,
+    category,
     description,
     code,
     thumbnail,
-    status: true 
+    status: true,
+    owner,
   };
   socket.emit("productCreated", product);
   form.reset();

@@ -10,6 +10,12 @@ import {
 } from "../../services/errors/info.js";
 import log from "../../config/logger.js"; 
 
+import config from "../../config/config.js";
+import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
+
+const nodemailerKey = config.nodemailer.key;
+
 const currentJWT = (req, res) => {
   if (req.session && req.session.user) {
     const currentUserDTO = {
@@ -108,25 +114,71 @@ const logout = (req, res) => {
 };
 
 const recovery = (req, res) => {
+
   res.render("recovery");
 };
 
 const postRecovery = async (req, res) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
 
   try {
-    const redirectUrl = await logica.logicaPostRecovery(email, password);
-    res.redirect(redirectUrl);
+
+    const contraCorrecta = logica.logicaPostRecovery(email)
+
+    if (!contraCorrecta) {
+      return res.status(400).send('No puede utilizar la misma contraseña.');
+    }else{
+
+      const token = jwt.sign({ email }, 'secreto', { expiresIn: '1h' });
+
+      const recoveryLink = `http://localhost:8080/api/users/recovery-password?token=${token}`;
+
+      const html = `
+        <div>
+          <h1>Aprete en el siguiente botón para restablecer su contraseña</h1>
+          <a href="${recoveryLink}">Restablecer contraseña</a>
+        </div>
+      `;
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'mateoivanovichichi@gmail.com',
+          pass: nodemailerKey,
+        },
+      });
+
+      const mailOptions = {
+        from: 'mateoivanovichichi@gmail.com',
+        to: email,
+        subject: 'Recovery process',
+        html: html,
+      };
+
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          log.error("Error al enviar el correo:", err);
+          return;
+        }
+
+        log.info(`Mensaje enviado con éxito a ${email}`);
+      });
+
+      res.status(200).send('Correo de recuperación enviado correctamente.');
+    }
   } catch (error) {
-    log.error("Error al restablecer la contraseña:", error);
-    res.redirect("/register");
+    log.error(error);
+    res.status(500).send('Error al enviar el correo de recuperación.');
   }
 };
 
 const realTimeProducts = async (req, res) => {
   try {
     const products = await logica.logicaRealTimeProducts();
-    res.render("realTimeProducts", { products });
+
+    const user = req.session.user
+
+    res.render("realTimeProducts", { products, user });
   } catch (error) {
     log.error(error);
     res.status(500).send("Error interno del servidor");

@@ -1,0 +1,59 @@
+
+<div class="cardPremiumContainer">
+    <button onclick="returnHome()" id="buttonBox">
+        <span class="box">
+            Return Home!
+        </span>
+    </button>
+    <div class="plan">
+        <div class="inner">
+            <span class="pricing">
+                <span>
+                    $49 <small>/ m</small>
+                </span>
+            </span>
+            <p class="title">Premium</p>
+            <p class="info">This plan is for those who have a team already and running a large business.</p>
+            <ul class="features">
+                <li>
+                    <span class="icon">
+                        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+                        </svg>
+                    </span>
+                    <span>Create products</span>
+                </li>
+                <li>
+                    <span class="icon">
+                        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+                        </svg>
+                    </span>
+                    <span>Plan <strong>team meetings</strong></span>
+                </li>
+                <li>
+                    <span class="icon">
+                        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+                        </svg>
+                    </span>
+                    <span>File sharing</span>
+                </li>
+            </ul>
+            <div class="action">
+            <button class="button" id="botonUpgrade" onclick="upgrade('{{user._id}}')"> Upgrade </button>
+            <button class="button" id="convertirseEnUser" style="display: none;" onclick="darseDeBaja('{{user._id}}')">Darse de baja</button>
+            </div>
+        </div>
+    </div>
+    <h3 id="messageUpgraded" style="display: none;" > USUARIO UPGRADEADO CORRECTAMENTE</h3>
+    <h3 id="messageUpgradedFalse" style="display: none;" > USUARIO CON ROLE {{user.role}} NO PUEDE SER UPGRADEADO</h3>
+    <h3 id="downgrade" style="display: none;">USUARIO DEGRADADO CORRECTAMENTE</h3>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/bePremium.js" ></script>
+
+

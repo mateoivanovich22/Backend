@@ -37,5 +37,6 @@ async function terminarCompra(cartId) {
         window.location.href = '/tickets';
     } catch (error) {
         console.error('Error al realizar la compra:', error);
+        throw new Error(error) 
     }
 }
