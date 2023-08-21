@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import {notFoundURL} from "../utils.js"
 
-import {postRecoveryPassword, recoveryPassword, successChangePassword, bePremium, upgradePremium} from "../controllers/users.controller.js"
+import {postRecoveryPassword, recoveryPassword, successChangePassword, bePremium} from "../controllers/users.controller.js"
 
 const router = Router();
 

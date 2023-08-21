@@ -6,7 +6,6 @@ const productManagerMongo = new ProductManagerMongo();
 
 const showProducts = async (req, res) => {
   const user = req.session.user;
-  console.log(user);
 
   if (user) {
     const limit = parseInt(req.query.limit) || 10;
@@ -58,6 +57,7 @@ const createProduct = async (req, res) => {
     stock,
     category,
     thumbnails = [],
+    owner
   } = req.body;
 
   const logicaCreate = await logica.logicaCreateProduct(
@@ -68,7 +68,8 @@ const createProduct = async (req, res) => {
     status,
     stock,
     category,
-    thumbnails
+    thumbnails,
+    owner
   );
 
   if (logicaCreate) {

@@ -50,6 +50,7 @@ form.addEventListener("submit", (event) => {
   const description = document.getElementById("description").value;
   const code = document.getElementById("code").value;
   const thumbnail = document.getElementById("thumbnail").value;
+
   const owner = document.getElementById("user-email").textContent;
 
   const product = {

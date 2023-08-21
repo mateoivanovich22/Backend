@@ -24,9 +24,9 @@ const logicaShowProducts = async (limit, page, sort, query) => {
   }
 };
 
-const logicaCreateProduct = async (title, description, code, price, status, stock, category, thumbnails) => {
+const logicaCreateProduct = async (title, description, code, price, status, stock, category, thumbnails, owner) => {
   try {
-    if (!title || !description || !code || !price || !stock || !category) {
+    if (!title || !description || !code || !price || !stock || !category || !owner) {
       return false;
     }
 
@@ -39,6 +39,7 @@ const logicaCreateProduct = async (title, description, code, price, status, stoc
       stock,
       category,
       thumbnails,
+      owner
     };
 
     await productManagerMongo.createProduct(product);

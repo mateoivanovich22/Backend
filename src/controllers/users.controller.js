@@ -53,4 +53,4 @@ const bePremium = async (req,res) => {
   res.render('bePremium', {user});
 }
 
-export {postRecoveryPassword, recoveryPassword, successChangePassword,bePremium, upgradePremium}
+export {postRecoveryPassword, recoveryPassword, successChangePassword,bePremium}
