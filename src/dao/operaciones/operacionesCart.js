@@ -11,7 +11,7 @@ const create = async (req, res) => {
   try {
     await logica.logicaCreateCart(product, quantity);
 
-    res.status(201).send({
+    res.status(200).send({
       message: "El carrito ha sido creado exitosamente.",
       data: {
         product,
@@ -119,8 +119,12 @@ const deleteAllProductsOfCart = async (req, res) => {
 
 const finishBuying = async (req, res) => {
   const cartId = req.params.cid;
-
+  if (!req.session.user.email){
+    res.status(500).send({ status: "No hay EMAIL y no se puede finalizar la compra" });
+    return 
+  }
   const email = req.session.user.email;
+  
   try {
     const ticket = await logica.logicaFinishBuying(cartId, email);
     if (ticket) {

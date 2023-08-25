@@ -1,0 +1,199 @@
+paths:
+  /api/products/:
+    get:
+      summary: Muestra los productos
+      tags: 
+        - Products
+      responses:
+        "200": 
+          description: Productos mostrados correctamente
+          content: 
+            application/json:
+              schmea:
+                type: array
+        "500": 
+          description: Error interno del servidor
+    post:
+      summary: Crea un producto
+      tags: 
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/createProduct'
+      responses:
+        "200": 
+          description: Producto agregado correctamente
+          content: 
+            application/json:
+              schmea:
+                type: array
+        "500": 
+          description: Error interno del servidor
+
+  /api/products/{pid}:
+    put:
+      summary: Actualiza el producto
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Id del product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateProduct'
+      responses:
+        "200":
+          description: Producto actualizado correctamente
+        "500":
+          description: Error interno del servidor
+    delete:
+      summary: Elimina el producto 
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Id del producto
+      responses:
+        "200":
+          description: Producto eliminado correctamente
+        "404":
+          description: Producto no encontrado
+        "500":
+          description: Error interno del servidor
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id: 
+          type: string
+          description: Id autogenerado del product
+        title:
+          type: string
+          description: Nombre del product
+        description:
+          type: string
+          description: Description del product
+        code: 
+          type: number
+          description: Codigo del producto
+        price: 
+          type: number
+          description: Price del producto
+        stock: 
+          type: number
+          description: Stock del producto
+        status:
+          type: boolean
+          description: Status del producto
+        thumbnail:
+          type: string
+          description: Image del producto
+        category:
+          type: string
+          description: Category del producto
+        owner: 
+          type: string
+          description: Owner del producto
+      example:
+        _id: "64db0ce9e90d4cac824025f3"
+        title: "Oreos"
+        description: "Galletitas muy ricas"
+        code: 448
+        price: 45
+        stock: 200
+        status: true
+        thumbnail: "http://imageExample.com"
+        category: "Galletitas"
+        owner: "mateo@gmail.com"
+  requestBodies:
+    createProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: "Title of the product"
+        description:
+          type: string
+          description: "Description of the product"
+        code: 
+          type: number
+          description: "Code of the product"
+        price: 
+          type: number
+          description: "Price of the product"
+        stock:
+          type: number
+          description: "Stock of the product"
+        status: 
+          type: boolean
+          description: "Status of the product"
+        thumbnail:
+          type: string
+          description: "Image of the product"
+        category:
+          type: string
+          description: "Category of the product"
+        owner:
+          type: string
+          description: "Owner of the product"
+      example: 
+        title: "Oreo"
+        description: "Galletitas muy ricas"
+        code: 566
+        price: 20
+        stock: 200
+        status: true
+        thumbnail: http://imageExample.com
+        category: "Galletitas"
+        owner: "mateo@gmail.com"
+
+    updateProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: "Title of the product"
+        description:
+          type: string
+          description: "Description of the product"
+        code: 
+          type: number
+          description: "Code of the product"
+        price: 
+          type: number
+          description: "Price of the product"
+        stock:
+          type: number
+          description: "Stock of the product"
+        status: 
+          type: boolean
+          description: "Status of the product"
+        thumbnail:
+          type: string
+          description: "Image of the product"
+        category:
+          type: string
+          description: "Category of the product"
+      example: 
+        title: "Oreo"
+        description: "Galletitas muy ricas"
+        code: 566
+        price: 20
+        stock: 200
+        status: true
+        thumbnail: http://imageExample.com
+        category: "Galletitas"
+
+        
+

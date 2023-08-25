@@ -1,0 +1,287 @@
+paths:
+  /api/carts/:
+    post:
+      summary: Crea un carrito
+      tags: 
+        - Carts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/createCart'
+      responses:
+        "200": 
+          description: Carrito creado correctamente
+          content: 
+            application/json:
+              schmea:
+                type: array
+        "500": 
+          description: Error interno del servidor
+
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene el carrito a partir de su ID
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito que desea solicitar
+      responses:
+        "200":
+          description: Carrito encontrado
+          content:
+            application/json:
+              schema:
+                type: array
+        "500":
+          description: Error interno del servidor
+    put:
+      summary: Actualiza el contenido de un carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateCart'
+      responses:
+        "200":
+          description: Carrito actualizado correctamente
+        "500":
+          description: Error interno del servidor
+    delete:
+      summary: Elimina el carrito 
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito
+      responses:
+        "200":
+          description: Carrito eliminado correctamente
+        "500":
+          description: Error interno del servidor
+
+  /api/carts/{cid}/products/{pid}:
+    delete:
+      summary: Elimina un producto de un carrito específico
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito
+        - name: pid
+          in: path
+          required: true
+          description: Id del producto a eliminar
+      responses:
+        "200":
+          description: Producto eliminado correctamente
+        "500":
+          description: Error interno del servidor
+    put:
+      summary: Updatea un producto del carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito
+        - name: pid
+          in: path
+          required: true
+          description: Id del producto a eliminar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateProductOfCart'
+      responses:
+        "200":
+          description: Producto del carrito modificado correctamente
+        "500":
+          description: Error interno del servidor
+
+  /api/carts/{cid}/purchase:
+    post:
+      summary: Finaliza la compra de un carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: Id del carrito a comprar
+      responses:
+        "200":
+          description: Compra finalizada con éxito
+        "500":
+          description: Error interno del servidor
+
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Id autogenerado del carrito
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              product:
+                type: string
+                description: Nombre del producto en el carrito
+              quantity:
+                type: number
+                description: Cantidad del producto en el carrito
+              _id: 
+                type: string
+                description: Id del producto en el carrito
+          description: Array de productos en el carrito
+      example:
+        _id: "609d2e726d61a64a089a3d52"
+        products:
+          - product: "Oreo"
+            quantity: 2
+            _id: "607f1f77bcf86cd799439012"
+          - product: "Rumba"
+            quantity: 1
+            _id: "607f1f77bcf86cd799439013"
+
+  requestBodies:
+    updateCart:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              product:
+                type: string
+                description: Id del producto en el carrito
+              quantity:
+                type: number
+                description: Cantidad del producto en el carrito
+          description: Array de productos en el carrito a actualizar
+      example:
+        products:
+          - product: "Oreo"
+            quantity: 3
+          - product: "Rumba"
+            quantity: 1
+    updateProductOfCart:
+      type: object
+      properties:
+        quantity:
+          type: number
+          description: Quantity of product
+      example: 
+        quantity: 5
+    createCart:
+      type: object
+      properties:
+        product:
+          type: string
+          description: Product name
+        quantity: 
+          type: number
+          description: Quantity of product
+      example:
+        product: "Oreo"
+        quantity: 4
+        
+
+
+# paths:
+#   /api/carts/{cid}:
+#     get:
+#       summary: Obtiene el carrito a partir de su ID
+#       tags:
+#         -  Carts
+#       parameters:
+#         - name: cid
+#           in: path
+#           required: true
+#           description: Id del carrito que desea solicitar
+#       responses:
+#           "200":
+#             description: Carrito encontrado
+#             content:
+#               application/json:
+#                 schema:
+#                   type: array
+#           "500":
+#             description: Error interno del servidor
+
+# components:
+#   schemas:
+#     User:
+#       type: object
+#       properties:
+#         _id:
+#           type: ObjectId
+#           description: Id autogenerado de mongo
+#         first_name:
+#           type: String
+#           description: Nombre del usuario
+#         last_name:
+#           type: String
+#           description:  Apellido del usuario
+#         email:
+#           type: String
+#           description: Mail del usuario
+#         password:
+#           type: String
+#           description: Password del usuario, este campo esta hasheado
+#         pets:
+#           type: Array
+#           description: Array de objectIds correspondientes a la collection pets
+#       example:
+#         _id: ObjectId("507f1f77bcf86cd799439011")
+#         first_name: Cosme
+#         last_name: Fulanito
+#         email: cosmefulanito@gmail.com
+#         password: sarasacosme123
+#         pets: [ObjectId("507f1f77bcf86cd799439011"),
+#                ObjectId("507f191e810c19729de860ea")]
+#   requestBodies:
+#     updateUser:
+#       type: object
+#       properties:
+#         first_name:
+#           type: String
+#           description: Nombre del usuario
+#         last_name:
+#           type: String
+#           descirption: Apellido del usuario
+#         email:
+#           type: String
+#           description: email del usuario
+#         password:
+#           type: String
+#           description: password del usuario
+#       example:
+#         first_name: OtroCosme
+#         last_name: NuevoFulanito
+#         email: cosmefulanito@gmail.com
+#         password: sarasacosme123

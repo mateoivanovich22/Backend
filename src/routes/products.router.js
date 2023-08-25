@@ -3,8 +3,6 @@ import { Router } from "express";
 import { showProducts, createProduct, updateProduct, deleteProduct } from "../dao/operaciones/operacionesProducts.js";
 import { notFoundURL } from "../utils.js";
 
-
-
 const router = Router();
 
 router.get("/", showProducts);

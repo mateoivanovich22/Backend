@@ -60,57 +60,70 @@ const createProduct = async (req, res) => {
     owner
   } = req.body;
 
-  const logicaCreate = await logica.logicaCreateProduct(
-    title,
-    description,
-    code,
-    price,
-    status,
-    stock,
-    category,
-    thumbnails,
-    owner
-  );
-
-  if (logicaCreate) {
-    res.send({ status: "success" });
-  } else {
-    log.error("Todos los campos son obligatorios");
-    res.status(400).send("Todos los campos son obligatorios");
+  try {
+    const logicaCreate = await logica.logicaCreateProduct(
+      title,
+      description,
+      code,
+      price,
+      status,
+      stock,
+      category,
+      thumbnails,
+      owner
+    );
+    if (logicaCreate) {
+      res.status(200).send({ status: "success" });
+    } else {
+      log.error("Todos los campos son obligatorios");
+      res.status(400).send("Todos los campos son obligatorios");
+    }
+  } catch (error) {
+    log.error(error);
+    res.status(500).send({error: error});
   }
+  
 };
 
 const updateProduct = async (req, res) => {
   const productIdParam = req.params.pid;
-
   const fieldsToUpdate = req.body;
 
-  const logicaUpdate = await logica.logicaUpdateProduct(
-    productIdParam,
-    fieldsToUpdate
-  );
-
-  if (logicaUpdate) {
-    res.send({
-      status: "success",
-    });
-  } else {
-    log.error("Producto no encontrado o parámetro inválido");
-    res.status(404).send("Producto no encontrado o parámetro inválido");
+  try {
+    const logicaUpdate = await logica.logicaUpdateProduct(
+      productIdParam,
+      fieldsToUpdate
+    );
+    if (logicaUpdate) {
+      res.status(200).send({
+        status: "success",
+      });
+    } else {
+      log.error("Producto no encontrado o parámetro inválido");
+      res.status(404).send("Producto no encontrado o parámetro inválido");
+    }
+  } catch (error) {
+    log.error(error);
+    res.status(500).send({ error: error });
   }
+  
 };
 
 const deleteProduct = async (req, res) => {
   const productId = req.params.pid;
-
   const logicaDelete = logica.logicaDeleteProduct(productId);
-
-  if (logicaDelete) {
-    res.send({ status: "success" });
-  } else {
-    log.error("Producto no encontrado");
-    res.status(404).send({ error: "Producto no encontrado" });
+  try {
+    if (logicaDelete) {
+      res.status(200).send({ status: "success" });
+    } else {
+      log.error("Producto no encontrado");
+      res.status(400).send({ error: "Producto no encontrado" });
+    }
+  } catch (error) {
+    log.error(error);
+    res.status(500).send({error: error});
   }
+  
 };
 
 

@@ -67,14 +67,14 @@ const logicaUpdateProduct = async (productIdParam, fieldsToUpdate) => {
       "status",
       "stock",
       "category",
-      "thumbnails",
+      "thumbnail",
     ];
-
     const isValidParams = Object.keys(fieldsToUpdate).every((param) =>
       validParams.includes(param)
     );
 
     if (!isValidParams) {
+      log.info("Invalid params")
       return false;
     }
 

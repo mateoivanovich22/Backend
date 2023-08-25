@@ -10,13 +10,13 @@ router.post("/", create);
 
 router.get("/:cid", getCartById)
 
-router.delete("/:cid/products/:pid",deleteProductOfCart)
-
 router.put("/:cid", updateCart)
 
-router.put("/:cid/products/:pid", updateProductOfCart)
-
 router.delete("/:cid", deleteAllProductsOfCart)
+
+router.delete("/:cid/products/:pid",deleteProductOfCart)
+
+router.put("/:cid/products/:pid", updateProductOfCart)
 
 router.post('/:cid/purchase', finishBuying)
 

@@ -26,6 +26,11 @@ import { dirname } from 'path';
 
 import errorHandler from "./middlewares/error/info.js";
 
+import log from "./config/logger.js"
+
+import swaggerJsdoc from "swagger-jsdoc"
+import swaggerUiExpress from "swagger-ui-express";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -34,11 +39,24 @@ const PORT = config.server.port;
 const app = express();
 app.use(compression());
 app.use(errorHandler)
-import log from "./config/logger.js"
+
 const server = app.listen(PORT, () => log.info(`Server is listening on port ${PORT}`));
 
-
 const io = new Server(server);
+
+const swaggerOptions = {
+  definition: {
+      openapi: '3.0.1',
+      info: {
+          title: 'Backend project',
+          description: 'Pruebas en swagger coderhouse'
+      }
+  },
+  apis: [`${__dirname}/docs/**/*.yaml`]
+};
+
+const specs = swaggerJsdoc(swaggerOptions);
+app.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 
 const productManagerMongoose = new ProductManagerMongoose();
 const cartsManagerMongoose = new CartsManagerMongoose();
