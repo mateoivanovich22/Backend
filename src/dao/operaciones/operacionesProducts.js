@@ -61,6 +61,7 @@ const createProduct = async (req, res) => {
   } = req.body;
 
   try {
+    
     const logicaCreate = await logica.logicaCreateProduct(
       title,
       description,
@@ -84,6 +85,11 @@ const createProduct = async (req, res) => {
   }
   
 };
+
+const getCreateProduct = (req,res) => {
+  const user = req.session.user;
+  res.render('createProduct', {user})
+}
 
 const updateProduct = async (req, res) => {
   const productIdParam = req.params.pid;
@@ -133,5 +139,6 @@ export {
     getProductById,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getCreateProduct
 }

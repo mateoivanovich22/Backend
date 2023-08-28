@@ -1,13 +1,15 @@
 import { Router } from "express";
 
-import { showProducts, createProduct, updateProduct, deleteProduct } from "../dao/operaciones/operacionesProducts.js";
-import { notFoundURL } from "../utils.js";
+import { showProducts, createProduct, updateProduct, deleteProduct, getCreateProduct } from "../dao/operaciones/operacionesProducts.js";
+import { notFoundURL , privateRoute} from "../utils.js";
 
 const router = Router();
 
 router.get("/", showProducts);
 
-router.post("/", createProduct)
+router.get('/createProduct', privateRoute, getCreateProduct);
+
+router.post("/", privateRoute , createProduct)
 
 router.put("/:pid",updateProduct)
 

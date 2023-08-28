@@ -1,0 +1,13 @@
+<div>
+    <h2 style="color: white;"> Sorry {{user.firstname}},</h2>
+    <h1>No premission to access that view!</h1>
+    <h3 style="color: white;">Your actual role is: {{user.role}}</h3>
+    <a href="/api/users/premium/{{user._id}}">
+        <h4>Upgrade role?</h4>
+    </a>
+    
+    <a href="/api/products/">
+        <button>Return home</button>
+    </a>
+    
+</div>

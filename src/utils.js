@@ -21,7 +21,7 @@ export const privateRoute = (req, res, next) => {
   if (user && (user.role === "admin" || user.role === "premium")) {
     next();
   } else {
-    res.redirect("/login");
+    res.render("noPermission", {user});
   }
 };
 
