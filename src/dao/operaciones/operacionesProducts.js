@@ -100,6 +100,7 @@ const updateProduct = async (req, res) => {
       productIdParam,
       fieldsToUpdate
     );
+
     if (logicaUpdate) {
       res.status(200).send({
         status: "success",

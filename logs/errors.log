@@ -1,146 +1,113 @@
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Error al crear carrito: carts validation failed: products.0.product: Path `product` is required., products.0.quantity: Path `quantity` is required. {"_message":"carts validation failed","errors":{"products.0.product":{"kind":"required","message":"Path `product` is required.","name":"ValidatorError","path":"product","properties":{"message":"Path `product` is required.","path":"product","type":"required"}},"products.0.quantity":{"kind":"required","message":"Path `quantity` is required.","name":"ValidatorError","path":"quantity","properties":{"message":"Path `quantity` is required.","path":"quantity","type":"required"}}},"stack":"ValidationError: carts validation failed: products.0.product: Path `product` is required., products.0.quantity: Path `quantity` is required.\n    at Document.invalidate (C:\\Users\\HP\\onedrive\\escritorio\\coderhouse\\backend\\desafio1ivanovich\\node_modules\\mongoose\\lib\\document.js:3153:32)\n    at Subdocument.invalidate (C:\\Users\\HP\\onedrive\\escritorio\\coderhouse\\backend\\desafio1ivanovich\\node_modules\\mongoose\\lib\\types\\subdocument.js:229:12)\n    at C:\\Users\\HP\\onedrive\\escritorio\\coderhouse\\backend\\desafio1ivanovich\\node_modules\\mongoose\\lib\\document.js:2946:17\n    at C:\\Users\\HP\\onedrive\\escritorio\\coderhouse\\backend\\desafio1ivanovich\\node_modules\\mongoose\\lib\\schematype.js:1368:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)"}
-[32merror[39m: Error al crear carrito: Error al crear carrito {"stack":"Error: Error al crear carrito\n    at Module.logicaCreateCart (file:///C:/Users/HP/onedrive/escritorio/coderhouse/backend/desafio1ivanovich/src/controllers/carts.controllers.js:20:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async create (file:///C:/Users/HP/onedrive/escritorio/coderhouse/backend/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:12:5)"}
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Carrito actualizado exitosamente
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Carrito actualizado exitosamente
-[34minfo[39m: Carrito con id 64e7ecd64d034ef8419d66f5 vaciado
-[34minfo[39m: Cantidad del producto actualizada correctamente
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Usted no puede eliminar el siguiente producto: Swagger
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
+
+[34minfo[39m: Invalid params
 [32merror[39m: Producto no encontrado o parámetro inválido
 [34minfo[39m: Server is listening on port 8080
 [34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Usted no puede eliminar el siguiente producto: PruebaMock
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Usted no puede eliminar el siguiente producto: PruebaMock
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Usted no puede eliminar el siguiente producto: PruebaMock
+[32merror[39m: Todos los campos son obligatorios
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Usted no puede eliminar el siguiente producto: PruebaMock
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Usted no puede eliminar el siguiente producto: PruebaMock
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Usted no puede eliminar el siguiente producto: PruebaMock
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Invalid params
+[32merror[39m: Producto no encontrado o parámetro inválido
+[34minfo[39m: Usted no puede eliminar el siguiente producto: PruebaMock
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Invalid params
+[32merror[39m: Producto no encontrado o parámetro inválido
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Invalid params
 [32merror[39m: Producto no encontrado o parámetro inválido
 [34minfo[39m: Server is listening on port 8080
 [34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Invalid params
 [32merror[39m: Producto no encontrado o parámetro inválido
 [34minfo[39m: Server is listening on port 8080
 [34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Invalid params
 [32merror[39m: Producto no encontrado o parámetro inválido
 [34minfo[39m: Server is listening on port 8080
 [34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Producto no encontrado o parámetro inválido
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Producto no encontrado o parámetro inválido
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Producto no encontrado o parámetro inválido
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Producto no encontrado o parámetro inválido
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Producto no encontrado o parámetro inválido
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Producto no encontrado o parámetro inválido
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Producto no encontrado o parámetro inválido
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Producto no encontrado o parámetro inválido
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[32merror[39m: Producto no encontrado o parámetro inválido
-[34minfo[39m: Server is listening on port 8080
+[32merror[39m: Todos los campos son obligatorios
+[32merror[39m: Todos los campos son obligatorios
 [34minfo[39m: Connection succesfully to MongoDB
 [34minfo[39m: Producto modificado correctamente
 [34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
 [34minfo[39m: Server is listening on port 8080
 [34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Producto modificado correctamente
 [34minfo[39m: Server is listening on port 8080
 [34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
+[32merror[39m: Todos los campos son obligatorios
 [34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Connected to io server
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
-[34minfo[39m: Connected to io server
-[34minfo[39m: Server is listening on port 8080
-[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usted no puede eliminar el siguiente producto: PruebaMockUpdate
