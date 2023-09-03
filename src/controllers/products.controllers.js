@@ -88,8 +88,9 @@ const logicaUpdateProduct = async (productIdParam, fieldsToUpdate) => {
   }
 };
 
-const logicaDeleteProduct = async(productId) => {
-  const productDeleted = await productManagerMongo.deleteProduct(productId);
+const logicaDeleteProduct = async(productId, role, owner) => {
+
+  const productDeleted = await productManagerMongo.deleteProduct(productId, role, owner);
 
   return !!productDeleted;
 };

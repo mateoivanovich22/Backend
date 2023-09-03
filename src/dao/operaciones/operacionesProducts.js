@@ -118,11 +118,20 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   const productId = req.params.pid;
-  const logicaDelete = logica.logicaDeleteProduct(productId);
+  const user= req.session.user;
   try {
-    if (logicaDelete) {
-      res.status(200).send({ status: "success" });
-    } else {
+
+    const product = await productManagerMongo.getProductById(productId);
+    if( product ){
+      const logicaDelete = await logica.logicaDeleteProduct(productId, user.role, product.owner);
+
+      if (logicaDelete) {
+        res.status(200).send({ status: "success" });
+      } else {
+        log.error("Producto no encontrado");
+        res.status(400).send({ error: "Producto no encontrado" });
+      }
+    }else{
       log.error("Producto no encontrado");
       res.status(400).send({ error: "Producto no encontrado" });
     }

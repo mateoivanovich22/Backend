@@ -95,12 +95,16 @@ class ProductsManager {
       const product = await productsModel.findById(id);
       let usuarioCreador = false;
 
-      if(role === "premium" && product.owner === owner){
+      if((role === "premium"  && product.owner === owner) || (role === "admin")){
         usuarioCreador = true;
-        log.info("Usuario premium autorizado a borrar su propio producto")     
+        if(role === "admin"){
+          log.info("Usuario admin autorizado a borrar el producto")  
+        }else{
+          log.info("Usuario premium autorizado a borrar su producto")  
+        }     
       }
 
-      if(role === "admin" || usuarioCreador){
+      if(usuarioCreador){
         const deletedProduct = await productsModel.findByIdAndRemove(id).lean();
         if (!deletedProduct) {
           log.info(`Producto con id ${id} no encontrado`);
