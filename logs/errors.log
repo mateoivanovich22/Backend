@@ -160,3 +160,168 @@
 [32merror[39m: Producto no encontrado
 [34minfo[39m: Server is listening on port 8080
 [34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usuario premium autorizado a borrar su producto
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usuario premium autorizado a borrar su producto
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usuario premium autorizado a borrar su producto
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usuario premium autorizado a borrar su producto
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usuario premium autorizado a borrar su producto
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usuario premium autorizado a borrar su producto
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usuario premium autorizado a borrar su producto
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usuario premium autorizado a borrar su producto
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al crear carrito: carrito.toJSON is not a function {"stack":"TypeError: carrito.toJSON is not a function\n    at create (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:13:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al crear carrito: carrito.toJSON is not a function {"stack":"TypeError: carrito.toJSON is not a function\n    at create (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:13:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al crear carrito: carrito.toJSON is not a function {"stack":"TypeError: carrito.toJSON is not a function\n    at create (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:13:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito con id 64f4fe681cd791dbf04f2b8e vaciado
+[34minfo[39m: Carrito con id 64f4feb91cd791dbf04f2b95 vaciado
+[34minfo[39m: Carrito con id 64f4fee11cd791dbf04f2b9c vaciado
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito con id 64f4ffabfb32709c3425e661 vaciado
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito con id 64f503c195e7afc8e58286b7 vaciado
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:25:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:201:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:25:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:201:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:25:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:201:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:25:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:201:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:25:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:200:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:25:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:200:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:25:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:200:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:26:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:200:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:25:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:200:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:25:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:200:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:26:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:200:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[32merror[39m: Error al eliminar el carrito: cartsModel.delete is not a function {"stack":"TypeError: cartsModel.delete is not a function\n    at CartManager.deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/services/cartsManager.js:26:41)\n    at Module.logicaDeleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/controllers/carts.controllers.js:134:44)\n    at deleteCart (file:///C:/Users/HP/OneDrive/Escritorio/coderhouse/BackEnd/desafio1ivanovich/src/dao/operaciones/operacionesCart.js:200:31)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:144:13)\n    at Route.dispatch (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\route.js:114:3)\n    at Layer.handle [as handle_request] (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:284:15\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:365:14)\n    at param (C:\\Users\\HP\\OneDrive\\Escritorio\\coderhouse\\BackEnd\\desafio1ivanovich\\node_modules\\express\\lib\\router\\index.js:376:14)"}
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito con id 64f5079ba4886e851e27bbd3 vaciado
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: Carrito con id 64f5084ca4886e851e27bbdc vaciado
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: Carrito con id 64f5086ba4886e851e27bbe7 vaciado
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: Carrito con id 64f509aea4886e851e27bbf2 vaciado
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: Carrito con id 64f509d9a4886e851e27bbff vaciado
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: NOS QUEDAMOS SIN STOCK DE ESTE O ESTOS PRODUCTOS: {"0":"Oreo"}
+[34minfo[39m: Carrito con id 64f50aeec22bcee148f9db88 vaciado
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: NOS QUEDAMOS SIN STOCK DE ESTE O ESTOS PRODUCTOS: {"0":"Oreo"}
+[34minfo[39m: Carrito con id 64f50b30c22bcee148f9db99 vaciado
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: NOS QUEDAMOS SIN STOCK DE ESTE O ESTOS PRODUCTOS: {"0":"Oreo"}
+[34minfo[39m: Carrito con id 64f50bb886bcbfbfba149544 vaciado
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: NOS QUEDAMOS SIN STOCK DE ESTE O ESTOS PRODUCTOS: {"0":"Oreo"}
+[34minfo[39m: Carrito con id 64f50c4464a30127998664f9 vaciado
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: NOS QUEDAMOS SIN STOCK DE ESTE O ESTOS PRODUCTOS: {"0":"Oreo"}
+[34minfo[39m: Carrito con id 64f50c88d93de91633117050 vaciado
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Carrito con id 64f50cdc374e3f6532ce3bac vaciado
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Carrito con id 64f50d44988eaf289c6aa4ca vaciado
+[34minfo[39m: Server is listening on port 8080
+[34minfo[39m: Connection succesfully to MongoDB
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Cantidad del producto actualizada correctamente
+[34minfo[39m: Carrito actualizado exitosamente
+[34minfo[39m: Carrito con id 64f50d870d3b36e10c92fe28 vaciado
+[32merror[39m: Todos los campos son obligatorios
+[34minfo[39m: Producto modificado correctamente
+[34minfo[39m: Usuario premium autorizado a borrar su producto

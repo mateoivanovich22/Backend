@@ -9,7 +9,7 @@ const create = async (req, res) => {
   const { product, quantity } = req.body;
 
   try {
-    await logica.logicaCreateCart(product, quantity);
+    const carrito = await logica.logicaCreateCart(product, quantity);
 
     res.status(200).send({
       message: "El carrito ha sido creado exitosamente.",
@@ -17,7 +17,10 @@ const create = async (req, res) => {
         product,
         quantity,
       },
+      cartId: carrito._id,
+      productId: carrito.products[0]._id
     });
+
   } catch (error) {
     log.error("Error al crear carrito:", error);
     res.status(500).send("Error al crear carrito");
@@ -128,9 +131,9 @@ const finishBuying = async (req, res) => {
   try {
     const ticket = await logica.logicaFinishBuying(cartId, email);
     if (ticket) {
-      res.send({ status: "success" });
+      res.status(200).send({ status: "success" });
     } else {
-      res.send({ status: "error" });
+      res.status(400).send({ status: "error" });
     }
 
   } catch (error) {
@@ -191,6 +194,22 @@ const showTicket = async (req, res) => {
   }
 };
 
+const deleteCart = async (req, res) => {
+  const cartId = req.params.cid;
+  try {
+    const cart = await logica.logicaDeleteCart(cartId);
+    if(cart){
+      res.status(200).send( {status: "success", cartDeleted: cart});
+    }else{
+      res.status(400).send( {status: "Cart not found"});
+    }
+    
+  } catch (error) {
+    log.error("Error al obtener el carrito:", error);
+    res.status(500).send("Error al obtener el carrito");
+  }
+}
+
 
 export {
   create,
@@ -200,5 +219,6 @@ export {
   updateProductOfCart,
   deleteAllProductsOfCart,
   finishBuying,
-  showTicket
+  showTicket,
+  deleteCart
 }

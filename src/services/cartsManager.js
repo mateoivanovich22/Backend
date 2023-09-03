@@ -17,10 +17,25 @@ class CartManager {
   constructor() {}
 
   async createCart(cart) {
-
     let result = await cartsModel.create(cart);
     return result;
   }
+
+  async deleteCart(cartId) {
+    try {
+      let result = await cartsModel.deleteOne({ _id: cartId });
+      return result;
+    } catch (error) {
+      return customError.createError({
+        name: "Cart ID Error",
+        cause: "El ID del Cart no es válido.",
+        message: "Invalid Cart ID",
+        code: EErors.INVALID_PARAM,
+      });
+
+    }
+  }
+  
 
   async createCartWithProduct(productId, productName, userId) {
 
@@ -246,11 +261,11 @@ class CartManager {
   }
 
   async processProductsInCart(cart) {
-    const productsNotProcessed = [];
+    const productsNotProcessed = [];  
   
     for (const product of cart.products) {
       const productInfo = await productManagerMongoose.getProductByName(product.product);
-  
+
       if (!productInfo) {
         productsNotProcessed.push(product.product);
       } else if (product.quantity > productInfo.stock) {

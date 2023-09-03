@@ -74,7 +74,7 @@ const createProduct = async (req, res) => {
       owner
     );
     if (logicaCreate) {
-      res.status(200).send({ status: "success" });
+      res.status(200).send({ status: "success", product: logicaCreate });
     } else {
       log.error("Todos los campos son obligatorios");
       res.status(400).send("Todos los campos son obligatorios");

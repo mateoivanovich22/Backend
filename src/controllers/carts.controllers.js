@@ -14,7 +14,8 @@ const logicaCreateCart = async (product, quantity) => {
   };
 
   try {
-    await cartsManager.createCart(newCart);
+    const carrito = await cartsManager.createCart(newCart);
+    return carrito.toJSON();
   } catch (error) {
     log.error("Error al crear carrito:", error);
     throw new Error("Error al crear carrito");
@@ -91,7 +92,7 @@ const logicaFinishBuying = async (cartId, purchaserEmail) => {
   }
 
   const productsNotProcessed = await cartsManager.processProductsInCart(cart);
-
+  
   if (productsNotProcessed.length === 0) {
     const totalPrice = await cartsManager.calculateTotalPrice(cart);
     const randomCode = await cartsManager.generateTicketCode();
@@ -128,6 +129,17 @@ const logicaShowTicket = async( email ) => {
   }
 }
 
+const logicaDeleteCart = async (cartId) => {
+  try {
+    const cartDeleted = await cartsManager.deleteCart(cartId);
+
+    return cartDeleted
+  } catch (error) {
+    log.error('Error al eliminar el carrito:', error);
+    return false
+  }
+}
+ 
 export {
   logicaCreateCart,
   logicaGetCartById,
@@ -136,5 +148,6 @@ export {
   logicaUpdateProductOfCart,
   logicaDeleteAllProductsOfCart,
   logicaFinishBuying,
-  logicaShowTicket
+  logicaShowTicket,
+  logicaDeleteCart
 };

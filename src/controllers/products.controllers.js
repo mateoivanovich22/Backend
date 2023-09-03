@@ -42,9 +42,9 @@ const logicaCreateProduct = async (title, description, code, price, status, stoc
       owner
     };
 
-    await productManagerMongo.createProduct(product);
+    const productCreated = await productManagerMongo.createProduct(product);
 
-    return true;
+    return productCreated.toJSON();
   } catch (error) {
     log.error("Error al crear el producto:", error);
     return false;
