@@ -1,18 +1,27 @@
-import { generateToken } from "../../utils.js";
-import * as logica from "../../controllers/views.controllers.js";
-import { generateProducts } from "../../mocks/generateProducts.js";
-import customError from "../../services/errors/customError.js";
-import EErors from "../../services/errors/enums.js";
+import { generateToken } from "../utils.js";
+import { generateProducts } from "../mocks/generateProducts.js";
+import customError from "../services/errors/customError.js";
+import EErors from "../services/errors/enums.js";
 import {
   generateUserErrorInfo,
   loginUserErrorInfo,
   generateCartError
-} from "../../services/errors/info.js";
-import log from "../../config/logger.js"; 
+} from "../services/errors/info.js";
+import log from "../config/logger.js"; 
 
-import config from "../../config/config.js";
+import config from "../config/config.js";
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
+
+import UserModel from "../dao/models/users.js";
+import { createHash } from "../utils.js";
+
+import CartsManager from "../services/cartsManager.js";
+const cartsManagerMongoose = new CartsManager();
+
+import ProductManager from "../services/productManager.js";
+const productManagerMongoose = new ProductManager();
+
 
 const nodemailerKey = config.nodemailer.key;
 
@@ -27,7 +36,7 @@ const currentJWT = (req, res) => {
     };
     res.render("current", { user: currentUserDTO });
   } else {
-    res.status(401).send("Usuario no autenticado");
+    res.status(400).send("Usuario no autenticado");
   }
 };
 
@@ -122,50 +131,47 @@ const postRecovery = async (req, res) => {
   const { email } = req.body;
 
   try {
-
-    const contraCorrecta = logica.logicaPostRecovery(email)
-
-    if (!contraCorrecta) {
+    const user = await UserModel.findOne({ email });
+    if (!user || user.password === password) {
       return res.status(400).send('No puede utilizar la misma contraseña.');
-    }else{
-
-      const token = jwt.sign({ email }, 'secreto', { expiresIn: '1h' });
-
-      const recoveryLink = `http://localhost:8080/api/users/recovery-password?token=${token}`;
-
-      const html = `
-        <div>
-          <h1>Aprete en el siguiente botón para restablecer su contraseña</h1>
-          <a href="${recoveryLink}">Restablecer contraseña</a>
-        </div>
-      `;
-
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'mateoivanovichichi@gmail.com',
-          pass: nodemailerKey,
-        },
-      });
-
-      const mailOptions = {
-        from: 'mateoivanovichichi@gmail.com',
-        to: email,
-        subject: 'Recovery process',
-        html: html,
-      };
-
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          log.error("Error al enviar el correo:", err);
-          return;
-        }
-
-        log.info(`Mensaje enviado con éxito a ${email}`);
-      });
-
-      res.status(200).send('Correo de recuperación enviado correctamente.');
     }
+
+    const token = jwt.sign({ email }, 'secreto', { expiresIn: '1h' });
+
+    const recoveryLink = `http://localhost:8080/api/users/recovery-password?token=${token}`;
+
+    const html = `
+      <div>
+        <h1>Aprete en el siguiente botón para restablecer su contraseña</h1>
+        <a href="${recoveryLink}">Restablecer contraseña</a>
+      </div>
+    `;
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'mateoivanovichichi@gmail.com',
+        pass: nodemailerKey,
+      },
+    });
+
+    const mailOptions = {
+      from: 'mateoivanovichichi@gmail.com',
+      to: email,
+      subject: 'Recovery process',
+      html: html,
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        log.error("Error al enviar el correo:", err);
+        return;
+      }
+
+      log.info(`Mensaje enviado con éxito a ${email}`);
+    });
+
+    res.status(200).send('Correo de recuperación enviado correctamente.');
   } catch (error) {
     log.error(error);
     res.status(500).send('Error al enviar el correo de recuperación.');
@@ -174,16 +180,16 @@ const postRecovery = async (req, res) => {
 
 const realTimeProducts = async (req, res) => {
   try {
-    const products = await logica.logicaRealTimeProducts();
-
-    const user = req.session.user
-
+    const products = await productManagerMongoose.getProducts();
+    const user = req.session.user;
+    
     res.render("realTimeProducts", { products, user });
   } catch (error) {
     log.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
+
 
 const showChat = (req, res) => {
   try {
@@ -199,7 +205,7 @@ const showProductList = async (req, res) => {
     const page = req.query.page || 1;
     const limit = req.query.limit || 10;
 
-    const products = await logica.logicaShowProductList(page, limit);
+    const products = await productManagerMongoose.getPaginatedProducts(page, limit);
     res.render("productList", { products });
   } catch (error) {
     log.error(error);
@@ -211,7 +217,7 @@ const showProductId = async (req, res) => {
   try {
     const user = req.session.user;
     const productId = req.params.id;
-    const product = await logica.logicaShowProductId(productId);
+    const product = await productManagerMongoose.getProductById(productId);
     res.render("productDetails", { product, user });
   } catch (error) {
     log.error(error);
@@ -219,10 +225,11 @@ const showProductId = async (req, res) => {
   }
 };
 
+
 const showCartId = async (req, res) => {
   try {
     const cartId = req.params.cid;
-    const cart = await logica.logicaGetCartById(cartId);
+    const cart = await cartsManagerMongoose.getCartWithProductsById(cartId);
 
     if (!cart) {
       return log.error("Carrito no encontrado", customError.createError({
@@ -240,6 +247,7 @@ const showCartId = async (req, res) => {
     res.status(500).send("Error interno del servidor");
   }
 };
+
 
 const generateFakerProducts = (req, res) => {
   let products = [];

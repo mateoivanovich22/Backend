@@ -1,9 +1,9 @@
 import express from "express";
 import { notFoundURL, passportCall, privateRoute, publicRoute } from "../utils.js";
-import * as operations from "../dao/operaciones/operacionesViews.js";
+import * as operations from "../controllers/views.controller.js";
 const router = express.Router();
 
-import { showTicket} from "../dao/operaciones/operacionesCart.js";
+import { showTicket} from "../controllers/cart.controller.js";
 
 import log from '../config/logger.js';
 

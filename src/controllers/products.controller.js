@@ -1,6 +1,5 @@
-import ProductManagerMongo from "../../services/productManager.js";
-import * as logica from "../../controllers/products.controllers.js";
-import log from "../../config/logger.js";
+import ProductManagerMongo from "../services/productManager.js";
+import log from "../config/logger.js";
 
 const productManagerMongo = new ProductManagerMongo();
 
@@ -17,7 +16,18 @@ const showProducts = async (req, res) => {
     const welcomeMessage = `Bienvenido, ${firstname} ${lastname}!`;
 
     try {
-      const products = await logica.logicaShowProducts(limit, page, sort, query);
+      const filters = {};
+      if (query) {
+        filters.title = { $regex: query, $options: "i" };
+      }
+
+      const products = await productManagerMongo.getPaginatedProductsWithOptions(
+        filters,
+        page,
+        limit,
+        sort
+      );
+
       res.render("productList", {
         products: products,
         user: user,
@@ -32,12 +42,13 @@ const showProducts = async (req, res) => {
   }
 };
 
+
 const getProductById = async (req, res) => {
   const id = req.params.pid;
   try {
     const product = await productManagerMongo.getProductById(id);
     if (product) {
-      res.send(product);
+      res.status(200).send(product);
     } else {
       res.status(404).send("Producto no encontrado");
     }
@@ -61,8 +72,13 @@ const createProduct = async (req, res) => {
   } = req.body;
 
   try {
-    
-    const logicaCreate = await logica.logicaCreateProduct(
+    if (!title || !description || !code || !price || !stock || !category || !owner) {
+      log.error("Todos los campos son obligatorios");
+      res.status(400).send("Todos los campos son obligatorios");
+      return;
+    }
+
+    const product = {
       title,
       description,
       code,
@@ -72,19 +88,22 @@ const createProduct = async (req, res) => {
       category,
       thumbnails,
       owner
-    );
-    if (logicaCreate) {
-      res.status(200).send({ status: "success", product: logicaCreate });
+    };
+
+    const productCreated = await productManagerMongo.createProduct(product);
+
+    if (productCreated) {
+      res.status(200).send({ status: "success", product: productCreated });
     } else {
-      log.error("Todos los campos son obligatorios");
-      res.status(400).send("Todos los campos son obligatorios");
+      log.error("Error al crear el producto");
+      res.status(500).send("Error al crear el producto");
     }
   } catch (error) {
     log.error(error);
-    res.status(500).send({error: error});
+    res.status(500).send({ error: error });
   }
-  
 };
+
 
 const getCreateProduct = (req,res) => {
   const user = req.session.user;
@@ -96,59 +115,80 @@ const updateProduct = async (req, res) => {
   const fieldsToUpdate = req.body;
 
   try {
-    const logicaUpdate = await logica.logicaUpdateProduct(
-      productIdParam,
-      fieldsToUpdate
-    );
+    const product = await productManagerMongo.getProductById(productIdParam);
 
-    if (logicaUpdate) {
-      res.status(200).send({
-        status: "success",
-      });
-    } else {
+    if (!product) {
       log.error("Producto no encontrado o parámetro inválido");
       res.status(404).send("Producto no encontrado o parámetro inválido");
+      return;
+    }
+
+    const validParams = [
+      "title",
+      "description",
+      "code",
+      "price",
+      "status",
+      "stock",
+      "category",
+      "thumbnail",
+    ];
+    const isValidParams = Object.keys(fieldsToUpdate).every((param) =>
+      validParams.includes(param)
+    );
+
+    if (!isValidParams) {
+      log.info("Parámetros inválidos");
+      res.status(400).send("Parámetros inválidos");
+      return;
+    }
+
+    await productManagerMongo.updateProduct(productIdParam, fieldsToUpdate);
+
+    res.status(200).send({
+      status: "success",
+    });
+  } catch (error) {
+    log.error(error);
+    res.status(500).send({ error: error });
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  const productId = req.params.pid;
+  const user = req.session.user;
+
+  try {
+    const product = await productManagerMongo.getProductById(productId);
+
+    if (!product) {
+      log.error("Producto no encontrado");
+      res.status(400).send({ error: "Producto no encontrado" });
+      return;
+    }
+
+    const productDeleted = await productManagerMongo.deleteProduct(productId, user.role, product.owner);
+
+    if (productDeleted) {
+      res.status(200).send({ status: "success" });
+    } else {
+      log.error("No tienes permisos para eliminar este producto");
+      res.status(403).send({ error: "No tienes permisos para eliminar este producto" });
     }
   } catch (error) {
     log.error(error);
     res.status(500).send({ error: error });
   }
-  
 };
 
-const deleteProduct = async (req, res) => {
-  const productId = req.params.pid;
-  const user= req.session.user;
-  try {
-
-    const product = await productManagerMongo.getProductById(productId);
-    if( product ){
-      const logicaDelete = await logica.logicaDeleteProduct(productId, user.role, product.owner);
-
-      if (logicaDelete) {
-        res.status(200).send({ status: "success" });
-      } else {
-        log.error("Producto no encontrado");
-        res.status(400).send({ error: "Producto no encontrado" });
-      }
-    }else{
-      log.error("Producto no encontrado");
-      res.status(400).send({ error: "Producto no encontrado" });
-    }
-  } catch (error) {
-    log.error(error);
-    res.status(500).send({error: error});
-  }
-  
-};
 
 
 
 export {
-    showProducts,
-    getProductById,
-    createProduct,
-    updateProduct,
-    deleteProduct,
-    getCreateProduct
+  showProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getCreateProduct
 }

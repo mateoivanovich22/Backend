@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import {create, getCartById, deleteProductOfCart, updateCart, updateProductOfCart, deleteAllProductsOfCart, finishBuying, deleteCart} from "../dao/operaciones/operacionesCart.js"
+import {create, getCartById, deleteProductOfCart, updateCart, updateProductOfCart, deleteAllProductsOfCart, finishBuying, deleteCart} from "../controllers/cart.controller.js";
 
 import {notFoundURL} from "../utils.js"
 

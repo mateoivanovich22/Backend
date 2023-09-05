@@ -24,6 +24,7 @@ class CartManager {
   async deleteCart(cartId) {
     try {
       let result = await cartsModel.deleteOne({ _id: cartId });
+
       return result;
     } catch (error) {
       return customError.createError({
@@ -317,7 +318,7 @@ class CartManager {
   async findTicketsByEmail(email) {
     try {
       const tickets = await TicketModel.find({ purchaser: email }).lean();
-      return tickets;
+      return tickets.toJSON();
     } catch (error) {
       return customError.createError({
         name: "Error buscando ticket",

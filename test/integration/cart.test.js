@@ -58,6 +58,10 @@ describe("Carts Router Integration Tests", () => {
 
         const response = await sessionInstance.post(`/api/carts/${cartCreatedId}/purchase`).send();
 
+        // console.log(response.body);
+        // console.log(response.statusCode);
+        // console.log(response.ok);
+
         expect(response.body.status).to.equal("success");
         expect(response.statusCode).to.equal(200);
         expect(response.ok).to.be.true;
@@ -83,8 +87,11 @@ describe("Carts Router Integration Tests", () => {
     });
 
     it("should delete a cart ", async ()=> {
-        const response = await sessionInstance.delete(`/api/carts/delete/${cartCreatedId}`)
 
+        const response = await sessionInstance.delete(`/api/carts/delete/${cartCreatedId}`)
+        // console.log(response.body);
+        // console.log(response.statusCode);
+        // console.log(response.ok);
         expect(response.body.status).to.equal("success");
         expect(response.statusCode).to.equal(200);
         expect(response.ok).to.be.true;
