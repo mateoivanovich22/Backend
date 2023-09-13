@@ -49,6 +49,7 @@ const initializePassport = () => {
             age,
             password: createHash(password),
             role: role,
+            last_connection: Date.now()
           };
 
           const result = await UserModel.create(newUser);
@@ -109,7 +110,7 @@ const initializePassport = () => {
       {
         clientID: "Iv1.eeaab075a5ab9e44",
         clientSecret: "c0c3c81c9d25c190289cfa0849f3875fb1cc8503",
-        callbackURL: "http://localhost:8080/login/github/callback",
+        callbackURL: "http://localhost:8080/api/users/login/github/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
@@ -124,7 +125,7 @@ const initializePassport = () => {
               email: profile.username,
               age: 22,
               password: createHash(profile.id),
-              role: "usuario",
+              role: "user",
             };
 
             let result = await UserModel.create(newUser);

@@ -1,5 +1,5 @@
 const form = document.getElementById("product-form");
-const userEmail = document.getElementById("userEmail").textContent; 
+
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -9,23 +9,27 @@ form.addEventListener("submit", async (event) => {
         productData[key] = value;
     });
 
-    productData.owner = userEmail;
-
     try {
-    const response = await fetch("/api/products", {
-        method: "POST",
-        headers: {
-        "Content-Type": "application/json"
-        },
-        body: JSON.stringify(productData)
-    });
+        const response = await fetch("/api/products/createProduct", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(productData)
+        });
 
-    if (response.ok) {
-        alert("Producto creado exitosamente");
-    } else {
-        alert("Error al crear el producto");
-    }
+        if (response.ok) {
+            alert("Producto creado exitosamente");
+        } else {
+            alert("Error al crear el producto");
+        }
     } catch (error) {
         console.error("Error:", error);
     }
+
+    form.reset();
 });
+
+function returnHome(){
+    window.location.href = '/api/products';
+}

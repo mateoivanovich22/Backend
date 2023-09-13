@@ -5,6 +5,7 @@
             Return Home!
         </span>
     </button>
+    <h3 id="user-role"  style="display: none;"> {{user.role}}</h3>
     <div class="plan">
         <div class="inner">
             <span class="pricing">
@@ -44,11 +45,22 @@
                 </li>
             </ul>
             <div class="action">
-            <button class="button" id="botonUpgrade" onclick="upgrade('{{user._id}}')"> Upgrade </button>
-            <button class="button" id="convertirseEnUser" style="display: none;" onclick="darseDeBaja('{{user._id}}')">Darse de baja</button>
+                <button class="button" id="botonUpgrade" onclick="mostrarFormulario('{{user._id}}')"> Upgrade </button>
+                <button class="button" id="convertirseEnUser" style="display: none;" onclick="darseDeBaja('{{user._id}}')">Darse de baja</button>
             </div>
         </div>
     </div>
+    <form id="upgradeForm" enctype="multipart/form-data">
+        <h2>Identificación</h2>
+        <input id="file1" type="file" name="identification" required />
+        <h2>Comprobante de domicilio</h2>
+        <input id="file2" type="file" name="proofOfAddress" required />
+        <h2>Comprobante de estado de cuenta</h2>
+        <input id="file3" type="file" name="bankStatement" required />
+        <button type="submit">Enviar solicitud de actualización</button>
+    </form>
+
+
     <h3 id="messageUpgraded" style="display: none;" > USUARIO UPGRADEADO CORRECTAMENTE</h3>
     <h3 id="messageUpgradedFalse" style="display: none;" > USUARIO CON ROLE {{user.role}} NO PUEDE SER UPGRADEADO</h3>
     <h3 id="downgrade" style="display: none;">USUARIO DEGRADADO CORRECTAMENTE</h3>

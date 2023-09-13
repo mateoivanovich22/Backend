@@ -54,25 +54,68 @@ class UsersManager {
           log.error(`Error al buscar el usuario con ID ${userId}: ${error.message}`);
           throw error;
         }
-      }
-
-    async upgradeUser(id){
+    }
+    async findUserByEmail(email) {
         try {
-            const user = await UserModel.findById(id);
-
-            if(user.role === 'admin' || user.role === 'premium') {
-                return false;
-            }else{
-                user.role = 'premium';
-                await user.save();
-                return true;
-            }
+          const user = await UserModel.findOne({ email });
+      
+          if (!user) {
+            return null; 
+          }
+      
+          return user.toJSON(); 
 
         } catch (error) {
-            log.error(error);
-            return false;
+          log.error(`Error al buscar el usuario con ID ${userId}: ${error.message}`);
+          throw error;
         }
     }
+
+    async updateUserById(userId, updateData) {
+        try {
+          const user = await UserModel.findByIdAndUpdate(userId, updateData, { new: true });
+          if (!user) {
+            log.error(`User con id "${userId}" no encontrado`)
+            return false;
+          }
+    
+          return user.toJSON();
+        } catch (error) {
+            log.error("Error bloque catch updateUserbyId")
+            return false;
+        }
+      }
+      async upgradeUserWithDocuments(id) {
+        try {
+          const user = await UserModel.findById(id);
+      
+          const requiredDocuments = [
+            'identification',
+            'proofOfAddress',
+            'bankStatement',
+          ];
+
+          const hasAllDocuments = requiredDocuments.every((docName) =>
+            user.documents.some((document) => document.name === docName)
+          );
+      
+          if (hasAllDocuments) {
+            if (user.role === 'admin' || user.role === 'premium') {
+              return false;
+            }
+      
+            user.role = 'premium';
+            await user.save();
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
+          log.error(error);
+          return false;
+        }
+      }
+      
 
     async estadoPremiumBaja(id){
         try {
@@ -92,6 +135,35 @@ class UsersManager {
         }
     }
   
+    async updateUserDocuments(userId, uploadedDocuments) {
+      try {
+        const user = await UserModel.findById(userId);
+        if (!user) {
+          console.error(`Usuario con ID "${userId}" no encontrado`);
+          return null;
+        }
+    
+        const currentDocuments = user.documents || [];
+    
+        for (const key in uploadedDocuments) {
+          if (uploadedDocuments.hasOwnProperty(key)) {
+            const document = uploadedDocuments[key];
+            currentDocuments.push({
+              name: key,
+              reference: document,
+            });
+          }
+        }  
+        user.documents = currentDocuments;
+        const userUpdated = await user.save();
+
+        return userUpdated.toJSON();
+      } catch (error) {
+        console.error('Error al actualizar documentos del usuario:', error);
+        return null;
+      }
+    }
+
 }
 
 export default UsersManager;

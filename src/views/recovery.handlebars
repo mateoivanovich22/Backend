@@ -1,7 +1,7 @@
 <h1>Recuperar contraseña</h1>
 
 <div>
-    <form id="recoveryForm" action="/recovery" method="POST">
+    <form id="recoveryForm" action="/api/users/recovery" method="POST">
         <input type="email" name="email" placeholder="Email"/>
         <button type="submit">Recuperar contraseña</button>
     </form>
@@ -24,7 +24,7 @@
       const formData = new FormData(recoveryForm);
 
       try {
-        const response = await fetch('/recovery', {
+        const response = await fetch('/api/user/recovery', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

@@ -1,11 +1,10 @@
 import { expect } from "chai";
-import request from "supertest";
-import { product1, product2, productSinProperties,productUpdate } from "../mocks/products.mock.js";
+import { product1, productSinProperties,productUpdate } from "../mocks/products.mock.js";
 import supertestSession from "supertest-session"; 
 
-const app = "http://localhost:8080";
+import config from "../../src/config/config.js";
 
-const requester = request(app)
+const app = config.server.host;
 
 const sessionInstance = supertestSession(app);
 
@@ -14,7 +13,7 @@ let productCreatedId = 0;
 describe("Products Router Integration Tests", () => {
 
     it("should get a list of products after successful login", async () => {
-        await sessionInstance.post("/login").send({ email: "mateo@gmail.com", password: "123" });
+        await sessionInstance.post("/api/users/login").send({ email: "mateo@gmail.com", password: "123" });
 
         const response = await sessionInstance.get('/api/products').send();
 
@@ -24,7 +23,7 @@ describe("Products Router Integration Tests", () => {
     });
 
     it("should create a new product after successful login", async () => {
-        await sessionInstance.post("/login").send({ email: "mateo@gmail.com", password: "123" });
+        await sessionInstance.post("/api/users/login").send({ email: "mateo@gmail.com", password: "123" });
 
         const newProduct = product1;
         const response = await sessionInstance.post('/api/products').send(newProduct)
@@ -36,7 +35,7 @@ describe("Products Router Integration Tests", () => {
     });
     
     it("should not create a new product after successful login", async () => {
-        await sessionInstance.post("/login").send({ email: "mateo@gmail.com", password: "123" });
+        await sessionInstance.post("/api/users/login").send({ email: "mateo@gmail.com", password: "123" });
 
         const newProduct = productSinProperties;
         const response = await sessionInstance.post('/api/products').send(newProduct)
@@ -46,7 +45,7 @@ describe("Products Router Integration Tests", () => {
     });
 
     it("should update an existing product after successful login", async () => {
-        await sessionInstance.post("/login").send({ email: "mateo@gmail.com", password: "123" });
+        await sessionInstance.post("/api/users/login").send({ email: "mateo@gmail.com", password: "123" });
 
         const updatedProduct = productUpdate;
         const response = await sessionInstance.put(`/api/products/${productCreatedId}`).send(updatedProduct)
@@ -54,7 +53,7 @@ describe("Products Router Integration Tests", () => {
     });
 
     it("should delete an existing product after successful login", async () => {
-        await sessionInstance.post("/login").send({ email: "mateo@gmail.com", password: "123" });
+        await sessionInstance.post("/api/users/login").send({ email: "mateo@gmail.com", password: "123" });
 
         const response = await sessionInstance.delete(`/api/products/${productCreatedId}`);
 

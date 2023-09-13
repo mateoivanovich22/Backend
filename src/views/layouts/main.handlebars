@@ -899,6 +899,62 @@
           background: transparent;
           margin-bottom: 20px;
         }
+
+        #upgradeForm{
+          display: none;
+          flex-direction: column;
+          padding: 20px;
+          background-color: white;
+        }
+
+        #divCreateProduct{
+          background-color: grey;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          padding: 150px;
+        }
+
+        .buttonCart {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px 15px;
+          gap: 15px;
+          background-color: red;
+          outline: 3px red solid;
+          outline-offset: -3px;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          transition: 400ms;
+        }
+
+        .buttonCart .textBuy {
+          color: white;
+          font-weight: 700;
+          font-size: 1em;
+          transition: 400ms;
+        }
+
+        .buttonCart svg path {
+          transition: 400ms;
+        }
+
+        .buttonCart:hover {
+          background-color: grey;
+        }
+
+        .buttonCart:hover .text {
+          color: #181717;
+        }
+
+        .buttonCart:hover svg path{
+          fill: #181717;
+
+        }
+
     </style>
   </head>
   <body>

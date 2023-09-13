@@ -18,7 +18,18 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'cart',
   },
+  documents: [
+    {
+      name: String,
+      reference: String,
+    },
+  ],
+  last_connection: {
+    type: Date,
+    default: null,
+  },
 });
+
 
 const UsersModel = db.model(collection, userSchema);
 

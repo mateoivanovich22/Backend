@@ -318,7 +318,7 @@ class CartManager {
   async findTicketsByEmail(email) {
     try {
       const tickets = await TicketModel.find({ purchaser: email }).lean();
-      return tickets.toJSON();
+      return tickets;
     } catch (error) {
       return customError.createError({
         name: "Error buscando ticket",

@@ -1,11 +1,10 @@
 import { expect } from "chai";
-import request from "supertest";
 import supertestSession from "supertest-session"; 
 import { cart1, newProduct, quantityUpdate } from "../mocks/carts.mock.js";
 
-const app = "http://localhost:8080";
+import config from "../../src/config/config.js";
 
-const requester = request(app)
+const app = config.server.host;
 
 const sessionInstance = supertestSession(app);
 
@@ -54,7 +53,7 @@ describe("Carts Router Integration Tests", () => {
     });
 
     it("should purchase a cart" , async () => {
-        await sessionInstance.post("/login").send({ email: "mateo@gmail.com", password: "123" });
+        await sessionInstance.post("/api/users/login").send({ email: "mateo@gmail.com", password: "123" });
 
         const response = await sessionInstance.post(`/api/carts/${cartCreatedId}/purchase`).send();
 

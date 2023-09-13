@@ -1,4 +1,4 @@
-<div>
+<div id="divCreateProduct">
     <h1>CREATE PRODUCT</h1>
     <form style="color: white;" id="product-form">
         <label for="title">Título:</label>
@@ -31,6 +31,11 @@
         <button type="submit">Crear Producto</button>
   </form>
   <p id="userEmail" style="display: none;">{{user.email}}</p>
+  <button onclick="returnHome()" id="buttonBox">
+        <span class="box">
+            Return Home!
+        </span>
+    </button>
 </div>
 
 <script src="/js/createProduct.js"></script>

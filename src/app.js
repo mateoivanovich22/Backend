@@ -161,7 +161,8 @@ io.on("connection", async (socket) => {
 
   socket.on('upgradeUser', async (id) => {
     try {
-      const userUpgraded = await usersManager.upgradeUser(id);
+      const userUpgraded = await usersManager.upgradeUserWithDocuments(id);
+      console.log(userUpgraded);
       if(userUpgraded){
         log.info("User with id " + id + " has been upgraded");
         io.emit("user upgraded")
@@ -169,7 +170,6 @@ io.on("connection", async (socket) => {
         log.info("User with id " + id + " cannot be upgraded")
         io.emit("user upgraded false")
       }
-      
     } catch (error) {
       log.error(error);
       return

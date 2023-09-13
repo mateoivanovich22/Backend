@@ -1,5 +1,5 @@
 import express from "express";
-import { notFoundURL, passportCall, privateRoute, publicRoute } from "../utils.js";
+import { notFoundURL, privateRoute, publicRoute } from "../utils.js";
 import * as operations from "../controllers/views.controller.js";
 const router = express.Router();
 
@@ -7,29 +7,9 @@ import { showTicket} from "../controllers/cart.controller.js";
 
 import log from '../config/logger.js';
 
-router.get("/current", passportCall("jwt"), operations.currentJWT);
-
-router.get("/", operations.showRegister);
-
-router.post("/register", passportCall("register"), operations.postRegister);
-
-router.get("/login", operations.showLogin);
-
-router.post("/login", passportCall("login"), operations.postLogin);
-
-router.get("/login/github", passportCall("github"));
-
-router.get(
-  "/login/github/callback",
-  passportCall("github"),
-  operations.githubCallback
-);
-
-router.get("/logout", operations.logout);
-
-router.get("/recovery", operations.recovery);
-
-router.post("/recovery", operations.postRecovery);
+router.get("/", (req, res) => {
+  res.redirect("/api/users/")
+});
 
 router.get("/realTimeProducts", privateRoute ,operations.realTimeProducts);
 

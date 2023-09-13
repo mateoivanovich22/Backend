@@ -2,7 +2,8 @@ import 'dotenv/config'
 let config= {};
 
 config.server= {
-    port: process.env.PORT,
+    port: process.env.PORT || 8080,
+    host: 'http://localhost:8080',
 }
 
 config.db = {

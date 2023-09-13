@@ -143,6 +143,7 @@ const finishBuying = async (req, res) => {
   const cartId = req.params.cid;
 
   if (!req.session.user.email){
+
     res.status(500).send({ status: "No hay EMAIL y no se puede finalizar la compra" });
     return 
   }
@@ -188,10 +189,8 @@ const finishBuying = async (req, res) => {
 
 const showTicket = async (req, res) => {
   const userEmail = req.session.user.email;
-
   try {
     const tickets = await cartsManager.findTicketsByEmail(userEmail);
-
     const ticketDetails = tickets.map((ticket) => `
       <div>
         <strong>Código:</strong> ${ticket.code}<br>

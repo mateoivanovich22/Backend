@@ -38,7 +38,7 @@ const showProducts = async (req, res) => {
       res.status(500).send("Error interno del servidor");
     }
   } else {
-    res.redirect("/login");
+    res.redirect("/api/users/login");
   }
 };
 
@@ -68,8 +68,9 @@ const createProduct = async (req, res) => {
     stock,
     category,
     thumbnails = [],
-    owner
   } = req.body;
+
+  const owner = req.session.user.email
 
   try {
     if (!title || !description || !code || !price || !stock || !category || !owner) {

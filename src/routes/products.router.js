@@ -9,7 +9,7 @@ router.get("/", showProducts);
 
 router.get('/createProduct', privateRoute, getCreateProduct);
 
-router.post("/", privateRoute , createProduct)
+router.post("/createProduct", privateRoute , createProduct)
 
 router.put("/:pid",updateProduct)
 
