@@ -1,13 +1,16 @@
 const socket = io();
 
-function addToCart(productId,productName, userId, owner, userEmail) {
+const quantityInput = document.getElementById('quantity');
+
+function addToCart(productId,productName, userId, owner, userEmail, quantityValue) {
 
   try {
     const message = document.getElementById('cannotAdd');
+    const quantityValue = quantityInput.value;
     if(owner === userEmail) {
       message.style.display = 'block';
     }else{
-      socket.emit("cartCreated",  productId, productName, userId);
+      socket.emit("cartCreated",  productId, productName, userId, quantityValue);
 
       socket.on("cartId", (cartId) => {
       window.location.href = `/carts/${cartId}`;

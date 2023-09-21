@@ -9,6 +9,8 @@ import config from "./config.js";
 
 const secretKey = config.secretKey.key
 
+const HOST = config.server.host
+
 const JWTStrategy = jwt.Strategy;
 const ExtractJWT = jwt.ExtractJwt;
 
@@ -49,7 +51,7 @@ const initializePassport = () => {
             age,
             password: createHash(password),
             role: role,
-            last_connection: Date.now()
+            last_connection: Date.now(),
           };
 
           const result = await UserModel.create(newUser);
@@ -110,7 +112,7 @@ const initializePassport = () => {
       {
         clientID: "Iv1.eeaab075a5ab9e44",
         clientSecret: "c0c3c81c9d25c190289cfa0849f3875fb1cc8503",
-        callbackURL: "http://localhost:8080/api/users/login/github/callback",
+        callbackURL: `${HOST}/api/users/login/github/callback`,
       },
       async (accessToken, refreshToken, profile, done) => {
         try {

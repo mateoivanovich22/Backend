@@ -1,8 +1,9 @@
 const socket = io();
 
-const userRole = document.getElementById("user-role")
+const userRole = document.getElementById("user-role").textContent
 const botonUpgrade = document.getElementById("botonUpgrade");
 const convertirseEnUser = document.getElementById("convertirseEnUser");
+const userIdentification = document.getElementById("user-id").textContent;
 
 if (userRole === 'user') {
   botonUpgrade.style.display = "block";
@@ -44,7 +45,6 @@ async function enviarSolicitudDeActualizacion(userId) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.message === "Documentos cargados con éxito") {
           alert("Documentos enviados con éxito");
         } else {
@@ -59,11 +59,13 @@ async function enviarSolicitudDeActualizacion(userId) {
 }
   
 
-socket.on("user upgraded", () => {
+socket.on("user upgraded", async() => {
   const messageUpgradedElementFalse = document.getElementById(
     "messageUpgradedFalse"
   );
   messageUpgradedElementFalse.style.display = "none";
+  const upgradeForm = document.getElementById("upgradeForm");
+  upgradeForm.style.display = "none";
 
   const downgrade = document.getElementById("downgrade");
   downgrade.style.display = "none";
@@ -76,6 +78,14 @@ socket.on("user upgraded", () => {
   botonUpgrade.style.display = "none";
   const convertirseEnUser = document.getElementById("convertirseEnUser");
   convertirseEnUser.style.display = "block";
+
+  const userUpdated = await fetch(`/api/users/update-user-session/${userIdentification}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+
 });
 
 socket.on("user upgraded false", () => {

@@ -3,6 +3,7 @@ import log from "../config/logger.js";
 import nodemailer from 'nodemailer';
 
 import CartManager from "../services/cartsManager.js";
+import { request } from "express";
 const cartsManager = new CartManager();
 
 const nodemailerKey = config.nodemailer.key;
@@ -39,6 +40,7 @@ const create = async (req, res) => {
 
 const getCartById = async (req, res) => {
   const cartId = req.params.cid;
+
 
   try {
     const cart = await cartsManager.getCartWithProductsById(cartId);
@@ -141,14 +143,13 @@ const deleteAllProductsOfCart = async (req, res) => {
 
 const finishBuying = async (req, res) => {
   const cartId = req.params.cid;
+  const email = req.body.email;
 
-  if (!req.session.user.email){
-
+  if (!email){
     res.status(500).send({ status: "No hay EMAIL y no se puede finalizar la compra" });
     return 
   }
-  const email = req.session.user.email;
-
+  
   try {
     const cart = await cartsManager.getCartWithProductsById(cartId);
     if (!cart) {

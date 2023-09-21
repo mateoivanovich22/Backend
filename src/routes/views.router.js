@@ -8,7 +8,7 @@ import { showTicket} from "../controllers/cart.controller.js";
 import log from '../config/logger.js';
 
 router.get("/", (req, res) => {
-  res.redirect("/api/users/")
+  res.redirect("/api/users/register")
 });
 
 router.get("/realTimeProducts", privateRoute ,operations.realTimeProducts);
@@ -20,6 +20,10 @@ router.get("/products", operations.showProductList);
 router.get("/products/:id" , operations.showProductId);
 
 router.get("/carts/:cid", operations.showCartId);
+
+router.get("/carts/", (req, res) => {
+  res.render("noProducts")
+})
 
 router.get("/tickets", showTicket)
 

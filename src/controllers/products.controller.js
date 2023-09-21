@@ -1,7 +1,9 @@
 import ProductManagerMongo from "../services/productManager.js";
 import log from "../config/logger.js";
+import config from "../config/config.js";
 
 const productManagerMongo = new ProductManagerMongo();
+
 
 const showProducts = async (req, res) => {
   const user = req.session.user;
@@ -161,14 +163,13 @@ const deleteProduct = async (req, res) => {
 
   try {
     const product = await productManagerMongo.getProductById(productId);
-
     if (!product) {
       log.error("Producto no encontrado");
       res.status(400).send({ error: "Producto no encontrado" });
       return;
     }
 
-    const productDeleted = await productManagerMongo.deleteProduct(productId, user.role, product.owner);
+    const productDeleted = await productManagerMongo.deleteProduct(productId, user.role, product.owner,user);
 
     if (productDeleted) {
       res.status(200).send({ status: "success" });

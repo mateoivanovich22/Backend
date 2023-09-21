@@ -12,6 +12,8 @@ import nodemailer from 'nodemailer';
 import config from "../config/config.js";
 import multer from "multer";
 
+const HOST = config.server.host
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
@@ -205,7 +207,7 @@ const postRecovery = async (req, res) => {
 
     const token = jwt.sign({ email }, 'secreto', { expiresIn: '1h' });
 
-    const recoveryLink = `http://localhost:8080/api/users/recovery-password?token=${token}`;
+    const recoveryLink = `${HOST}/api/users/recovery-password?token=${token}`;
 
     const html = `
       <div>
@@ -258,4 +260,109 @@ const postDocuments = async (req, res) => {
   }
 }
 
-export {postRecoveryPassword, recoveryPassword, successChangePassword,bePremium, postLogin, showLogin, postRegister, currentJWT, showRegister, githubCallback, logout, recovery, postRecovery, postDocuments}
+const showUsers = async (req, res) => {
+  try {
+    const page = req.query.page ? parseInt(req.query.page) : 1; 
+
+    const perPage = 10;
+    const skip = (page - 1) * perPage;
+
+    const allUsers = await userManager.getAllUsers();
+    const totalUsers = allUsers.length;
+
+    const paginatedUsers = allUsers.slice(skip, skip + perPage);
+
+    const pages = [];
+    for (let i = 1; i <= Math.ceil(totalUsers / perPage); i++) {
+      pages.push(i);
+    }
+
+    if (paginatedUsers.length > 0) {
+      res.render('users', { allUsers: paginatedUsers, currentPage: page, totalPages: Math.ceil(totalUsers / perPage), pagination: pages });
+    } else {
+      res.render('users', { allUsers: [], currentPage: 1, totalPages: 1 });
+    }
+  } catch (error) {
+    console.error("Error al obtener los usuarios:", error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+const usersInactivity = async (req, res) => {
+  try {
+    const inactiveUsers = await userManager.findInactiveUsers();
+
+    for (const user of inactiveUsers) {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'mateoivanovichichi@gmail.com',
+          pass: nodemailerKey, 
+        },
+      });
+
+      const mailOptions = {
+        from: 'mateoivanovichichi@gmail.com',
+        to: user.email,
+        subject: 'Cuenta eliminada por inactividad',
+        text: 'Tu cuenta ha sido eliminada debido a la inactividad. Puedes registrarte nuevamente en nuestro sitio cuando desees.',
+      };
+
+      await transporter.sendMail(mailOptions);
+
+      await userManager.deleteUser(user._id);
+    }
+
+    res.status(200).json({ message: 'Usuarios inactivos eliminados y correos enviados correctamente' });
+  } catch (error) {
+    console.error('Error al limpiar usuarios inactivos y enviar correos:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+}
+
+const updateRole = async (req, res) => {
+  const userId  = req.params.uid;
+  const { role } = req.body;
+  const modifiedRole = { role: role };
+
+  try {
+    const updatedUser = await userManager.updateUserById(userId, modifiedRole);
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    return res.status(200).json({ message: "Role updated successfully", user: updatedUser });
+  } catch (error) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  const userId = req.params.uid;
+
+  try {
+    const deleted = await userManager.deleteUser(userId);
+    if (!deleted) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    return res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+const actualizarSession = async (req, res) => {
+  const userId = req.params.uid;
+
+  try {
+    const user = await userManager.findUserById(userId);
+
+    req.session.user = user;
+
+    res.status(200).send({ message: "session modified successfully" });
+  } catch (error) {
+    console.error("Error: ", error);
+    res.status(500).send({ message: "An error occurred" });
+  }
+}
+
+export {postRecoveryPassword, recoveryPassword, successChangePassword,bePremium, postLogin, showLogin, postRegister, currentJWT, showRegister, githubCallback, logout, recovery, postRecovery, postDocuments, showUsers, usersInactivity, updateRole, deleteUser,actualizarSession}

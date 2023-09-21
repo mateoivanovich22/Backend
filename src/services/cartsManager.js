@@ -38,7 +38,8 @@ class CartManager {
   }
   
 
-  async createCartWithProduct(productId, productName, userId) {
+  async createCartWithProduct(productId, productName, userId, productQuantity) {
+    const productQuantityInt = parseInt(productQuantity);
 
     if (!mongoose.isValidObjectId(productId)) {
       return customError.createError({
@@ -70,11 +71,11 @@ class CartManager {
       );
 
       if (existingProductIndex !== -1) {
-        existingCart.products[existingProductIndex].quantity += 1;
+        existingCart.products[existingProductIndex].quantity += productQuantityInt;
       } else {
         existingCart.products.push({
           product: product.title,
-          quantity: 1,
+          quantity: productQuantityInt,
         });
       }
 
@@ -91,7 +92,7 @@ class CartManager {
       products: [
         {
           product: product.title,
-          quantity: 1,
+          quantity: productQuantityInt,
         },
       ],
     };
@@ -118,6 +119,7 @@ class CartManager {
   async getCartWithProductsById(cartId) {
     try {
       const cart = await cartsModel.findById(cartId).populate("products");
+
       return cart;
     } catch (error) {
       return customError.createError({
@@ -304,7 +306,7 @@ class CartManager {
     return ticketCode;
   }
 
-  async  calculateTotalPrice(cart) {
+  async calculateTotalPrice(cart) {
     let totalPrice = 0;
   
     for (const product of cart.products) {

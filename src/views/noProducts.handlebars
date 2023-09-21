@@ -1,0 +1,21 @@
+<div style="display: flex; padding: 40px; flex-direction:column; align-items: center; justify-content: center">
+    <h1>Cart</h1>
+    <h3 style="color: white;">No products in your cart</h3>
+    <button onclick="returnHome()" class="botonSpace" type="button">
+        <strong>RETURN HOME</strong>
+        <div id="container-stars">
+            <div id="stars"></div>
+        </div>
+
+        <div id="glow">
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </button>
+</div>
+
+<script>
+    function returnHome(){
+        window.location.href = "/api/products"
+    }
+</script>

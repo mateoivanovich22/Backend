@@ -64,11 +64,11 @@ export const passportCall = (strategy) => {
 
 export const authorization = (role) => {
   return async (req, res, next) => {
-    if (req.user.role != role) {
+    if (req.session.user.role != role) {
       return customError.createError({
         name: "No hay permisos",
         cause: "permisos denegados",
-        message: `Su rol es: ${req.user.role}`,
+        message: `Su rol es: ${req.session.user.role}`,
         code: EErors.NO_PERMISSIONS,
       });
     }

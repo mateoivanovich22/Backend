@@ -1,6 +1,6 @@
 import express from "express";
 import { Server } from "socket.io";
-import { engine } from 'express-handlebars';
+import exphbs from 'express-handlebars';
 
 import UsersManager from "./services/usersManager.js";
 import ProductManagerMongoose from "./services/productManager.js";
@@ -18,6 +18,7 @@ import productsRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
 import viewsRouter from "./routes/views.router.js";
 import usersRouter from "./routes/users.router.js"
+import paymentRouter from "./routes/payment.router.js"
 
 import compression from "express-compression";
 
@@ -63,9 +64,6 @@ const cartsManagerMongoose = new CartsManagerMongoose();
 const messagesManager = new MessagesManager();
 const usersManager = new UsersManager();
 
-
-let productsOfMongoose = [];
-
 app.use(
   session({
     secret: "s3cr3t3",
@@ -74,8 +72,16 @@ app.use(
   })
 );
 
+const hbs = exphbs.create({
+  helpers: {
+    ifEquals: function (arg1, arg2, options) {
+      return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+    },
+  },
+});
+
 app.use(express.static(__dirname + "/public"));
-app.engine('handlebars', engine());
+app.engine('handlebars', hbs.engine);
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
@@ -95,6 +101,12 @@ app.use("/api/products/", productsRouter);
 app.use("/api/carts/", cartsRouter);
 
 app.use("/api/users/", usersRouter); 
+
+app.use("/api/payment", paymentRouter)
+
+app.use("/", viewsRouter);
+
+let productsOfMongoose = [];
 
 const getProducts = async () => {
   
@@ -118,9 +130,9 @@ io.on("connection", async (socket) => {
     await messagesManager.createMessage(message);
   });
 
-  socket.on("cartCreated", async (productId, productName, userId) => {
+  socket.on("cartCreated", async (productId, productName, userId, productQuantity) => {
 
-    const newCart = await cartsManagerMongoose.createCartWithProduct(productId,productName,userId);
+    const newCart = await cartsManagerMongoose.createCartWithProduct(productId,productName,userId,productQuantity);
     socket.emit("cartId", newCart._id);
   });
 
@@ -153,8 +165,8 @@ io.on("connection", async (socket) => {
     }
   });
 
-  socket.on("deleteProduct", async (productId, role, owner) => {
-    await productManagerMongoose.deleteProduct(productId, role, owner);
+  socket.on("deleteProduct", async (productId, role, owner, user) => {
+    await productManagerMongoose.deleteProduct(productId, role, owner, user);
     await getProducts();
     io.emit("products", productsOfMongoose);
   });
@@ -162,7 +174,7 @@ io.on("connection", async (socket) => {
   socket.on('upgradeUser', async (id) => {
     try {
       const userUpgraded = await usersManager.upgradeUserWithDocuments(id);
-      console.log(userUpgraded);
+
       if(userUpgraded){
         log.info("User with id " + id + " has been upgraded");
         io.emit("user upgraded")
@@ -196,5 +208,4 @@ io.on("connection", async (socket) => {
   })
 });
 
-app.use("/", viewsRouter);
 export default app;

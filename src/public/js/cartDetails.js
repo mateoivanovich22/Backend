@@ -24,19 +24,23 @@ function seguirComprando(){
     window.location.href = '/api/products';
 }
 
-async function terminarCompra(cartId) {
+async function terminarCompra(cartId,totalPrice) {
     try {
-        const response = await fetch(`/api/carts/${cartId}/purchase`, {
-            method: 'POST',
+        const option = "Compra mateomarket"
+        const response = await fetch("/api/payment/create-order-stripe", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        const data = await response.json();
-        window.location.href = '/tickets';
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ totalPrice, option, cartId }),
+        })
+        
+        const data = await response.json()
+        
+        window.location.href = data.url
     } catch (error) {
         console.error('Error al realizar la compra:', error);
         throw new Error(error) 
     }
 }
+

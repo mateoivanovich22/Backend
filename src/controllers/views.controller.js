@@ -75,7 +75,11 @@ const showCartId = async (req, res) => {
     }
 
     const cartJSON = cart.toJSON();
+    const totalPrice = await cartsManagerMongoose.calculateTotalPrice(cart)
+    
+    cartJSON.totalPrice = totalPrice;
 
+    req.session.user.cart = cartId;
     res.render("cartDetails", { cart: cartJSON });
   } catch (error) {
     log.error(error);

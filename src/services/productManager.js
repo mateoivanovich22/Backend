@@ -4,6 +4,12 @@ import mongoose from "mongoose";
 import customError from "./errors/customError.js";
 import EErors from "./errors/enums.js";
 import log from "../config/logger.js"
+import nodemailer from 'nodemailer';
+
+import config from "../config/config.js";
+
+const HOST = config.server.host
+const nodemailerKey = config.nodemailer.key;
 
 class ProductsManager {
   constructor() {}
@@ -90,18 +96,43 @@ class ProductsManager {
     }
   }
 
-  async deleteProduct(id, role, owner) {
+  async deleteProduct(id, role, owner, user) {
     try {
       const product = await productsModel.findById(id);
       let usuarioCreador = false;
 
-      if((role === "premium"  && product.owner === owner) || (role === "admin")){
+      if((role === "premium"  && owner === owner) || (role === "admin")){
         usuarioCreador = true;
         if(role === "admin"){
           log.info("Usuario admin autorizado a borrar el producto")  
         }else{
           log.info("Usuario premium autorizado a borrar su producto")  
         }     
+      }
+
+      if(user.email === owner){
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'mateoivanovichichi@gmail.com',
+            pass: nodemailerKey
+          }
+        });
+    
+        const mailOptions = {
+          from: 'mateoivanovichichi@gmail.com',
+          to: user.email,
+          subject: 'El producto fue eliminado',
+        };
+    
+        transporter.sendMail(mailOptions, (err, info) => {
+          if (err) {
+            log.error("Error al enviar el correo:", err);
+            return;
+          }
+    
+          log.info(`Mensaje enviado con éxito a ${user.email}`);
+        });
       }
 
       if(usuarioCreador){
@@ -144,10 +175,10 @@ class ProductsManager {
 
       const result = await productsModel.paginate(filters, queryOptions);
       result.prevLink = result.hasPrevPage
-        ? `http://localhost:8080/students?page=${result.prevPage}`
+        ? `${HOST}/students?page=${result.prevPage}`
         : "";
       result.nextLink = result.hasNextPage
-        ? `http://localhost:8080/students?page=${result.nextPage}`
+        ? `${HOST}/students?page=${result.nextPage}`
         : "";
       result.isValid = !(page <= 0 || page > result.totalPages);
 

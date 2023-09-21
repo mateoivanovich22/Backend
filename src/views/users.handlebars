@@ -1,0 +1,77 @@
+
+<h1>List of Users</h1>
+{{#if allUsers.length}}
+    <table style="color: white;">
+        <thead>
+            <tr>
+                <th style="padding: 10px;">Name</th>
+                <th style="padding: 10px;">Email</th>
+                <th style="padding: 10px;">Role</th>
+                <th style="padding: 10px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each allUsers}}
+                <tr style="padding: 15px;">
+                    <td style="padding: 5px;">{{this.firstname}}</td>
+                    <td style="padding: 5px;">{{this.email}}</td>
+                    <td style="padding: 5px;">
+                        <form method="post" action="/api/users/{{this._id}}/update-role">
+                            <select name="role" required>
+                                <option value="user" {{#ifEquals this.role "user"}}selected{{/ifEquals}}>User</option>
+                                <option value="admin" {{#ifEquals this.role "admin"}}selected{{/ifEquals}}>Admin</option>
+                                <option value="premium" {{#ifEquals this.role "premium"}}selected{{/ifEquals}}>Premium</option>
+                            </select>
+                            <button type="submit">Change Role</button>
+                        </form>
+                    </td>
+                    <td style="padding: 5px;">
+                        <form method="post" action="/api/users/{{this._id}}/delete-user">
+                            <button type="submit">Delete User</button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{#if totalPages}}
+        <ul class="pagination">
+            <h3 style="color: white;">Pages: </h3>
+            {{#each pagination}}
+                {{#ifEquals this ../currentPage}}
+                    <li class="active" style="margin-left: 50px;">
+                        <a href="?page={{this}}">{{this}}</a>
+                    </li>
+                {{else}}
+                    <li style="margin-left: 50px;">
+                        <a href="?page={{this}}">{{this}}</a>
+                    </li>
+                {{/ifEquals}}
+            {{/each}}
+        </ul>
+    {{/if}}
+{{else}}
+    <p>No users found.</p>
+{{/if}}
+
+{{!-- <form method="post" action="/api/users/inactivityUsers" id="deleteForm">
+  <button type="submit" onclick="return confirm('Are you sure you want to perform this action?')">Inactivate Users</button>
+</form> --}}
+
+
+<button onclick="returnHome()" id="buttonBox">
+    <span class="box">
+        Return Home!
+    </span>
+</button>
+
+<script>
+    function returnHome(){
+        window.location.href = "/api/products"
+    }
+</script>
+
+
+
+

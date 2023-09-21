@@ -9,6 +9,8 @@
         <p>Code: {{product.code}}</p>
         <p>Description: {{product.description}}</p>
         <p>Owner: {{product.owner}}</p>
+        <label for="quantity">Cantidad:</label>
+        <input type="number" id="quantity" name="quantity" min="1" value="1">
         <button class="cart-button" onclick="addToCart('{{product._id}}', '{{product.title}}', '{{user._id}}', '{{product.owner}}', '{{user.email}}')">Agregar al carrito</button>
         <h4 id="cannotAdd" style="display: none;">Cannot add your own product</h4>
         <div>

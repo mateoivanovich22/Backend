@@ -35,8 +35,12 @@ deleteProductForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const role = document.getElementById("user-role").textContent;
   const owner = document.getElementById("user-email").textContent;
+  const user = {
+    role: role,
+    email: owner,
+  }
   const productId = document.querySelector("#product-id").value;
-  socket.emit("deleteProduct", productId, role, owner);
+  socket.emit("deleteProduct", productId, role, owner, user);
   document.querySelector("#product-id").value = "";
 });
 

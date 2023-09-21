@@ -26,7 +26,7 @@ describe("Products Router Integration Tests", () => {
         await sessionInstance.post("/api/users/login").send({ email: "mateo@gmail.com", password: "123" });
 
         const newProduct = product1;
-        const response = await sessionInstance.post('/api/products').send(newProduct)
+        const response = await sessionInstance.post('/api/products/createProduct').send(newProduct)
         productCreatedId = response.body.product._id;
 
         expect(response.statusCode).to.equal(200);
@@ -38,7 +38,7 @@ describe("Products Router Integration Tests", () => {
         await sessionInstance.post("/api/users/login").send({ email: "mateo@gmail.com", password: "123" });
 
         const newProduct = productSinProperties;
-        const response = await sessionInstance.post('/api/products').send(newProduct)
+        const response = await sessionInstance.post('/api/products/createProduct').send(newProduct)
         expect(response.statusCode).to.equal(400);
         expect(response.body).to.be.an('object')
         expect(response.ok).to.be.false;
