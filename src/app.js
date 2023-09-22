@@ -1,5 +1,6 @@
 import express from "express";
-import { Server } from "socket.io";
+import { Server } from 'socket.io';
+
 import exphbs from 'express-handlebars';
 
 import UsersManager from "./services/usersManager.js";
