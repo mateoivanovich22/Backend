@@ -24,7 +24,7 @@
       const formData = new FormData(recoveryForm);
 
       try {
-        const response = await fetch('/api/user/recovery', {
+        const response = await fetch('/api/users/recovery', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

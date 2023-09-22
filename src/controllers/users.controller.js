@@ -1,7 +1,7 @@
 import log from "../config/logger.js";
 import jwt from 'jsonwebtoken'
 import UsersManager from "../services/usersManager.js";
-import { generateToken } from "../utils.js";
+import { generateToken, createHash } from "../utils.js";
 import customError from "../services/errors/customError.js";
 import EErors from "../services/errors/enums.js";
 import {
@@ -185,7 +185,8 @@ const postRecovery = async (req, res) => {
 
   try {
     const user = await userManager.findUserByEmail(email);
-    if (!user || user.password === password) {
+
+    if (!user) {
       return res.status(400).send('No puede utilizar la misma contraseña.');
     }
 
@@ -226,6 +227,7 @@ const postRecovery = async (req, res) => {
 
     res.status(200).send('Correo de recuperación enviado correctamente.');
   } catch (error) {
+
     log.error(error);
     res.status(500).send('Error al enviar el correo de recuperación.');
   }

@@ -62,7 +62,7 @@ class UsersManager {
         return null;
       }
 
-      return user.toJSON();
+      return user;
     } catch (error) {
       log.error(
         `Error al buscar el usuario con ID ${userId}: ${error.message}`
