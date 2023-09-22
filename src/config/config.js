@@ -4,7 +4,8 @@ let config= {};
 config.server= {
     port: process.env.PORT || 8080,
     // host: 'https://mateomarket.vercel.app',
-    host: 'http://localhost:8080',
+    // host: 'http://localhost:8080',
+    host: "https://backend-production-799f.up.railway.app"
 
 }
 
