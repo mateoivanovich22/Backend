@@ -68,8 +68,8 @@ const createProduct = async (req, res) => {
     price,
     status = true,
     stock,
-    category,
     thumbnails = [],
+    category,
   } = req.body;
 
   const owner = req.session.user.email

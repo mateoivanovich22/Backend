@@ -46,13 +46,7 @@ export const passportCall = (strategy) => {
           strategy === "login"
             ? loginUserErrorInfo({ email, password })
             : generateUserErrorInfo({ firstname, lastname, email });
-
-        customError.createError({
-          name: `User ${strategy} error`,
-          cause: typeOfStrategy,
-          message: "Error intentando con el usuario",
-          code: EErors.INVALID_TYPE_ERROR,
-        });
+        next();
       }else{
         req.user = user;
         next();

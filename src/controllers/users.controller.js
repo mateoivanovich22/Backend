@@ -91,23 +91,11 @@ const showRegister = (req, res) => {
 };
 
 const postRegister = (req, res) => {
-  if (!req.user) {
-    const firstname = req.user.firstname;
-    const lastname = req.user.lastname;
-    const age = req.user.age;
-    const email = req.user.email;
-    const password = req.user.password;
-    log.error("Error intentando acceder a su cuenta", customError.createError({
-      name: "User error",
-      cause: generateUserErrorInfo({
-        firstname,
-        lastname,
-        email,
-        password,
-        age,
-      }),
-      code: EErors.INVALID_PARAM,
-    }));
+  if (!req.user) { 
+    log.error("Error intentando acceder a su cuenta");
+    const message = "Email ya existente"
+    return res.render("register", {message})
+
   } else {
     req.session.user = req.user;
     const token = generateToken(req.user);
@@ -122,13 +110,9 @@ const showLogin = (req, res) => {
 
 const postLogin = async (req, res) => {
   if (!req.user) {
-    const email = req.user.email;
-    const password = req.user.password;
-    return log.error("Error intentando acceder a su cuenta", customError.createError({
-      name: "User error",
-      cause: loginUserErrorInfo({ email, password }),
-      code: EErors.INVALID_PARAM,
-    }));
+    log.error("Error intentando acceder a su cuenta");
+    const message = "Email o password incorrecta"
+    return res.render("login", {message})
   }
 
   const userId = req.user._id;
